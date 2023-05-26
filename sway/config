@@ -14,11 +14,22 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term wezterm
+set $term wezterm start
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu wofi --show drun,run
+
+### Auto start
+#
+exec --no-startup-id mako
+exec --no-startup-id yandex-disk-indicator
+
+#
+# Autoload scratchpad
+#
+exec $term --class=float_term
+for_window [app_id="^float_term$"] move scratchpad
 
 ### Output configuration
 #
@@ -77,7 +88,7 @@ exec swayidle -w \
     floating_modifier $mod normal
 
     # Open Browser
-    bindsym $mod+w exec firefox
+    bindsym $mod+w exec flatpak run io.gitlab.librewolf-community
 
     # Lock session
     bindsym $mod+Escape exec swaylock -f -c 000000
@@ -189,6 +200,17 @@ exec swayidle -w \
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+    mode "scratchpads" {
+        bindsym t [app_id="^float_term$"] scratchpad show; move position center; mode "default"
+
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+p mode "default"
+    }
+    bindsym $mod+p mode "scratchpads"
+
 #
 # Resizing containers:
 #
@@ -239,11 +261,6 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 client.background       #F8F8F2
-
-### Auto start
-#
-exec mako
-exec_always yandex-disk-indicator
 
 ### Include
 #
