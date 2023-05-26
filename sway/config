@@ -246,7 +246,7 @@ bar {
 
 ### Windows decoration
 #
-font pango:JetBrains Mono Medium 12
+font pango:JetBrainsMonoNerdFontMono Mono Medium 12
 gaps inner 5
 gaps outer 2
 default_border pixel 4
