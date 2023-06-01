@@ -13,7 +13,7 @@ function ls
     if command -sq lsd
         lsd $argv
     else
-        builtin ls $argv
+        bash -c ls $argv
     end
 end
 
