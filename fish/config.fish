@@ -41,7 +41,7 @@ function cd
         return
     end
 
-    zoxide $argv
+    z $argv
 end
 
 #
