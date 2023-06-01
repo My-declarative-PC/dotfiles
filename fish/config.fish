@@ -25,15 +25,6 @@ function la
     ll -a $argv
 end
 
-### cd
-function cd
-    if command -sq zoxide
-        z $argv
-    else
-        builtin cd $argv
-    end
-end
-
 #
 # Vatibles
 #
@@ -47,5 +38,5 @@ if command -sq starship
 end
 
 if command -sq zoxide
-    zoxide init fish | source
+    zoxide init fish --cmd cd | source
 end
