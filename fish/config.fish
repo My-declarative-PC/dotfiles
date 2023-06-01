@@ -1,5 +1,7 @@
 function fish_greeting
-    fastfetch
+    if command -sq fastfetch
+        fastfetch
+    end
 end
 
 # vatibles
