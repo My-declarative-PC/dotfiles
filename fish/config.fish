@@ -38,5 +38,5 @@ if command -sq starship
 end
 
 if command -sq zoxide
-    zoxide init fish --cmd cd | source
+    zoxide init --cmd cd fish | source
 end
