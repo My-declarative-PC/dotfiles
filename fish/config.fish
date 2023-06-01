@@ -9,17 +9,12 @@ end
 #
 
 ### ls
-function LS
-    bash -c ls $argv
-end
-
 function ls
-    if not command -sq lsd
-        LS $argv
-        return
+    if command -sq lsd
+        lsd $argv
+    else
+        builtin ls $argv
     end
-
-    lsd $argv
 end
 
 function ll
@@ -31,17 +26,12 @@ function la
 end
 
 ### cd
-function CD
-    bash -c cd $argv
-end
-
 function cd
-    if not command -sq zoxide
-        CD $argv
-        return
+    if command -sq zoxide
+        z $argv
+    else
+        builtin cd $argv
     end
-
-    z $argv
 end
 
 #
