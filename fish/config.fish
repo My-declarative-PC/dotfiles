@@ -5,33 +5,35 @@ function fish_greeting
 end
 
 ### Aliases
+function LS
+    bash -c ls $argv
+end
+
 function ls
     if not command -sq lsd
-        ls $argv
+        LS $argv
+        return
     end
 
     lsd $argv
 end
 
 function la
-    if not command -sq lsd
-        ls -hal $argv
-    end
-
-    lsd -la $argv
+    ls -hal $argv
 end
 
 function ll
-    if not command -sq lsd
-        ls -hl $argv
-    end
-
-    lsd -l $argv
+    ls -l $argv
 end
 
 ### Vatibles
 set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 
 ### Initializations
-starship init fish | source
-zoxide init fish | source
+if command -sq starship
+    starship init fish | source
+end
+
+if command -sq starship
+    zoxide init fish | source
+end
