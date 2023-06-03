@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 
 return {
     color_scheme = "Dracula (Official)",
+    colors = { selection_bg = 'rgba(189 147 249 73%)' },
     font = wezterm.font("JetBrainsMono Nerd Font Mono"),
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
