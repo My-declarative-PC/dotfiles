@@ -88,7 +88,7 @@ exec swayidle -w \
     floating_modifier $mod normal
 
     # Open Browser
-    bindsym $mod+w exec flatpak run io.gitlab.librewolf-community
+    bindsym $mod+w exec firefox
 
     # Lock session
     bindsym $mod+Escape exec swaylock -f -c 000000
