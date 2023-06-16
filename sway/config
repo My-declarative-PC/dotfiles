@@ -20,11 +20,6 @@ set $term wezterm start
 # on the original workspace that the command was run on.
 set $menu wofi --show drun,run
 
-### Auto start
-#
-exec --no-startup-id mako
-exec --no-startup-id yandex-disk-indicator
-
 #
 # Autoload scratchpad
 #
@@ -265,3 +260,9 @@ client.background       #F8F8F2
 ### Include
 #
 include /etc/sway/config.d/*
+
+### Auto start
+#
+exec systemctl --user start sway-session.target
+exec --no-startup-id mako
+exec --no-startup-id yandex-disk-indicator
