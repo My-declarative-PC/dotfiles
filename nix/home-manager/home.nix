@@ -34,10 +34,30 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.zoxide
+
+    # cli tools
     pkgs.lsd
+    pkgs.vim
+    pkgs.bat
     pkgs.starship
     pkgs.lazygit
+    pkgs.zoxide
+
+    # security
+    pkgs.keepassxc
+
+    # utils
+    pkgs.wofi
+
+    # internet
+    pkgs.firefox
+    pkgs.telegram-desktop
+
+    # fonts
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    pkgs.font-awesome
+    pkgs.jetbrains-mono
+
     # pkgs.wezterm # ne mogu ponyat v chem problema. ustanovlyu cherez defoltniy manager paketov
   ];
 
@@ -56,6 +76,7 @@
     # '';
     ".config/lsd".source = ../../lsd;
     ".config/wezterm".source = ../../wezterm;
+    ".vimrc".source = ../../vim/vimrc;
   };
 
   # You can also manage environment variables but you will have to manually
