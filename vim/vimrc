@@ -1,0 +1,114 @@
+" ### Включаем отображение 256-х цветоваой палитры ###
+set t_Co=256
+
+" ### Отключаем совместимость с `VI` ###
+set nocompatible
+
+" ### Отключаем перенос строк ###
+set nowrap
+
+" ### Устанавливаем `tab` = 4м пробелам ###
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" ### Настройка отображения относитьльных номеров строк ###
+" в нормальном режиме - номера строк отображаются как относительные
+" при переключении в режим ввода - становятся абсолютными
+set number
+
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
+" ### Мапинг русских букв, чтобы команды vim работали и на кирилице ###
+" но не все команды будут работать ((
+" set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+" ### Включаем подсветку синтаксиса ###
+"   setlocal spell spelllang=ru_yo,en_us
+"   set keymap=russian-jcukenwin
+"   set iminsert=0
+"   set imsearch=0
+"   highlight lCursor guifg=NONE guibg=Cyan
+
+syntax enable
+
+" ### Подключаем встроенный плагин работы с файлами ###
+filetype plugin on
+" настраваем автокомплит по `tab` для поиска файлов
+set path=**
+" Добавляем подсказку для поиска
+set wildmenu
+" Настраиваем встроеный плагин работы с просмотром файлов
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\S\+'
+
+" ### Настройка автоматического удаления лишних пробелов в конце строки ###
+autocmd FileType * autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" ### Устанавливаем отступ строк с перд и после курсора ###
+" так он не будет проручиваться до самого конца экрана
+set scrolloff=6
+
+" ### Задаюм максимальную длину строки ###
+set signcolumn=yes
+set colorcolumn=100
+" ### higlite cursor only in current windows ###
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+
+" ### Добавление настройки для работы с тегами ###
+command! MakeTags !echo ctags - not exist
+if executable("ctags")
+    command! MakeTags !ctags -R .
+endif
+
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+
+" ### Перенос UNDO-файла в отдельную дирректорию ###
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
+
+" ### Перенос SWAP-файла в отдельную дирректорию ###
+if !isdirectory($HOME."/.vim/swap-dir")
+    call mkdir($HOME."/.vim/swap-dir", "", 0700)
+endif
+set directory^=$HOME/.vim/swap-dir//
+set swapfile
+
+" ### disble higlite search after timeout ###
+augroup NoHLSearch
+    au!
+    autocmd CursorHold,CursorMoved * call <SID>NoHLAfter(4)
+augroup END
+
+function! s:NoHLAfter(n)
+    if !exists('g:nohl_starttime')
+        let g:nohl_starttime = localtime()
+    else
+        if v:hlsearch && (localtime() - g:nohl_starttime) >= a:n
+            :nohlsearch
+            redraw
+            unlet g:nohl_starttime
+        endif
+    endif
+endfunction
+
+" ### Устанавливаем цветовую схему ###
+colorschem evening
