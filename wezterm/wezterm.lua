@@ -5,7 +5,7 @@ return {
     color_scheme = "Dracula (Official)",
     colors = { selection_bg = 'rgba(189 147 249 73%)' },
     window_background_gradient = { 
-        colors = { 'rgba(68 71 90 50%)', 'rgba(40 42 54 80%)', 'rgba(40 42 54 98%)', 'rgba(40 42 54 100%) },
+        colors = { 'rgba(68 71 90 50%)', 'rgba(40 42 54 80%)', 'rgba(40 42 54 98%)', 'rgba(40 42 54 100%)' },
         orientation = { Linear = { angle = -100.0} },
     },
     -- -- -- -- --
