@@ -8,7 +8,7 @@ return {
         colors = { 'rgba(68 71 90 50%)', 'rgba(40 42 54 80%)', 'rgba(40 42 54 98%)', 'rgba(40 42 54 100%) },
         orientation = { Linear = { angle = -100.0} },
     },
-    -- =============================================================================================================================
+    -- -- -- -- --
 
     font = wezterm.font("JetBrainsMono Nerd Font Mono"),
     tab_bar_at_bottom = true,
