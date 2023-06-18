@@ -1,5 +1,20 @@
 local wezterm = require 'wezterm'
 
+local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
+
+wezterm.on('update-right-status', function(window, pane)
+    local color = '#282a36';
+    if pane:tab():tab_id() == 0 then
+        color = '#bd93f9';
+    end
+
+    window:set_left_status(wezterm.format {
+        { Foreground = { Color = color } },
+        { Text = SOLID_LEFT_ARROW },
+    })
+end)
+
 return {
     -- Set color
     color_scheme = "Dracula (Official)",
@@ -10,10 +25,25 @@ return {
     },
     -- -- -- -- --
 
+    -- tab_bar_style = {
+    --     active_tab_left = wezterm.format({
+    --         { Text = SOLID_RIGHT_ARROW },
+    --     }),
+    --     active_tab_right = wezterm.format({
+    --         { Text = SOLID_RIGHT_ARROW },
+    --     }),
+    --     inactive_tab_left = wezterm.format({
+    --         { Text = SOLID_RIGHT_ARROW },
+    --     }),
+    --     inactive_tab_right = wezterm.format({
+    --         { Text = SOLID_RIGHT_ARROW },
+    --     }),
+    -- },
+
     font = wezterm.font("JetBrainsMono Nerd Font Mono"),
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
-    window_decorations = "RESIZE",
+    -- window_decorations = "RESIZE",
     hide_tab_bar_if_only_one_tab = true,
     pane_focus_follows_mouse = true,
     window_close_confirmation = 'NeverPrompt',
