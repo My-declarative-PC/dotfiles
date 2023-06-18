@@ -43,7 +43,7 @@ return {
     font = wezterm.font("JetBrainsMono Nerd Font Mono"),
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
-    -- window_decorations = "RESIZE",
+    window_decorations = "RESIZE",
     hide_tab_bar_if_only_one_tab = true,
     pane_focus_follows_mouse = true,
     window_close_confirmation = 'NeverPrompt',
