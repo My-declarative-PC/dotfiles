@@ -1,5 +1,6 @@
 function fish_greeting
     if command -sq fastfetch
+        clear
         fastfetch
     end
 end
