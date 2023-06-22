@@ -112,6 +112,12 @@
       enable = true;
       options = [ "--cmd cd" ];
     };
+
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      shell = "${pkgs.fish}/bin/fish";
+    };
   };
 
   # Let Home Manager install and manage itself.
