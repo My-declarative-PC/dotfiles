@@ -53,16 +53,8 @@
     pkgs.pfetch
     pkgs.lazygit
 
-    # security
-    pkgs.keepassxc
-
     # utils
-    pkgs.wofi
     pkgs.glibcLocales
-
-    # internet
-    pkgs.firefox
-    pkgs.telegram-desktop
 
     # fonts
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -86,7 +78,6 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/lsd".source = ../../lsd;
-    ".config/wezterm".source = ../../wezterm;
     ".vimrc".source = ../../vim/vimrc;
   };
 
