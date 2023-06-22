@@ -36,12 +36,10 @@
     # '')
 
     # cli tools
-    pkgs.lsd
     pkgs.vim
     pkgs.bat
-    pkgs.starship
+    pkgs.pfetch
     pkgs.lazygit
-    pkgs.zoxide
 
     # security
     pkgs.keepassxc
@@ -91,6 +89,29 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     # EDITOR = "emacs";
+  };
+
+  programs = {
+    fish = {
+      enable = true;
+      shellAliases = { mkdir = "mkdir =p"; };
+      functions = {
+        fish_greeting = { body = "clear; pfetch"; };
+        mkcd = { body = "mkdir -p $argv[1]; and cd $argv[1]"; };
+      };
+    };
+
+    starship.enable = true;
+
+    lsd = {
+      enable = true;
+      enableAliases = true;
+    };
+
+    zoxide = {
+      enable = true;
+      options = [ "--cmd cd" ];
+    };
   };
 
   # Let Home Manager install and manage itself.
