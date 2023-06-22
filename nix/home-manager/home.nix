@@ -94,7 +94,7 @@
   programs = {
     fish = {
       enable = true;
-      shellAliases = { mkdir = "mkdir =p"; };
+      shellAliases = { mkdir = "mkdir -p"; };
       functions = {
         fish_greeting = { body = "clear; pfetch"; };
         mkcd = { body = "mkdir -p $argv[1]; and cd $argv[1]"; };
