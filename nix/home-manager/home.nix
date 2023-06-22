@@ -6,6 +6,18 @@
   home.username = "timofey";
   home.homeDirectory = "/home/timofey";
 
+  # Lang
+  home.language = let
+      en = "en_US.UTF-8";
+      ru = "ru_RU.UTF-8";
+  in {
+      address = ru;
+      monetary = ru;
+      paper = ru;
+      time = en;
+      base = en;
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -48,6 +60,7 @@
 
     # utils
     pkgs.wofi
+    pkgs.glibcLocales
 
     # internet
     pkgs.firefox
@@ -90,7 +103,12 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
+    LOCALES_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
+    LANG = "en_US.UTF-8";
+    LC_CTYPE = "en_US.UTF-8";
+    LC_ALL = "en_US.UTF-8";
+    PAGER = "less -FirSwX";
   };
 
   # Let Home Manager install and manage itself.
