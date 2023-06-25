@@ -152,9 +152,18 @@
 
     git = {
       enable = true;
-      delta.enable = true;
       userName  = "Timofey Sitnikov";
       userEmail = "tima.sitnikov@mail.ru";
+      delta = {
+        enable = true;
+        options = {
+          dark = true;
+          navigate = true;
+          line-numbers = true;
+          side-by-side = true;
+          show-syntax-themes = true;
+        };
+      };
     };
 
     lazygit = {
@@ -163,7 +172,7 @@
         gui.showIcons = true;
         git.paging = {
           colorArg = "always";
-          pager = "delta --dark --paging=never";
+          pager = "${pkgs.delta}/bin/delta --side-by-side --line-numbers --dark --paging=never";
         };
       };
     };
