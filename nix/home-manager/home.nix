@@ -51,7 +51,6 @@
     pkgs.vim
     pkgs.bat
     pkgs.pfetch
-    pkgs.lazygit
 
     # security
     pkgs.keepassxc
@@ -149,6 +148,24 @@
           set -g @dracula-plugins "cpu-usage ram-usage"
         '';
       } ];
+    };
+
+    git = {
+      enable = true;
+      delta.enable = true;
+      userName  = "Timofey Sitnikov";
+      userEmail = "tima.sitnikov@mail.ru";
+    };
+
+    lazygit = {
+      enable = true;
+      settings = {
+        gui.showIcons = true;
+        git.paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never";
+        };
+      };
     };
   };
 
