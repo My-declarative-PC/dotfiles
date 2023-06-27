@@ -61,7 +61,6 @@
     pkgs.any-nix-shell
 
     # internet
-    pkgs.firefox
     pkgs.telegram-desktop
 
     # fonts
@@ -85,9 +84,12 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".config/lsd".source = ../../lsd;
+    ".vimrc".source          = ../../vim/vimrc;
+    ".config/lsd".source     = ../../lsd;
+    ".config/sway".source    = ../../sway;
+    ".config/waybar".source  = ../../waybar;
     ".config/wezterm".source = ../../wezterm;
-    ".vimrc".source = ../../vim/vimrc;
+    ".config/swaylock".source = ../../swaylock;
   };
 
   # You can also manage environment variables but you will have to manually
@@ -173,6 +175,17 @@
         git.paging = {
           colorArg = "always";
           pager = "${pkgs.delta}/bin/delta --side-by-side --line-numbers --dark --paging=never";
+        };
+      };
+    };
+
+    firefox = {
+      enable = true;
+      profiles.default = {
+        id = 0;
+        name = "Default";
+        settings = {
+          # Browser settings go here
         };
       };
     };
