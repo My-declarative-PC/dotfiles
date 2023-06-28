@@ -185,25 +185,23 @@ in
     firefox = {
       enable = true;
       profiles = {
-        home = {
+        defualt = {
           id = 0;
-          name = "Home";
+          name = "defualt";
           isDefault = true;
-          settings = {
-            # Browser settings go here
-          };
           extensions = with nurpkgs.repos.rycee.firefox-addons; [
             vimium
             ublock-origin
+            tree-style-tab
             dracula-dark-colorscheme
             multi-account-containers
           ];
-        };
-        work = {
-          id = 1;
-          name = "Work";
+          userChrome = "
+            #TabsToolbar { visibility: collapse !important; }
+          ";
           settings = {
-            # Browser settings go here
+            "browser.tabs.tabmanager.enabled" = false;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           };
         };
       };
