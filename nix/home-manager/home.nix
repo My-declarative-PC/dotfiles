@@ -196,6 +196,7 @@ in
             vimium
             ublock-origin
             dracula-dark-colorscheme
+            multi-account-containers
           ];
         };
         work = {
