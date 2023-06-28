@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  nurpkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { inherit pkgs; };
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -181,11 +184,26 @@
 
     firefox = {
       enable = true;
-      profiles.default = {
-        id = 0;
-        name = "Default";
-        settings = {
-          # Browser settings go here
+      profiles = {
+        home = {
+          id = 0;
+          name = "Home";
+          isDefault = true;
+          settings = {
+            # Browser settings go here
+          };
+          extensions = with nurpkgs.repos.rycee.firefox-addons; [
+            vimium
+            ublock-origin
+            dracula-dark-colorscheme
+          ];
+        };
+        work = {
+          id = 1;
+          name = "Work";
+          settings = {
+            # Browser settings go here
+          };
         };
       };
     };
