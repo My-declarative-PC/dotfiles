@@ -87,11 +87,11 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".vimrc".source          = ../../vim/vimrc;
-    ".config/lsd".source     = ../../lsd;
-    ".config/sway".source    = ../../sway;
-    ".config/waybar".source  = ../../waybar;
-    ".config/wezterm".source = ../../wezterm;
+    ".vimrc".source           = ../../vim/vimrc;
+    ".config/lsd".source      = ../../lsd;
+    ".config/sway".source     = ../../sway;
+    ".config/waybar".source   = ../../waybar;
+    ".config/wezterm".source  = ../../wezterm;
     ".config/swaylock".source = ../../swaylock;
   };
 
