@@ -56,7 +56,11 @@
     pkgs.keepassxc
 
     # utils
+    pkgs.fzf
+    pkgs.btop
     pkgs.wofi
+    pkgs.zellij
+    pkgs.du-dust
     pkgs.glibcLocales
     pkgs.any-nix-shell
 
