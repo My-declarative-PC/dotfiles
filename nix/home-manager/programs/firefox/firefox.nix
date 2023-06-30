@@ -12,6 +12,7 @@ in
         name = "defualt";
         isDefault = true;
         extensions = with nurpkgs.repos.rycee.firefox-addons; [
+          stylus
           vimium
           ublock-origin
           tree-style-tab
