@@ -4,3 +4,6 @@
 [submodule "fish"]
 	path = fish
 	url = https://github.com/ImperatorMarsa/fish-config.git
+[submodule "lsd"]
+	path = lsd
+	url = https://github.com/ImperatorMarsa/lsd-config.git
