@@ -7,3 +7,6 @@
 [submodule "lsd"]
 	path = lsd
 	url = https://github.com/ImperatorMarsa/lsd-config.git
+[submodule "wezterm"]
+	path = wezterm
+	url = https://github.com/ImperatorMarsa/wezterm-config.git
