@@ -1,0 +1,49 @@
+if command -sq fastfetch; then
+     clear
+     fastfetch
+fi
+
+#
+# Aliases
+#
+
+### ls
+function ls {
+     if command -sq eza; then
+         eza -1 --icons "$@"
+     else
+         ls "$@"
+     fi
+}
+
+function ll {
+     ls -lh "$@"
+}
+
+function la {
+     ll -a "$@"
+}
+
+function tree {
+     if command -sq eza; then
+         ls -T "$@"
+     else
+         tree "$@"
+     fi
+}
+
+#
+# Variables
+#
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+#
+# Initializations
+#
+if command -sq starship; then
+     eval "$(starship init bash)"
+fi
+
+if command -sq zoxide; then
+     eval "$(zoxide init --cmd bash)"
+fi
