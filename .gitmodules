@@ -7,3 +7,6 @@
 [submodule "lsd"]
 	path = lsd
 	url = https://github.com/ImperatorMarsa/lsd-config.git
+[submodule "helix"]
+	path = helix
+	url = https://github.com/ImperatorMarsa/helix-config.git
