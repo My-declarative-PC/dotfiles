@@ -13,3 +13,6 @@
 [submodule "helix"]
 	path = helix
 	url = https://github.com/ImperatorMarsa/helix-config.git
+[submodule "starship"]
+	path = starship
+	url = https://github.com/ImperatorMarsa/starship-config.git
