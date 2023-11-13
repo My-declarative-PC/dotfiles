@@ -1,4 +1,4 @@
-if command -sq fastfetch; then
+if command -v fastfetch &> /dev/null; then
      clear
      fastfetch
 fi
@@ -9,7 +9,7 @@ fi
 
 ### ls
 function ls {
-     if command -sq eza; then
+     if command -v eza &> /dev/null; then
          eza -1 --icons "$@"
      else
          ls "$@"
@@ -25,7 +25,7 @@ function la {
 }
 
 function tree {
-     if command -sq eza; then
+     if command -v eza &> /dev/null; then
          ls -T "$@"
      else
          tree "$@"
@@ -35,15 +35,16 @@ function tree {
 #
 # Variables
 #
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+EDITOR=hx
 
 #
 # Initializations
 #
-if command -sq starship; then
+if command -v starship &> /dev/null; then
      eval "$(starship init bash)"
 fi
 
-if command -sq zoxide; then
-     eval "$(zoxide init --cmd bash)"
+if command -v zoxide &> /dev/null; then
+     eval "$(zoxide init --cmd cd bash)"
 fi
