@@ -16,3 +16,6 @@
 [submodule "starship"]
 	path = starship
 	url = https://github.com/ImperatorMarsa/starship-config.git
+[submodule "firefox"]
+	path = firefox
+	url = https://github.com/ImperatorMarsa/firefox-config.git
