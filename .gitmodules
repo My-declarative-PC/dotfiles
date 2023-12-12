@@ -19,3 +19,6 @@
 [submodule "firefox"]
 	path = firefox
 	url = https://github.com/ImperatorMarsa/firefox-config.git
+[submodule "PowerShell"]
+	path = PowerShell
+	url = https://github.com/ImperatorMarsa/PowerShell-config.git
