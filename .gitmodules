@@ -1,18 +1,18 @@
 [submodule "nvim"]
 	path = nvim
-	url = https://github.com/ImperatorMarsa/nvim-config.git
+	url = https://github.com/My-declarative-PC/nvim-config.git
 [submodule "fish"]
 	path = fish
-	url = https://github.com/ImperatorMarsa/fish-config.git
+	url = https://github.com/My-declarative-PC/fish-config.git
 [submodule "lsd"]
 	path = lsd
-	url = https://github.com/ImperatorMarsa/lsd-config.git
+	url = https://github.com/My-declarative-PC/lsd-config.git
 [submodule "helix"]
 	path = helix
-	url = https://github.com/ImperatorMarsa/helix-config.git
+	url = https://github.com/My-declarative-PC/helix-config.git
 [submodule "starship"]
 	path = starship
-	url = https://github.com/ImperatorMarsa/starship-config.git
+	url = https://github.com/My-declarative-PC/starship-config.git
 [submodule "PowerShell"]
 	path = PowerShell
-	url = https://github.com/ImperatorMarsa/PowerShell-config.git
+	url = https://github.com/My-declarative-PC/PowerShell-config.git
