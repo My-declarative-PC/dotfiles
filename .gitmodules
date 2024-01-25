@@ -22,3 +22,6 @@
 [submodule "PowerShell"]
 	path = PowerShell
 	url = https://github.com/My-declarative-PC/PowerShell-config.git
+[submodule "nu"]
+	path = nu
+	url = https://github.com/My-declarative-PC/nu-config.git
