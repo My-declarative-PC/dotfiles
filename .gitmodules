@@ -25,3 +25,6 @@
 [submodule "nu"]
 	path = nu
 	url = https://github.com/My-declarative-PC/nu-config.git
+[submodule "wallpapers"]
+	path = wallpapers
+	url = https://github.com/My-declarative-PC/wallpapers.git
