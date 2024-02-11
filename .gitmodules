@@ -28,3 +28,6 @@
 [submodule "wallpapers"]
 	path = wallpapers
 	url = https://github.com/My-declarative-PC/wallpapers.git
+[submodule "i3"]
+	path = i3
+	url = https://github.com/ImperatorMarsa/i3-config.git
