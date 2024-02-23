@@ -4,9 +4,6 @@
 [submodule "fish"]
 	path = fish
 	url = https://github.com/My-declarative-PC/fish-config.git
-[submodule "lsd"]
-	path = lsd
-	url = https://github.com/My-declarative-PC/lsd-config.git
 [submodule "helix"]
 	path = helix
 	url = https://github.com/My-declarative-PC/helix-config.git
@@ -14,8 +11,3 @@
 	path = starship
 	url = https://github.com/My-declarative-PC/starship-config.git
 [submodule "PowerShell"]
-	path = PowerShell
-	url = https://github.com/My-declarative-PC/PowerShell-config.git
-[submodule "nu"]
-	path = nu
-	url = https://github.com/My-declarative-PC/nu-config.git
