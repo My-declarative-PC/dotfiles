@@ -4,9 +4,6 @@
 [submodule "fish"]
 	path = fish
 	url = https://github.com/My-declarative-PC/fish-config.git
-[submodule "lsd"]
-	path = lsd
-	url = https://github.com/My-declarative-PC/lsd-config.git
 [submodule "wezterm"]
 	path = wezterm
 	url = https://github.com/My-declarative-PC/wezterm-config.git
@@ -19,12 +16,6 @@
 [submodule "firefox"]
 	path = firefox
 	url = https://github.com/My-declarative-PC/firefox-config.git
-[submodule "PowerShell"]
-	path = PowerShell
-	url = https://github.com/My-declarative-PC/PowerShell-config.git
-[submodule "nu"]
-	path = nu
-	url = https://github.com/My-declarative-PC/nu-config.git
 [submodule "wallpapers"]
 	path = wallpapers
 	url = https://github.com/My-declarative-PC/wallpapers.git
