@@ -22,3 +22,6 @@
 [submodule "i3"]
 	path = i3
 	url = https://github.com/ImperatorMarsa/i3-config.git
+[submodule "sway"]
+	path = sway
+	url = https://github.com/ImperatorMarsa/sway-config.git
