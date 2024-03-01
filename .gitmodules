@@ -24,4 +24,4 @@
 	url = https://github.com/ImperatorMarsa/i3-config.git
 [submodule "sway"]
 	path = sway
-	url = https://github.com/ImperatorMarsa/sway-config.git
+	url = https://github.com/My-declarative-PC/sway-config.git
