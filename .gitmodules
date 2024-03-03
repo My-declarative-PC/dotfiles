@@ -25,3 +25,6 @@
 [submodule "sway"]
 	path = sway
 	url = https://github.com/My-declarative-PC/sway-config.git
+[submodule "waybar"]
+	path = waybar
+	url = https://github.com/My-declarative-PC/waybar-config.git
