@@ -28,3 +28,6 @@
 [submodule "waybar"]
 	path = waybar
 	url = https://github.com/My-declarative-PC/waybar-config.git
+[submodule "rofi"]
+	path = rofi
+	url = https://github.com/My-declarative-PC/rofi-config.git
