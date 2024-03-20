@@ -28,6 +28,9 @@
 [submodule "rofi"]
 	path = rofi
 	url = https://github.com/My-declarative-PC/rofi-config.git
+[submodule "wezterm"]
+	path = wezterm
+	url = https://github.com/My-declarative-PC/wezterm-config.git
 [submodule "dunst"]
 	path = dunst
 	url = https://github.com/My-declarative-PC/dunst-config.git
