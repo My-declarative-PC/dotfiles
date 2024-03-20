@@ -4,9 +4,6 @@
 [submodule "fish"]
 	path = fish
 	url = https://github.com/My-declarative-PC/fish-config.git
-[submodule "wezterm"]
-	path = wezterm
-	url = https://github.com/My-declarative-PC/wezterm-config.git
 [submodule "helix"]
 	path = helix
 	url = https://github.com/My-declarative-PC/helix-config.git
