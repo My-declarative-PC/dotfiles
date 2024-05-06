@@ -6,47 +6,55 @@
   "display": {
     "separator": " ➠ ",
     "color": {
-      "keys": "35",
-      "title": "33"
+      "keys": "magenta"
     }
   },
   "modules": [
-    "title",
+    {
+      "type": "title",
+      "color": {
+        "user": "green",
+        "at": "red",
+        "host": "blue"
+      }
+    },
     {
       "type": "custom", // HardwareStart
-      "format": "┌────────────── \u001b[1mHardware Information\u001b[0m ──────────────┐" // `\u001b` is `\033`, or `\e`
+      "format": "╔════════════════ \u001b[1mHardware Information\u001b[0m ════════════════╗" // `\u001b` is `\033`, or `\e`
     },
     {
       "type": "cpu",
-      "key": " CPU⠀⠀⠀"
+      "keyColor": "yellow",
+      "key": " ╭─CPU⠀⠀⠀"
     },
     {
       "type": "memory",
-      "key": " Memory"
+      "keyColor": "yellow",
+      "key": " ╰─Memory"
     },
     {
       "type": "custom", // SoftwareStart
-      "format": "├────────────── \u001b[1mSoftware Information\u001b[0m ──────────────┤"
+      "format": "╠════════════════ \u001b[1mSoftware Information\u001b[0m ════════════════╣"
     },
     {
       "type": "os",
-      "key": " OS⠀⠀⠀⠀"
+      "key": " ╭─OS⠀⠀⠀⠀"
     },
     {
       "type": "kernel",
-      "key": " Kernel"
+      "key": " ├─Kernel"
     },
     {
       "type": "shell",
-      "key": " Shell⠀"
+      "key": " ├─Shell⠀"
     },
     {
       "type": "wm",
-      "key": " WM⠀⠀⠀⠀"
+      "key": " ╰─WM⠀⠀⠀⠀"
     },
     {
       "type": "custom", // InformationEnd
-      "format": "└──────────────────────────────────────────────────┘"
+      "format": "╚══════════════════════════════════════════════════════╝"
     },
     {
       "type": "colors",
