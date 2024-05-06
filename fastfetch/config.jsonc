@@ -14,7 +14,7 @@
     "title",
     {
       "type": "custom", // HardwareStart
-      "format": "┌────────────── \u001b[1mHardware Information\u001b[0m ──────────────┐" // `\u001b` is `\033`, or `\e`
+      "format": "╔══════════════ \u001b[1mHardware Information\u001b[0m ══════════════╗" // `\u001b` is `\033`, or `\e`
     },
     {
       "type": "cpu",
@@ -26,7 +26,7 @@
     },
     {
       "type": "custom", // SoftwareStart
-      "format": "├────────────── \u001b[1mSoftware Information\u001b[0m ──────────────┤"
+      "format": "╠══════════════ \u001b[1mSoftware Information\u001b[0m ══════════════╣"
     },
     {
       "type": "os",
@@ -46,7 +46,7 @@
     },
     {
       "type": "custom", // InformationEnd
-      "format": "└──────────────────────────────────────────────────┘"
+      "format": "╚══════════════════════════════════════════════════╝"
     },
     {
       "type": "colors",
