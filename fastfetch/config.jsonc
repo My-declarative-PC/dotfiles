@@ -6,8 +6,7 @@
   "display": {
     "separator": " ➠ ",
     "color": {
-      "keys": "35",
-      "title": "33"
+      "keys": "magenta"
     }
   },
   "modules": [
