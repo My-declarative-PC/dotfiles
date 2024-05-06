@@ -13,33 +13,44 @@
   "modules": [
     "title",
     {
-      "type": "separator",
-      "string": "#"
-    },
-    {
-      "type": "os",
-      "key": "OS⠀⠀⠀⠀"
-    },
-    {
-      "type": "kernel",
-      "key": "Kernel"
-    },
-    {
-      "type": "shell",
-      "key": "Shell⠀"
-    },
-    {
-      "type": "wm",
-      "key": "WM⠀⠀⠀⠀"
+      "type": "custom", // HardwareStart
+      "format": "┌────────────── \u001b[1mHardware Information\u001b[0m ──────────────┐" // `\u001b` is `\033`, or `\e`
     },
     {
       "type": "cpu",
-      "key": "CPU⠀⠀⠀"
+      "key": " CPU⠀⠀⠀"
     },
     {
       "type": "memory",
-      "key": "Memory"
+      "key": " Memory"
     },
-    "colors"
+    {
+      "type": "custom", // SoftwareStart
+      "format": "├────────────── \u001b[1mSoftware Information\u001b[0m ──────────────┤"
+    },
+    {
+      "type": "os",
+      "key": " OS⠀⠀⠀⠀"
+    },
+    {
+      "type": "kernel",
+      "key": " Kernel"
+    },
+    {
+      "type": "shell",
+      "key": " Shell⠀"
+    },
+    {
+      "type": "wm",
+      "key": " WM⠀⠀⠀⠀"
+    },
+    {
+      "type": "custom", // InformationEnd
+      "format": "└──────────────────────────────────────────────────┘"
+    },
+    {
+      "type": "colors",
+      "symbol": "circle"
+    }
   ]
 }
