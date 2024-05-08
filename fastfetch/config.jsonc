@@ -6,65 +6,61 @@
       "top": 1
     }
   },
-      "display": {
-        "separator": "",
-        "keyWidth": 12,
+  "display": {
+    "separator": "",
+    "keyWidth": 13,
     "color": {
-      "keys": "white"
+      "keys": "default"
     }
-    },
+  },
   "modules": [
     {
       "type": "custom",
-      "keyColor": "white",
       "format": "╔════════╗"
     },
     {
       "type": "title",
       "color": {
-        "user": "green",
-        "at": "red",
+        "user": "cyan",
+        "at": "bright_magenta",
         "host": "blue"
       },
-      "key": "‖     ⠀⠀ ‖\u001b[8D\u001b[31mUser",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[31mUser"
     },
     {
       "type": "custom",
-      "keyColor": "white",
-      "format": "╠════════╣"
+      "format": "╠════════╣ <---------< \u001b[1m\u001b[32mSoftware Information\u001b[0m >--------->"
     },
     {
       "type": "cpu",
-      "key": "‖     ⠀⠀ ‖\u001b[8D\u001b[32mCPU",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[32mCPU"
     },
     {
       "type": "memory",
-      "key": "‖     ⠀⠀ ‖\u001b[8D\u001b[32mMemory",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[32mMemory"
     },
     {
       "type": "custom",
-      "keyColor": "white",
-      "format": "╠════════╣"
+      "format": "╠════════╣ <---------< \u001b[1m\u001b[33mHardware Information\u001b[0m >--------->"
     },
     {
       "type": "os",
-      "key": "‖     ⠀⠀ ‖\u001b[8D\u001b[33mOS",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[33mOS"
     },
     {
       "type": "kernel",
-      "key": "‖     ⠀⠀ ‖\u001b[8D\u001b[33mKernel",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[33mKernel"
     },
     {
       "type": "shell",
-      "key": "‖     ⠀⠀ ‖\u001b[8D\u001b[33mShell",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[33mShell"
     },
     {
       "type": "wm",
-      "key": "‖     ⠀⠀ ‖\u001b[8D\u001b[33mWM",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[33mWM"
     },
     {
       "type": "custom",
-      "keyColor": "white",
       "format": "╚════════╝"
     },
     {
