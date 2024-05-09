@@ -61,11 +61,16 @@
     },
     {
       "type": "custom",
-      "format": "╚════════╝"
+      "format": "╠════════╣ <---------< \u001b[1m\u001b[36m     Appearance     \u001b[0m >--------->"
     },
     {
       "type": "colors",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[36mColors",
       "symbol": "star"
-    }
+    },
+    {
+      "type": "custom",
+      "format": "╚════════╝"
+    },
   ]
 }
