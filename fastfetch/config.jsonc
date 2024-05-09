@@ -36,8 +36,16 @@
       "key": "║     ⠀⠀ ║\u001b[8D\u001b[32mCPU"
     },
     {
+      "type": "gpu",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[32mGPU"
+    },
+    {
       "type": "memory",
       "key": "║     ⠀⠀ ║\u001b[8D\u001b[32mMemory"
+    },
+    {
+      "type": "disk",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[32mDisk"
     },
     {
       "type": "custom",
@@ -64,9 +72,13 @@
       "format": "╠════════╣ <---------< \u001b[1m\u001b[36m     Appearance     \u001b[0m >--------->"
     },
     {
+      "type": "cursor",
+      "key": "║     ⠀⠀ ║\u001b[8D\u001b[36mCursor",
+    },
+    {
       "type": "colors",
       "key": "║     ⠀⠀ ║\u001b[8D\u001b[36mColors",
-      "symbol": "star"
+      "symbol": "diamond"
     },
     {
       "type": "custom",
