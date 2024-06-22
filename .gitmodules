@@ -37,3 +37,6 @@
 [submodule "fastfetch"]
 	path = fastfetch
 	url = https://github.com/My-declarative-PC/fastfetch-config.git
+[submodule "zellij"]
+	path = zellij
+	url = https://github.com/My-declarative-PC/zellij-config.git
