@@ -40,3 +40,6 @@
 [submodule "zellij"]
 	path = zellij
 	url = https://github.com/My-declarative-PC/zellij-config.git
+[submodule "home-manager"]
+	path = home-manager
+	url = https://github.com/My-declarative-PC/home-manager-config.git
