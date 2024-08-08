@@ -43,3 +43,6 @@
 [submodule "home-manager"]
 	path = home-manager
 	url = https://github.com/My-declarative-PC/home-manager-config.git
+[submodule "firefox-config"]
+	path = firefox-config
+	url = https://github.com/My-declarative-PC/firefox-config/
