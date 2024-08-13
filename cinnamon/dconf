@@ -1,0 +1,377 @@
+[apps/seahorse/listing]
+keyrings-selected=['gnupg://']
+
+[apps/seahorse/windows/key-manager]
+height=476
+width=600
+
+[com/linuxmint/install]
+allow-unverified-flatpaks=true
+flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
+installed-apps=@as []
+
+[com/linuxmint/updates]
+install-last-run=1723487493
+refresh-last-run=1723491428
+show-welcome-page=false
+window-height=570
+window-pane-position=344
+window-width=790
+
+[org/blueman/general]
+window-properties=[544, 350, 124, 1052]
+
+[org/blueman/plugins/recentconns]
+recent-connections=[{'adapter': '40:2C:F4:B7:75:E8', 'address': '1A:20:22:32:15:B0', 'alias': 'BT3S Pro', 'icon': 'audio-headphones', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1723356441.0822785'}]
+
+[org/cinnamon]
+command-history=['echo']
+desktop-effects-workspace=false
+enabled-applets=['panel1:right:9:separator@cinnamon.org:1', 'panel1:right:8:systray@cinnamon.org:3', 'panel1:right:11:xapp-status@cinnamon.org:4', 'panel1:right:12:notifications@cinnamon.org:5', 'panel1:right:13:printers@cinnamon.org:6', 'panel1:right:14:removable-drives@cinnamon.org:7', 'panel1:right:15:keyboard@cinnamon.org:8', 'panel1:right:16:network@cinnamon.org:10', 'panel1:right:17:sound@cinnamon.org:11', 'panel1:right:18:power@cinnamon.org:12', 'panel1:right:19:calendar@cinnamon.org:13', 'panel1:right:7:ctrl4docker@hoffis-eck.de:17', 'panel1:right:10:favorites@cinnamon.org:19', 'panel1:left:0:workspace-switcher@cinnamon.org:20', 'panel1:center:0:Cinnamenu@json:25']
+enabled-extensions=['gTile@shuairan', 'blur-overview@nailfarmer.nailfarmer.com', 'cinnamon-maximus@fmete']
+next-applet-id=27
+panel-edit-mode=false
+panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
+panels-enabled=['1:0:top']
+panels-height=['1:30']
+window-effect-speed=0
+
+[org/cinnamon/cinnamon-session]
+quit-time-delay=60
+
+[org/cinnamon/desktop/applications/calculator]
+exec='gnome-calculator'
+
+[org/cinnamon/desktop/applications/terminal]
+exec='/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=wezterm org.wezfurlong.wezterm start --cwd .'
+exec-arg='--'
+
+[org/cinnamon/desktop/background]
+picture-uri='file:///home/timofey/Pictures/dracula-waves-44475a.png'
+
+[org/cinnamon/desktop/background/slideshow]
+delay=15
+image-source='directory:///home/timofey/Pictures'
+
+[org/cinnamon/desktop/interface]
+cursor-blink-time=1200
+cursor-size=24
+cursor-theme='Bibata-Modern-Ice'
+font-name='CaskaydiaCove Nerd Font 10'
+gtk-enable-primary-paste=false
+gtk-theme='Dracula'
+icon-theme='Dracula'
+text-scaling-factor=1.0
+toolkit-accessibility=false
+
+[org/cinnamon/desktop/keybindings]
+looking-glass-keybinding=@as []
+
+[org/cinnamon/desktop/keybindings/media-keys]
+battery=['XF86Battery', 'Battery']
+restart-cinnamon=['<Shift><Super>Escape']
+screensaver=['<Super>Escape', 'XF86ScreenSaver']
+search=['XF86Search']
+shutdown=['<Super>End', 'XF86PowerOff']
+terminal=['<Primary><Alt>t', '<Super>Return']
+www=['<Super>w']
+
+[org/cinnamon/desktop/keybindings/wm]
+begin-resize=['<Alt>F8', '<Super>r']
+close=['<Alt>F4', '<Shift><Super>q']
+maximize=@as []
+maximize-horizontally=['<Shift><Super>v']
+maximize-vertically=['<Super>v']
+move-to-center=@as []
+move-to-monitor-down=['<Alt><Super>j', '<Alt><Super>Down']
+move-to-monitor-left=['<Alt><Super>h', '<Alt><Super>Left']
+move-to-monitor-right=['<Alt><Super>l', '<Alt><Super>Right']
+move-to-monitor-up=['<Alt><Super>k', '<Alt><Super>Up']
+move-to-side-e=@as []
+move-to-side-n=@as []
+move-to-side-s=@as []
+move-to-side-w=@as []
+move-to-workspace-1=['<Primary><Super>1']
+move-to-workspace-10=['<Primary><Super>0']
+move-to-workspace-2=['<Primary><Super>2']
+move-to-workspace-3=['<Primary><Super>3']
+move-to-workspace-4=['<Primary><Super>4']
+move-to-workspace-5=['<Primary><Super>5']
+move-to-workspace-6=['<Primary><Super>6']
+move-to-workspace-7=['<Primary><Super>7']
+move-to-workspace-8=['<Primary><Super>8']
+move-to-workspace-9=['<Primary><Super>9']
+move-to-workspace-down=['<Primary><Super>j', '<Primary><Super>Down']
+move-to-workspace-left=['<Primary><Super>h', '<Primary><Super>Left']
+move-to-workspace-new=['<Shift><Super>m']
+move-to-workspace-right=['<Primary><Super>l', '<Primary><Super>Right']
+move-to-workspace-up=['<Primary><Super>k', '<Primary><Super>Up']
+panel-run-dialog=@as []
+push-tile-down=['<Super>j', '<Super>Down']
+push-tile-left=['<Super>h', '<Super>Left']
+push-tile-right=['<Super>l', '<Super>Right']
+push-tile-up=['<Super>k', '<Super>Up']
+show-desktop=['<Super>d']
+switch-group=['<Alt>Above_Tab', '<Super>grave']
+switch-group-backward=['<Shift><Alt>Above_Tab', '<Shift><Super>asciitilde']
+switch-monitor=['XF86Display']
+switch-panels=['<Control><Alt>Tab', '<Primary><Super>Tab']
+switch-panels-backward=['<Shift><Control><Alt>Tab', '<Primary><Shift><Super>Tab']
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-10=['<Super>0']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+switch-to-workspace-5=['<Super>5']
+switch-to-workspace-6=['<Super>6']
+switch-to-workspace-7=['<Super>7']
+switch-to-workspace-8=['<Super>8']
+switch-to-workspace-9=['<Super>9']
+switch-to-workspace-down=['<Shift><Super>j', '<Shift><Super>Down']
+switch-to-workspace-left=['<Shift><Super>Left', '<Shift><Super>h']
+switch-to-workspace-right=['<Shift><Super>Right', '<Shift><Super>l']
+switch-to-workspace-up=['<Shift><Super>k', '<Shift><Super>Up', '<Alt>F1']
+switch-windows=['<Alt>Tab', '<Super>Tab']
+switch-windows-backward=['<Shift><Alt>Tab', '<Shift><Super>Tab']
+toggle-above=['<Shift><Super>p']
+toggle-maximized=['<Shift><Super>f']
+toggle-on-all-workspaces=['<Super>p']
+toggle-recording=['<Control><Shift><Alt>r', '<Primary><Shift><Super>r']
+
+[org/cinnamon/desktop/media-handling]
+autorun-never=false
+
+[org/cinnamon/desktop/peripherals/keyboard]
+delay=uint32 500
+repeat-interval=uint32 30
+
+[org/cinnamon/desktop/peripherals/mouse]
+double-click=400
+drag-threshold=8
+middle-click-emulation=true
+speed=0.0
+
+[org/cinnamon/desktop/peripherals/touchpad]
+send-events='disabled'
+speed=0.0
+
+[org/cinnamon/desktop/screensaver]
+layout-group=0
+
+[org/cinnamon/desktop/sound]
+event-sounds=false
+
+[org/cinnamon/desktop/wm/preferences]
+num-workspaces=9
+titlebar-font='CaskaydiaCove Nerd Font Bold 10'
+workspace-names=@as []
+
+[org/cinnamon/gestures]
+swipe-down-2='PUSH_TILE_DOWN::end'
+swipe-down-3='TOGGLE_OVERVIEW::end'
+swipe-down-4='VOLUME_DOWN::end'
+swipe-left-2='PUSH_TILE_LEFT::end'
+swipe-left-3='WORKSPACE_NEXT::end'
+swipe-left-4='WINDOW_WORKSPACE_PREVIOUS::end'
+swipe-right-2='PUSH_TILE_RIGHT::end'
+swipe-right-3='WORKSPACE_PREVIOUS::end'
+swipe-right-4='WINDOW_WORKSPACE_NEXT::end'
+swipe-up-2='PUSH_TILE_UP::end'
+swipe-up-3='TOGGLE_EXPO::end'
+swipe-up-4='VOLUME_UP::end'
+tap-3='MEDIA_PLAY_PAUSE::end'
+
+[org/cinnamon/launcher]
+check-frequency=300
+memory-limit=2048
+memory-limit-enabled=false
+
+[org/cinnamon/muffin]
+workspace-cycle=true
+
+[org/cinnamon/settings-daemon/peripherals/keyboard]
+numlock-state='off'
+
+[org/cinnamon/settings-daemon/peripherals/touchscreen]
+orientation-lock=false
+
+[org/cinnamon/theme]
+name='Dracula'
+
+[org/gnome/calculator]
+accuracy=9
+angle-units='degrees'
+base=10
+button-mode='basic'
+number-format='automatic'
+show-thousands=false
+show-zeroes=false
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-position=(97, 97)
+word-size=64
+
+[org/gnome/desktop/a11y]
+always-show-text-caret=false
+
+[org/gnome/desktop/a11y/applications]
+screen-keyboard-enabled=false
+screen-reader-enabled=false
+
+[org/gnome/desktop/a11y/mouse]
+dwell-click-enabled=false
+dwell-threshold=10
+dwell-time=1.2
+secondary-click-enabled=false
+secondary-click-time=1.2
+
+[org/gnome/desktop/input-sources]
+current=uint32 0
+show-all-sources=false
+sources=@a(ss) []
+xkb-options=@as []
+
+[org/gnome/desktop/interface]
+can-change-accels=false
+clock-show-date=false
+clock-show-seconds=false
+cursor-blink=true
+cursor-blink-time=1200
+cursor-blink-timeout=10
+cursor-size=24
+cursor-theme='Bibata-Modern-Ice'
+document-font-name='CaskaydiaCove Nerd Font 10'
+enable-animations=true
+font-name='CaskaydiaCove Nerd Font 10'
+gtk-color-palette='black:white:gray50:red:purple:blue:light blue:green:yellow:orange:lavender:brown:goldenrod4:dodger blue:pink:light green:gray10:gray30:gray75:gray90'
+gtk-color-scheme=''
+gtk-enable-primary-paste=true
+gtk-im-module=''
+gtk-im-preedit-style='callback'
+gtk-im-status-style='callback'
+gtk-key-theme='Default'
+gtk-theme='Dracula'
+gtk-timeout-initial=200
+gtk-timeout-repeat=20
+icon-theme='Dracula'
+menubar-accel='F10'
+menubar-detachable=false
+menus-have-tearoff=false
+monospace-font-name='CaskaydiaCove Nerd Font Mono 10'
+scaling-factor=uint32 0
+text-scaling-factor=1.0
+toolbar-detachable=false
+toolbar-icons-size='large'
+toolbar-style='both-horiz'
+toolkit-accessibility=false
+
+[org/gnome/desktop/peripherals/mouse]
+accel-profile='default'
+double-click=400
+drag-threshold=8
+left-handed=false
+middle-click-emulation=false
+natural-scroll=false
+speed=0.0
+
+[org/gnome/desktop/privacy]
+disable-camera=false
+disable-microphone=false
+disable-sound-output=false
+old-files-age=uint32 30
+recent-files-max-age=7
+remember-recent-files=true
+remove-old-temp-files=false
+remove-old-trash-files=false
+
+[org/gnome/desktop/sound]
+event-sounds=false
+input-feedback-sounds=false
+theme-name='LinuxMint'
+
+[org/gnome/desktop/wm/preferences]
+action-double-click-titlebar='toggle-maximize'
+action-middle-click-titlebar='lower'
+action-right-click-titlebar='menu'
+audible-bell=false
+auto-raise=false
+auto-raise-delay=500
+button-layout=':minimize,maximize,close'
+disable-workarounds=false
+focus-mode='click'
+focus-new-windows='smart'
+mouse-button-modifier='<Super>'
+num-workspaces=9
+raise-on-click=true
+resize-with-right-button=true
+theme='Mint-Y'
+titlebar-font='CaskaydiaCove Nerd Font Bold 10'
+titlebar-uses-system-font=true
+visual-bell=false
+visual-bell-type='fullscreen-flash'
+workspace-names=@as []
+
+[org/gnome/evolution-data-server]
+migrated=true
+
+[org/gnome/file-roller/listing]
+show-path=false
+
+[org/gnome/libgnomekbd/desktop]
+default-group=0
+group-per-window=true
+load-extra-items=true
+
+[org/gnome/libgnomekbd/keyboard]
+layouts=['us', 'ru']
+options=['grp\tgrp:win_space_toggle', 'terminate\tterminate:ctrl_alt_bksp']
+
+[org/gnome/nm-applet]
+disable-connected-notifications=true
+
+[org/gnome/power-manager]
+info-history-type='charge'
+info-last-device='/org/freedesktop/UPower/devices/line_power_AC'
+info-stats-type='discharge-accuracy'
+
+[org/gnome/settings-daemon/plugins/xsettings]
+disabled-gtk-modules=@as []
+enabled-gtk-modules=@as []
+overrides=@a{sv} {}
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=188
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'
+window-position=(158, 100)
+window-size=(1124, 700)
+
+[org/nemo/desktop]
+font='CaskaydiaCove Nerd Font 10'
+
+[org/nemo/preferences]
+show-hidden-files=true
+
+[org/nemo/window-state]
+geometry='800x550+124+980'
+maximized=true
+sidebar-bookmark-breakpoint=5
+start-with-sidebar=true
+
+[org/x/apps/portal]
+color-scheme='prefer-dark'
+
+[org/x/warpinator/preferences]
+ask-for-send-permission=true
+autostart=false
+connect-id='TIMOFEY-LAPTOP-870E0CCC505111E872BD'
+no-overwrite=true
