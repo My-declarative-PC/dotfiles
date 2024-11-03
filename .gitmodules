@@ -46,3 +46,6 @@
 [submodule "bashrc"]
 	path = bashrc
 	url = https://github.com/My-declarative-PC/bashrc-config.git
+[submodule "profile"]
+	path = profile
+	url = https://github.com/My-declarative-PC/profile-config.git
