@@ -49,3 +49,6 @@
 [submodule "profile"]
 	path = profile
 	url = https://github.com/My-declarative-PC/profile-config.git
+[submodule "git"]
+	path = git
+	url = https://github.com/My-declarative-PC/git-config.git
