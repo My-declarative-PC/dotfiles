@@ -52,3 +52,6 @@
 [submodule "git"]
 	path = git
 	url = https://github.com/My-declarative-PC/git-config.git
+[submodule "btop"]
+	path = btop
+	url = https://github.com/My-declarative-PC/btop-config.git
