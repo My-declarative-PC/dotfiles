@@ -55,3 +55,6 @@
 [submodule "btop"]
 	path = btop
 	url = https://github.com/My-declarative-PC/btop-config.git
+[submodule "lazygit"]
+	path = lazygit
+	url = https://github.com/My-declarative-PC/lazygit-config.git
