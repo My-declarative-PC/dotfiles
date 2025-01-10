@@ -58,3 +58,6 @@
 [submodule "lazygit"]
 	path = lazygit
 	url = https://github.com/My-declarative-PC/lazygit-config.git
+[submodule "picom"]
+	path = picom
+	url = https://github.com/My-declarative-PC/picom-config.git
