@@ -61,3 +61,6 @@
 [submodule "picom"]
 	path = picom
 	url = https://github.com/My-declarative-PC/picom-config.git
+[submodule "yazi"]
+	path = yazi
+	url = https://github.com/My-declarative-PC/yazi-config.git
