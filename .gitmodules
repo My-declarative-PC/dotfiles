@@ -64,3 +64,6 @@
 [submodule "yazi"]
 	path = yazi
 	url = https://github.com/My-declarative-PC/yazi-config.git
+[submodule "gtk"]
+	path = gtk
+	url = https://github.com/ImperatorMarsa/gtk-config.git
