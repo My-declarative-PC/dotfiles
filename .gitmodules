@@ -67,3 +67,6 @@
 [submodule "gtk"]
 	path = gtk
 	url = https://github.com/ImperatorMarsa/gtk-config.git
+[submodule "ronema"]
+	path = ronema
+	url = https://github.com/My-declarative-PC/ronema-config.git
