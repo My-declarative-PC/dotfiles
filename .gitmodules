@@ -73,3 +73,6 @@
 [submodule "i3status-rs"]
 	path = i3status-rs
 	url = https://github.com/ImperatorMarsa/i3status_rs-config.git
+[submodule "bat"]
+	path = bat
+	url = https://github.com/My-declarative-PC/bat-config.git
