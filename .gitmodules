@@ -64,3 +64,6 @@
 [submodule "zellij"]
 	path = zellij
 	url = https://github.com/My-declarative-PC/zellij-config.git
+[submodule "autorandr"]
+	path = autorandr
+	url = https://github.com/ImperatorMarsa/autorandr-config.git
