@@ -1,0 +1,4 @@
+[".config/yazi/theme.toml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/yazi/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.toml"
+    refreshPeriod = "168h"
