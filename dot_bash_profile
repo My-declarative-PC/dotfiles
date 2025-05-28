@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+[[ -f ~/.profile ]] && . ~/.profile
+[[ -f ~/.Xresources ]] && xrdb ~/.Xresources
