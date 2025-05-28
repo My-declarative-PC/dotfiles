@@ -1,0 +1,32 @@
+[global]
+	offset = 10x35
+	format = "<b>%s</b>\n%b\n\n<u><i>%a</i></u>"
+	follow = mouse
+	corner_radius = 0
+	progress_bar_corner_radius = 0
+	font = "FiraCodeNerdFontMono 12"
+	separator_color= frame
+	background  = "#1e1e2e"
+	notification_limit = 0
+	enable_recursive_icon_lookup = true
+	icon_theme = "Papirus-Dark"
+	vertical_alignment = center
+	browser = flatpak run app.zen_browser.zen -new-tab
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[urgency_low]
+	timeout = 3
+	foreground  = "#89dceb"
+	frame_color = "#6c7086"
+
+[urgency_normal]
+	timeout = 10
+	foreground  = "#cdd6f4"
+	frame_color = "#cba6f7"
+
+[urgency_critical]
+	timeout = 0
+	foreground  = "#fab387"
+	frame_color = "#f38ba8"
