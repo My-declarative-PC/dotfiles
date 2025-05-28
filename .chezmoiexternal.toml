@@ -7,3 +7,8 @@
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/zellij/refs/heads/main/catppuccin.kdl"
     refreshPeriod = "168h"
+
+[".profile.d/fzf-theme.sh"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-mocha.sh"
+    refreshPeriod = "168h"
