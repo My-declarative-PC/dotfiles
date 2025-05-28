@@ -1,0 +1,141 @@
+#
+##
+### LSP settings
+##
+#
+
+### typos
+[language-server.typos]
+command = "typos-lsp"
+
+### sql-language-server
+[language-server.sql-language-server]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+
+### ltex-ls
+[language-server.ltex-ls.config]
+ltex.enabled = true
+ltex.completionEnabled = true
+ltex.statusBarItem = true
+ltex.language = "ru-RU"
+ltex.dictionary = { "ru-RU" = ["builtin"] }
+
+### helix-snippets
+[language-server.helix-snippets-ls]
+command = "helix-snippets-ls"
+args = ["--stdio"]
+
+
+#
+##
+### Languages settings
+##
+#
+
+##### Language: MARKDOWN #####
+[[language]]
+name = "markdown"
+language-servers = [ "ltex-ls" ]
+
+##### Language: DOCKERFILE #####
+[[language]]
+name = "dockerfile"
+language-servers = [ "docker-langserver", "typos" ]
+indent = { tab-width = 4, unit = "    " }
+
+##### Language: PHP #####
+[[language]]
+name = "php"
+auto-format = true
+language-servers = [ "intelephense", "typos", "helix-snippets-ls" ]
+
+[language.auto-pairs]
+"'" = "'"
+'<' = '>'
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'`' = '`'
+'"' = '"'
+
+[language.debugger]
+name = "php"
+transport = "stdio"
+command = "node"
+args = ["~/gits/vscode-php-debug/out/phpDebug.js"]
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "entrypoint", completion = "filename"} ]
+args = { mode = "debug", program = "{0}" }
+
+##### Language: SQL #####
+[[language]]
+name = "sql"
+language-servers = [ "sql-language-server", "typos" ]
+
+##### Language: BASH #####
+[[language]]
+name = "bash"
+language-servers = [ "bash-language-server", "typos" ]
+
+##### Language: JAVASCRIPT #####
+[[language]]
+name = "javascript"
+language-servers = [ "typescript-language-server", "typos" ]
+indent = { tab-width = 4, unit = "    " }
+
+##### Language: TYPESCRIPT #####
+[[language]]
+name = "typescript"
+language-servers = [ "typescript-language-server", "typos" ]
+indent = { tab-width = 4, unit = "    " }
+
+##### Language: JSON #####
+[[language]]
+name = "json"
+file-types = ["jsonc", "json"]
+indent = { tab-width = 4, unit = "    " }
+
+##### Language: CSS #####
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "typos" ]
+indent = { tab-width = 4, unit = "    " }
+
+##### Language: SCSS #####
+[[language]]
+name = "scss"
+language-servers = [ "vscode-css-language-server", "typos" ]
+indent = { tab-width = 4, unit = "    " }
+
+##### Language: HTML #####
+[[language]]
+name = "html"
+indent = { tab-width = 4, unit = "    " }
+
+##### Language: GIT-COMMIT #####
+[[language]]
+name = "git-commit"
+language-servers = [ "typos", "ltex-ls" ]
+
+##### Language: PYTHON #####
+[[language]]
+name = "python"
+formatter = { command = "black", args = ["-q", "-"] }
+auto-format = true
+
+##### Language: YAML #####
+[[language]]
+name = "yaml"
+formatter = { command = "prettierd", args = [".yaml"] }
+auto-format = true
+
+##### Language: BASH #####
+[[language]]
+name = "bash"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = 'shfmt', args = ["-i", "4"] }
+auto-format = true

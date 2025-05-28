@@ -1,0 +1,8 @@
+inherits = "dracula_at_night"
+"ui.background" ={}
+"ui.virtual.jump-label" = { fg = "red", modifiers = ["reversed"] }
+
+"ui.cursor.primary.insert" = { fg = "background", bg = "green" }
+"ui.cursor.insert" = { fg = "background", bg = "green" }
+"ui.cursor.primary.select" = { fg = "background", bg = "purple" }
+"ui.cursor.select" = { fg = "background", bg = "purple" }

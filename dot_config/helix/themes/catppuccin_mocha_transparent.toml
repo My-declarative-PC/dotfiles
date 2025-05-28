@@ -1,0 +1,3 @@
+inherits = "catppuccin_mocha"
+"ui.background" ={}
+"ui.virtual.jump-label" = { fg = "rosewater", modifiers = ["reversed"] }

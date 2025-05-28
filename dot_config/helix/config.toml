@@ -1,0 +1,76 @@
+theme = "catppuccin_mocha_transparent"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+color-modes = true
+rulers = [100]
+auto-save = true
+true-color = true
+popup-border = "all"
+indent-heuristic = "tree-sitter"
+jump-label-alphabet = "fjdkslaruvmeicwox"
+default-line-ending = "lf"
+end-of-line-diagnostics = "hint"
+shell = ["fish", "-c"]
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[editor.indent-guides]
+render = true
+character = "┆"
+skip-levels = 1
+
+[editor.lsp]
+display-messages = true
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+Y = ":yank-join"
+X = "extend_line_above"
+D = "delete_char_backward"
+F3 = [":fmt", ":wa"]
+F4 = ":pipe sort"
+F12 = ":config-open"
+A-F12 = ":open ~/.config/helix/languages.toml"
+
+[keys.select]
+Y = ":yank-join"
+X = "extend_line_above"
+D = "delete_char_backward"
+F3 = [":fmt", ":wa"]
+F4 = ":pipe sort"
+F12 = ":config-open"
+F11 = "merge_selections"
+A-F12 = ":open ~/.config/helix/languages.toml"
+
+[editor.statusline]
+left = [
+  "mode",
+  "spacer",
+  "separator",
+  "version-control",
+  "separator",
+  "read-only-indicator",
+  "file-modification-indicator"
+]
+center = [ "spinner", "file-name", "spinner" ]
+right = [
+  "diagnostics",
+  "selections",
+  "register",
+  "file-encoding",
+  "separator",
+  "position",
+  "separator",
+  "spacer",
+  "position-percentage",
+  "spacer",
+  "mode"
+]
+mode.normal = "󰫻"
+mode.insert = "󱂈"
+mode.select = "󱎤"
