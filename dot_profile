@@ -1,0 +1,4 @@
+test -z "$PROFILEREAD" && . /etc/profile || true
+
+source ~/.profile.d/custom_init.sh
+source ~/.profile.d/custom_profile.sh
