@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+PICTURE=/tmp/i3lock.png
+SCREENSHOT="maim $PICTURE"
+
+$SCREENSHOT
+
+notify-send -a "i3 blur-lock" Locking "The screen lock process has started"
+
+BLUR="2x5"
+magick $PICTURE -noise 4 -scale 10% -scale 1000% -blur $BLUR $PICTURE
+
+setxkbmap -layout us,ru
+playerctl pause
+
+i3lock -i $PICTURE
+
+rm $PICTURE
