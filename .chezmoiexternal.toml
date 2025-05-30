@@ -17,3 +17,9 @@
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/btop/refs/heads/main/themes/catppuccin_mocha.theme"
     refreshPeriod = "168h"
+
+[".local/share/fonts/cascadia-code"]
+    type = "archive"
+    url = "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
+    stripComponents = 1
+    include = ["ttf/*.ttf"]
