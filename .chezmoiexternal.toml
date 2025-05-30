@@ -1,3 +1,4 @@
+# Catppuccin Themes
 [".config/yazi/theme.toml"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/yazi/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.toml"
@@ -18,6 +19,12 @@
     url = "https://raw.githubusercontent.com/catppuccin/btop/refs/heads/main/themes/catppuccin_mocha.theme"
     refreshPeriod = "168h"
 
+[".config/bat/themes/Catppuccin Mocha.tmTheme"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/bat/refs/heads/main/themes/Catppuccin%20Mocha.tmTheme"
+    refreshPeriod = "168h"
+
+# Fonts
 [".local/share/fonts/cascadia-code"]
     type = "archive"
     url = "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
