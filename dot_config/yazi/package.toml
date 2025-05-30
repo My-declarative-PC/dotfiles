@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "ecffbf7"
-hash = "dd97eede8e20e59cd2604e8006e470e2"
+rev = "c0ad8a3"
+hash = "c0b6cd7dc830b96e77e5c8a71eec7926"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "ecffbf7"
-hash = "e0ada736ea676c2bbb3ec705a49526ef"
+rev = "c0ad8a3"
+hash = "bf6f074cd41ee33c3360341d168f9733"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
@@ -15,8 +15,8 @@ hash = "7ddb7a790746fd91ecdd0350cc5a5d8c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "ecffbf7"
-hash = "2f1053f89d1a301a648ab181d0948e38"
+rev = "c0ad8a3"
+hash = "d0ad0c1946b46a30c8489735fe8de41c"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
