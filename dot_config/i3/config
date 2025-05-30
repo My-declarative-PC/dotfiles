@@ -643,7 +643,7 @@ mode "Rofi" {
         mode "default"
 
     ## rofi bindings for network
-    bindsym Shift+w exec --no-startup-id bash ~/.config/rofi/scripts/rofi-weather.sh; \
+    bindsym Shift+w exec --no-startup-id ~/.local/bin/rofi-weather; \
         mode "default"
 
     ## rofi bindings to manage clipboard (install rofi-greenclip from the AUR)
