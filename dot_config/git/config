@@ -1,0 +1,58 @@
+[core]
+    editor = hx
+    pager = delta --dark --diff-so-fancy
+
+[user]
+    email = tima.sitnikov@mail.ru
+    name = Sitnikov Timofey
+
+[pull]
+    rebase = true
+
+# Credential
+[credential]
+	helper = store
+
+[credential "https://github.com"]
+   helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper = !/usr/bin/gh auth git-credential
+###
+
+[init]
+    defaultBranch = master
+
+[alias]
+    sl = log --graph --pretty=\"%Cgreen%aN %C(yellow)Hash %h %C(blue)Date %ad (%C(cyan)%cr%Cblue)%n%C(magenta)Message %Creset%s%n%b\" --date=human
+
+    # Difftastic
+    dlog = -c diff.external=difft log --ext-diff
+    dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
+    ###
+
+[merge]
+    conflictstyle = zdiff3
+
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+
+# Delta
+[interactive]
+    diffFilter = delta --color-only
+
+[include]
+    path = ~/.config/git/catppuccin.gitconfig
+
+[delta]
+    features = catppuccin-mocha
+    syntax-theme = Catppuccin Mocha
+    navigate = true
+    dark = true
+    light = false
+    side-by-side = true
+###
