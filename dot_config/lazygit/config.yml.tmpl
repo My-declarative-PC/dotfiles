@@ -2,6 +2,11 @@ gui:
   authorColors:
     "*": "#a6e3a1"
     "Sitnikov Timofey": "#cba6f7"
+{{- if eq .chezmoi.username "work" }}
+    "Vlad Shevchuk": "#f9e2af"
+    "Владислав Шевчук": "#f9e2af"
+    "Jenkins": "#cdd6f4"
+{{- end }}
   branchColors: {}
   branchColorPatterns: {}
   customIcons:
@@ -102,7 +107,7 @@ git:
   merging:
     manualCommit: false
     args: ""
-    squashMergeMessage: Squash merge {{selectedRef}} into {{currentBranch}}
+    squashMergeMessage: Squash merge {{ "{{selectedRef}}" }} into {{ "{{currentBranch}}" }}
   mainBranches:
     - master
     - main
@@ -112,7 +117,7 @@ git:
   autoForwardBranches: onlyMainBranches
   fetchAll: true
   autoStageResolvedConflicts: true
-  branchLogCmd: git log --graph --color=always --pretty="%Cgreen%aN %C(yellow)Hash %h %C(blue)Date %ad (%C(cyan)%cr%Cblue)%n%C(dim italic black reverse) {{branchName}} %Creset%n%C(magenta)Message %Creset%s%n%b" --date=human --
+  branchLogCmd: git log --graph --color=always --pretty="%Cgreen%aN %C(yellow)Hash %h %C(blue)Date %ad (%C(cyan)%cr%Cblue)%n%C(dim italic black reverse) {{ "{{branchName}}" }} %Creset%n%C(magenta)Message %Creset%s%n%b" --date=human --
   allBranchesLogCmds: [git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium]
   overrideGpg: false
   disableForcePushing: false
