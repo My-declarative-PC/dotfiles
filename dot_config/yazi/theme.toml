@@ -1,0 +1,12 @@
+[flavor]
+dark = "catppuccin-mocha"
+
+syntect_theme = "~/.config/bat/themes/Catppuccin Mocha.tmTheme"
+
+[status]
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+overall = { }
+separator_open  = ""
+separator_close = ""
+

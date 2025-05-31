@@ -23,5 +23,7 @@ use = "ndtoan96/ouch"
 rev = "2496cd9"
 hash = "5b9dea47776a30946cfbf83232d18fb1"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "d04a298"
+hash = "288a0dedd5d13b28605cf82c05326dcd"
