@@ -2,7 +2,6 @@ local wezterm = require 'wezterm'
 
 local homePath = wezterm.home_dir;
 
-local size = 0.5*472;
 local config = {
     -- Set color
     color_scheme = "Catppuccin Mocha",
@@ -23,7 +22,7 @@ local config = {
     -- -- -- -- --
 
     font = wezterm.font_with_fallback({
-        "FiraCodeNerdFontMono",
+        "CascadiaMonoNF",
         "FontAwesome",
         "Symbols Nerd Font Mono",
      }),
