@@ -100,7 +100,7 @@ show_milliseconds = true
 disabled = false
 style = "bg:surface0 fg:teal"
 show_notifications = true
-format = "[ 󰅒$duration ]($style)"
+format = "[ 󰅒 $duration ]($style)"
 
 [status]
 disabled = false
