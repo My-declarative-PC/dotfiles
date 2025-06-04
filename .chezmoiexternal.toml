@@ -29,7 +29,7 @@
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
     refreshPeriod = "744h"
-    include = ["ttf/*.ttf"]
+    include = ["*.ttf"]
 
 # Quickemu
 [".local/bin/quickemu"]
