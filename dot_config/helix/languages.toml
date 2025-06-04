@@ -168,3 +168,8 @@ file-types = [
 [[language]]
 name = "toml"
 file-types = ["toml", { glob = "*.toml.tmpl" }]
+
+##### Language: LUA #####
+[[language]]
+name = "lua"
+file-types = ["lua", { glob = "*.lua.tmpl" }]
