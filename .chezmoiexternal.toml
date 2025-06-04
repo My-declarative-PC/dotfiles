@@ -25,10 +25,10 @@
     refreshPeriod = "168h"
 
 # Fonts
-[".local/share/fonts/cascadia-code"]
+[".local/share/fonts/JetBrainsMono"]
     type = "archive"
-    url = "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
-    stripComponents = 1
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
+    refreshPeriod = "744h"
     include = ["ttf/*.ttf"]
 
 # Quickemu
