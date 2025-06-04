@@ -1,27 +1,27 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "c0ad8a3"
+rev = "63f9650"
 hash = "c0b6cd7dc830b96e77e5c8a71eec7926"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "c0ad8a3"
+rev = "63f9650"
 hash = "bf6f074cd41ee33c3360341d168f9733"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "6fde3b2"
-hash = "7ddb7a790746fd91ecdd0350cc5a5d8c"
+rev = "6a0f3f7"
+hash = "d5a74d95c2e8194ac352c5e10e81e64f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "c0ad8a3"
+rev = "63f9650"
 hash = "d0ad0c1946b46a30c8489735fe8de41c"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "2496cd9"
-hash = "5b9dea47776a30946cfbf83232d18fb1"
+rev = "10b4627"
+hash = "3ec6a973d506665f1570a9fe08343fd8"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
