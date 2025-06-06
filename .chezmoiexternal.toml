@@ -35,22 +35,3 @@
     url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
     refreshPeriod = "744h"
     include = ["*.ttf"]
-
-# Quickemu
-[".local/bin/quickemu"]
-    type = "file"
-    executable = true
-    url = "https://raw.githubusercontent.com/quickemu-project/quickemu/refs/heads/master/quickemu"
-    refreshPeriod = "168h"
-
-[".local/bin/quickget"]
-    type = "file"
-    executable = true
-    url = "https://raw.githubusercontent.com/quickemu-project/quickemu/refs/heads/master/quickget"
-    refreshPeriod = "168h"
-
-[".local/bin/quickreport"]
-    type = "file"
-    executable = true
-    url = "https://raw.githubusercontent.com/quickemu-project/quickemu/refs/heads/master/quickreport"
-    refreshPeriod = "168h"
