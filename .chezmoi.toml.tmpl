@@ -1,13 +1,22 @@
+{{ $hasGUI := promptBoolOnce . "hasGUI" "Does this machine have a GUI" }}
+{{ $isHome := promptBoolOnce . "isHome" "Does this machine in home" }}
+
 [data]
+# machine
+hasGUI = {{ $hasGUI }}
+isHome = {{ $isHome }}
+# fotn
 font_family = "JetBrainsMonoNerdFont"
 font_size = 10
 font_size_rofi = 14
 font_size_notyfication = 12
+# theme
 icon_theme = "Papirus"
-# {{- if eq .chezmoi.username "work" }}
-email = "t.sitnikov@infocom-s.ru"
-# {{- else }}
-email = "tima.sitnikov@mail.ru"
-# {{- end }}
 catppuccin_flavor = "mocha"
 catppuccin_accent = "mauve"
+# identety
+{{- if $isHome }}
+email = "tima.sitnikov@mail.ru"
+{{- else }}
+email = "t.sitnikov@infocom-s.ru"
+{{- end }}
