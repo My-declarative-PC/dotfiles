@@ -375,9 +375,9 @@ set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6"
-set $ws7 "7"
+set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9:"
 set $ws10 "10"
 
 set $ws11 "1'"
@@ -428,6 +428,8 @@ assign [class="Thunar"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="Skype"] $ws5
 assign [class="vkteams"] $ws5
+assign [class="dbgate"] $ws7
+assign [class="org.remmina.Remmina"] $ws9
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=org.wezfurlong.wezterm] focus
@@ -436,6 +438,8 @@ for_window [class=Thunar] focus
 for_window [class=Thunderbird] focus
 for_window [class=Skype] focus
 for_window [class=vkteams] focus
+for_window [class=dbgate] focus
+for_window [class=org.remmina.Remmina] focus
 
 ##############
 # compositor #
