@@ -9,6 +9,7 @@ README.md
 .config/rofi/
 .config/wezterm/
 .local/share/fonts/
+.local/share/fonts/JetBrainsMono/
 .local/share/icons/
 .gtkrc-2.0
 {{ end }}
