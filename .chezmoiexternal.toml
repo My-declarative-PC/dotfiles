@@ -24,6 +24,11 @@
     url = "https://raw.githubusercontent.com/catppuccin/delta/refs/heads/main/catppuccin.gitconfig"
     refreshPeriod = "168h"
 
+[".config/atuin/themes/catppuccin-mocha-mauve.toml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/atuin/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.toml"
+    refreshPeriod = "168h"
+
 # Fonts
 [".local/share/fonts/JetBrainsMono"]
     type = "archive"
