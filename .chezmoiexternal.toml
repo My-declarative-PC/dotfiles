@@ -35,3 +35,10 @@
     url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
     refreshPeriod = "744h"
     include = ["*.ttf"]
+
+# Utils
+[".local/bit/greenclip"]
+    type = "file"
+    executable = true
+    url = "https://github.com/erebe/greenclip/releases/latest/download/greenclip"
+    refreshPeriod = "744h"
