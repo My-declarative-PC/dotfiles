@@ -36,6 +36,12 @@
     refreshPeriod = "744h"
     include = ["*.ttf"]
 
+# Wallpaper
+[".wallpaper"]
+    type = "file"
+    url = "https://github.com/My-declarative-PC/wallpapers/blob/master/evening-sky.png?raw=true"
+    refreshPeriod = "744h"
+
 # Utils
 [".local/bit/greenclip"]
     type = "file"
