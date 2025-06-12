@@ -1,9 +1,9 @@
-file:///home/timofey/Downloads
-file:///home/timofey/Documents
-file:///home/timofey/Music
-file:///home/timofey/Videos
-file:///home/timofey/Pictures
-file:///home/timofey/gits
+file://{{ .chezmoi.homeDir }}/Downloads
+file://{{ .chezmoi.homeDir }}/Documents
+file://{{ .chezmoi.homeDir }}/Music
+file://{{ .chezmoi.homeDir }}/Videos
+file://{{ .chezmoi.homeDir }}/Pictures
+file://{{ .chezmoi.homeDir }}/gits
 {{- if eq .chezmoi.username "work" }}
 smb://storage/1c-builds/ 1C builds
 sftp://mpu_web/var/www/lk_test/www mpu web (ssh)
