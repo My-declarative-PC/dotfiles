@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ya pkg -i
+ya pkg install
