@@ -6,7 +6,7 @@
 
 [".profile.d/fzf-theme.sh"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-mocha.sh"
+    url = "https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-{{ .catppuccin_flavor }}.sh"
     refreshPeriod = "168h"
 
 [".config/btop/themes/catppuccin_mocha.theme"]
@@ -24,10 +24,15 @@
     url = "https://raw.githubusercontent.com/catppuccin/delta/refs/heads/main/catppuccin.gitconfig"
     refreshPeriod = "168h"
 
-[".config/atuin/themes/catppuccin-mocha-mauve.toml"]
+[".config/atuin/themes/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}.toml"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/atuin/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.toml"
+    url = "https://raw.githubusercontent.com/catppuccin/atuin/refs/heads/main/themes/{{ .catppuccin_flavor }}/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}.toml"
     refreshPeriod = "168h"
+
+[".local/share/icons/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors"]
+    type = "archive"
+    url = "https://github.com/catppuccin/cursors/releases/latest/download/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors.zip"
+    refreshPeriod = "744h"
 
 # Fonts
 [".local/share/fonts/JetBrainsMono"]
