@@ -8,8 +8,12 @@ README.md
 .config/picom/
 .config/rofi/
 .config/wezterm/
+.gtkrc-2.0
 .local/share/fonts/
 .local/share/fonts/JetBrainsMono/
 .local/share/icons/
-.gtkrc-2.0
+.local/share/icons/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors/
+.local/share/themes/
+.local/share/themes/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-standard+default/
+.wallpaper
 {{ end }}
