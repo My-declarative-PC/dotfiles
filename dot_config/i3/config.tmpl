@@ -341,7 +341,7 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Redirect sound to headphones
-bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+# bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 
 ## App shortcuts
 bindsym $mod+w exec --no-startup-id flatpak run app.zen_browser.zen || firefox
@@ -361,7 +361,7 @@ bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewi
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec --no-startup-id ~/.local/bin/power-profiles
+# bindsym $mod+Shift+p exec --no-startup-id ~/.local/bin/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -496,7 +496,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+Space in this example)
 exec_always --no-startup-id sleep 2 && setxkbmap -layout us,ru -variant qwerty
-bindsym Mod1+space exec --no-startup-id ~/.local/bin/layout_switch
+bindsym $mod+F2 exec --no-startup-id ~/.local/bin/layout_switch
 
 # start conky:
 #exec_always --no-startup-id conky
