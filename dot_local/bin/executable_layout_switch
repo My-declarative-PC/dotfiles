@@ -4,6 +4,14 @@ CURRENT_LAYOUT=$(setxkbmap -query | grep layout | sed 's/,\w\+//gi' | awk '{prin
 
 if [ "$CURRENT_LAYOUT" = "us" ]; then
     setxkbmap -layout ru,us -variant 'phonetic_winkeys,'
+    NEW_LAYOUT="🇷🇺"
 else
     setxkbmap -layout us,ru
+    NEW_LAYOUT="🇺🇸"
 fi
+
+dunstify \
+    --icon keyboard \
+    --urgency low \
+    --appname "layout switch" \
+    "Раскладка" "$NEW_LAYOUT"
