@@ -42,9 +42,11 @@
 # Fonts
 [".local/share/fonts/fira-code"]
     type = "archive"
-    url = "https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
-    refreshPeriod = "744h"
+    url = '{{ gitHubLatestReleaseAssetURL "tonsky/FiraCode" (printf "Fira_Code_*.zip") }}'
+    exact = false
     stripComponents = 1
+    refreshPeriod = "744h"
+    include = ["*/*.ttf"]
 
 # Wallpaper
 [".wallpaper"]

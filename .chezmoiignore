@@ -10,6 +10,7 @@ README.md
 .config/wezterm/
 .gtkrc-2.0
 .local/share/fonts/
+.local/share/fonts/fira-code/
 .local/share/fonts/JetBrainsMono/
 .local/share/icons/
 .local/share/icons/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors/
