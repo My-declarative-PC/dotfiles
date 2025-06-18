@@ -1,15 +1,39 @@
 #!/bin/bash
 
-CURRENT_LAYOUT=$(setxkbmap -query | grep layout | sed 's/,\w\+//gi' | awk '{print $2}')
-
-if [ "$CURRENT_LAYOUT" = "us" ]; then
+# Функции установки раскладок
+set_russian_layout() {
     setxkbmap -layout ru,us -variant 'phonetic_winkeys,'
-    NEW_LAYOUT="🇷🇺"
-else
+    echo "🇷🇺"
+}
+
+set_english_layout() {
     setxkbmap -layout us,ru
-    NEW_LAYOUT="🇺🇸"
+    echo "🇺🇸"
+}
+
+# Функция переключения раскладки
+toggle_layout() {
+    CURRENT_LAYOUT=$(setxkbmap -query | grep layout | sed 's/,\w\+//gi' | awk '{print $2}')
+
+    if [ "$CURRENT_LAYOUT" = "us" ]; then
+        set_russian_layout
+    else
+        set_english_layout
+    fi
+}
+
+# Основная логика
+if [ $# -gt 0 ]; then
+    case "$1" in
+    "ru") NEW_LAYOUT=$(set_russian_layout) ;;
+    "us") NEW_LAYOUT=$(set_english_layout) ;;
+    *) NEW_LAYOUT=$(toggle_layout) ;;
+    esac
+else
+    NEW_LAYOUT=$(toggle_layout)
 fi
 
+# Уведомление
 dunstify \
     --icon keyboard \
     --urgency low \

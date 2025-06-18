@@ -496,7 +496,9 @@ exec --no-startup-id dex --autostart --environment i3
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+Space in this example)
 exec_always --no-startup-id sleep 2 && setxkbmap -layout us,ru -variant qwerty
+bindsym $mod+F3 exec --no-startup-id ~/.local/bin/layout_switch us
 bindsym $mod+F2 exec --no-startup-id ~/.local/bin/layout_switch
+bindsym $mod+F1 exec --no-startup-id ~/.local/bin/layout_switch ru
 
 # start conky:
 #exec_always --no-startup-id conky
