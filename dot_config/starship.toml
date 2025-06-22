@@ -59,14 +59,14 @@ read_only = "󰌾"
 home_symbol = ""
 
 [directory.substitutions]
-".config" = "."
-"Documents" = "󰈙"
-"Downloads" = ""
-"wgits" = ""
-"gits" = ""
-"home" = ""
-"Music" = ""
-"Pictures" = ""
+".config/" = "./"
+"Documents/" = "󰈙/"
+"Downloads/" = "/"
+"wgits/" = "/"
+"gits/" = "/"
+"home/" = "/"
+"Music/" = "/"
+"Pictures/" = "/"
 
 [git_branch]
 style = "bg:surface0 fg:rosewater"
