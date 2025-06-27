@@ -5,6 +5,7 @@ README.md
 .config/gtk-3.0/
 .config/i3/
 .config/i3status-rust/
+.var/app/com.obsproject.Studio/config/obs-studio/
 .config/picom/
 .config/rofi/
 .config/wezterm/
