@@ -88,7 +88,7 @@ format = "{ $percentage|} $icon "
 # audio
 [[block]]
 block = "bluetooth"
-mac = "1A:2B:5B:FF:00:A3"
+mac = "1A:20:22:32:15:B0"
 disconnected_format = ""
 format = "{ $percentage|} $icon "
 merge_with_next = true
