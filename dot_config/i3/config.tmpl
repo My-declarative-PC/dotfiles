@@ -345,7 +345,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 ## App shortcuts
 bindsym $mod+Shift+w exec --no-startup-id flatpak run app.zen_browser.zen || firefox
-bindsym $mod+Shift+e exec --no-startup-id thunar
+bindsym $mod+Shift+e exec --no-startup-id nautilus
 bindsym $mod+Shift+t exec --no-startup-id flatpak run org.telegram.desktop || dunstify --urgency critical --appname "i3" Пролеблема "Телеграм не установлен"
 bindsym $mod+Shift+g exec --no-startup-id flatpak run be.alexandervanhee.gradia || dunstify --urgency critical --appname "i3" Пролеблема "Gradia не установлен"
 
@@ -424,7 +424,7 @@ workspace $ws20 output nonprimary
 # bind program to workspace and focus to them on startup:
 assign [class="org.wezfurlong.wezterm"] $ws1
 assign [class="zen"] $ws2
-assign [class="Thunar"] $ws3
+assign [class="Nautilus"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="Skype"] $ws5
 assign [class="vkteams"] $ws5
@@ -434,7 +434,7 @@ assign [class="org.remmina.Remmina"] $ws9
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=org.wezfurlong.wezterm] focus
 for_window [class=zen] focus
-for_window [class=Thunar] focus
+for_window [class=Nautilus] focus
 for_window [class=Thunderbird] focus
 for_window [class=Skype] focus
 for_window [class=vkteams] focus
@@ -539,7 +539,7 @@ exec --no-startup-id dbus-launch /usr/bin/dunst
 # Autostart apps as you like
 #exec --no-startup-id sleep 2 && xfce4-terminal
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
-#exec --no-startup-id sleep 3 && thunar
+#exec --no-startup-id sleep 3 && nautilus
 
 # Policy kit
 exec_always --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
