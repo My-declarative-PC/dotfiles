@@ -335,10 +335,9 @@ bindsym XF86AudioMute exec --no-startup-id bash ~/.local/bin/volume_brightness v
 bindsym XF86AudioMicMute exec amixer sset Capture toggle
 
 # audio control
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-# Above line will also work for pausing
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id bash ~/.local/bin/volume_brightness next_track
+bindsym XF86AudioPrev exec --no-startup-id bash ~/.local/bin/volume_brightness prev_track
+bindsym XF86AudioPlay exec --no-startup-id bash ~/.local/bin/volume_brightness play_pause
 
 # Redirect sound to headphones
 # bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
