@@ -29,23 +29,32 @@ display-messages = true
 enable = true
 
 [keys.normal]
-Y = ":yank-join"
-X = "extend_line_above"
+A-F12 = ":open ~/.config/helix/languages.toml"
 D = "delete_char_backward"
+F11 = "merge_selections"
+F12 = ":config-open"
+F2 = "copy_between_registers"
 F3 = [":fmt", ":wa"]
 F4 = ":pipe sort"
-F12 = ":config-open"
-A-F12 = ":open ~/.config/helix/languages.toml"
+A-F4 = ":pipe uniq"
+X = "extend_line_above"
+Y = ":yank-join"
+[keys.normal.space]
+Y = ":clipboard-yank-join"
 
 [keys.select]
-Y = ":yank-join"
-X = "extend_line_above"
+A-F12 = ":open ~/.config/helix/languages.toml"
 D = "delete_char_backward"
+F11 = "merge_selections"
+F12 = ":config-open"
+F2 = "copy_between_registers"
 F3 = [":fmt", ":wa"]
 F4 = ":pipe sort"
-F12 = ":config-open"
-F11 = "merge_selections"
-A-F12 = ":open ~/.config/helix/languages.toml"
+A-F4 = ":pipe uniq"
+X = "extend_line_above"
+Y = ":yank-join"
+[keys.select.space]
+Y = ":clipboard-yank-join"
 
 [editor.statusline]
 left = [
