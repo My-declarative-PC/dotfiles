@@ -49,21 +49,16 @@ function get_album_art {
     url=$(playerctl -f "{{mpris:artUrl}}" metadata)
     if [[ $url == "file://"* ]]; then
         album_art="${url/file:\/\//}"
-    elif [[ $url == "http://"* ]] && [[ $download_album_art == "true" ]]; then
-        # Identify filename from URL
-        filename="$(echo $url | sed "s/.*\///")"
+    elif [[ $url == http*://* ]] && [[ $download_album_art == "true" ]]; then
+        domain=$(echo "$url" | awk -F/ '{print $3}')
 
-        # Download file to /tmp if it doesn't exist
-        if [ ! -f "/tmp/$filename" ]; then
-            wget -O "/tmp/$filename" "$url"
+        filename="$(basename "$url")"
+        if [[ "$domain" == "avatars.yandex.net" ]]; then
+            # Заменить последний / на _
+            mod_url="${url%/*}_$(basename "$url")"
+            filename="$(basename "$mod_url")"
         fi
 
-        album_art="/tmp/$filename"
-    elif [[ $url == "https://"* ]] && [[ $download_album_art == "true" ]]; then
-        # Identify filename from URL
-        filename="$(echo $url | sed "s/.*\///")"
-
-        # Download file to /tmp if it doesn't exist
         if [ ! -f "/tmp/$filename" ]; then
             wget -O "/tmp/$filename" "$url"
         fi
