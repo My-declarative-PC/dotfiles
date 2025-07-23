@@ -28,6 +28,7 @@ export GTK_THEME=catppuccin-$FLAVOR-$ACCENT-standard+default
 export ADW_DISABLE_PORTAL=1
 export GTK2_RC_FILES=/usr/share/themes/$GTK_THEME
 export XCURSOR_THEME=catppuccin-$FLAVOR-$ACCENT-cursors
+export ICON_THEME="Papirus"
 # GTK end
 
 # fzf

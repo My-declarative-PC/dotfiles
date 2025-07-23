@@ -5,7 +5,11 @@ SCREENSHOT="maim $PICTURE"
 
 $SCREENSHOT
 
-notify-send -a "i3 blur-lock" Locking "The screen lock process has started"
+dunstify \
+    --appname "i3 blur-lock" \
+    --hints string:x-dunst-stack-tag:volume_notif \
+    --icon ~/.local/share/icons/${ICON_THEME}/24x24/actions/lock.svg \
+    Locking "The screen lock process has started"
 
 BLUR="2x5"
 magick $PICTURE -noise 4 -scale 10% -scale 1000% -blur $BLUR $PICTURE
