@@ -1,6 +1,6 @@
 [global]
 	width = (300, 600)
-	height = (50, 250)
+	height = (50, 220)
 	offset = (10, 35)
 	format = "<b>%s</b>\n%b\n\n<u><i>%a</i></u>"
 	follow = mouse
@@ -37,6 +37,11 @@
 
 [music]
 	appname = "music"
-	min_icon_size=100
-	max_icon_size=150
-	progress_bar_max_width = 600
+	min_icon_size = 100
+	max_icon_size = 120
+
+[cassette]
+	summary = "Playing now"
+	skip_display = true
+	history_ignore = true
+	script = ~/.local/bin/volume_brightness

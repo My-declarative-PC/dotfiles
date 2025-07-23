@@ -215,8 +215,8 @@ play_pause)
     sleep 0.5
     show_music_notif
     ;;
-
-play_status)
-    show_music_notif
-    ;;
 esac
+
+if [ -z $1 ]; then
+    show_music_notif
+fi
