@@ -107,6 +107,7 @@ function show_music_notif {
     song_title=$(playerctl -f "{{title}}" metadata)
     song_artist=$(playerctl -f "{{artist}}" metadata)
     song_album=$(playerctl -f "{{album}}" metadata)
+    notify_progress
 
     if [[ $show_album_art == "true" ]]; then
         get_album_art
@@ -115,6 +116,8 @@ function show_music_notif {
     dunstify \
         --appname "music" \
         --hints string:x-dunst-stack-tag:music_notif \
+        --hints int:value:$percent \
+        --hints string:hlcolor:$bar_color \
         --icon "$album_art" \
         --urgency low \
         "$action_icon $song_title" "$song_artist - $song_album"
@@ -132,6 +135,20 @@ function show_brightness_notif {
         --hints string:hlcolor:$bar_color \
         --urgency low \
         "$brightness_icon $brightness%"
+}
+
+function notify_progress() {
+    # Получение позиции и длины
+    pos=$(playerctl -p "$player" position 2>/dev/null)
+    len=$(playerctl -p "$player" metadata mpris:length 2>/dev/null)
+
+    # Проверка на нули
+    if [ -z "$pos" ] || [ -z "$len" ] || [ "$len" -eq 0 ]; then
+        return 1
+    fi
+
+    # Вычисление прогресса
+    percent=$(awk -v p="$pos" -v l="$len" 'BEGIN { printf("%.1f", 100 * p / (l / 1000000)) }')
 }
 
 # Main function - Takes user input, "volume_up", "volume_down", "brightness_up", or "brightness_down"
