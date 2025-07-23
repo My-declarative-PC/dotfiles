@@ -104,6 +104,14 @@ function show_volume_notif {
 # $1 - icon of the action (optional)
 function show_music_notif {
     action_icon="$1"
+    if [ -z $action_icon ]; then
+        status=$(playerctl status)
+        if [[ "$status" == "Playing" ]]; then
+            action_icon="▶"
+        else
+            action_icon="⏸"
+        fi
+    fi
     song_title=$(playerctl -f "{{title}}" metadata)
     song_artist=$(playerctl -f "{{artist}}" metadata)
     song_album=$(playerctl -f "{{album}}" metadata)
@@ -203,13 +211,12 @@ prev_track)
 
 play_pause)
     # Pauses/resumes playback and displays the notification
-    status=$(playerctl status)
     playerctl play-pause
     sleep 0.5
-    if [[ "$status" == "Playing" ]]; then
-        show_music_notif "⏸"
-    else
-        show_music_notif "▶"
-    fi
+    show_music_notif
+    ;;
+
+play_status)
+    show_music_notif
     ;;
 esac
