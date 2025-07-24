@@ -81,8 +81,13 @@ function show_volume_notif {
             get_album_art
         fi
 
+        appname="volume control"
+        if [ -n $album_art ]; then
+            appname="music"
+        fi
+
         dunstify \
-            --appname "volume control" \
+            --appname $appname \
             --hints string:x-dunst-stack-tag:volume_notif \
             --hints int:value:$volume \
             --hints string:hlcolor:$bar_color \
