@@ -3,7 +3,8 @@
     "logo": {
         "type": "small",
         "padding": {
-            "top": 1
+            "top": 1,
+            "left": 1
         }
     },
     "display": {
@@ -72,6 +73,18 @@
         {
             "type": "custom",
             "format": "╠════════╣ <---------< \u001b[1m\u001b[36m     Appearance     \u001b[0m >--------->"
+        },
+        {
+            "type": "font",
+            "key": "║     ⠀⠀ ║\u001b[8D\u001b[36mFont"
+        },
+        {
+            "type": "theme",
+            "key": "║     ⠀⠀ ║\u001b[8D\u001b[36mTheme"
+        },
+        {
+            "type": "icons",
+            "key": "║     ⠀⠀ ║\u001b[8D\u001b[36mIcons"
         },
         {
             "type": "cursor",
