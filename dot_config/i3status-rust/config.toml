@@ -98,6 +98,9 @@ block = "sound"
 step_width = 2
 driver = "pulseaudio"
 format = "{ $volume|} $icon "
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
 # # # # #
 
 [[block]]
