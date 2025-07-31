@@ -48,7 +48,7 @@ format = " $percentage $icon  "
 format_alt = " $used/$total $icon  "
 if_command = "! [ \"$(df -P /home | awk 'NR==2 {print $1}')\" = \"$(df -P / | awk 'NR==2 {print $1}')\" ]"
 [block.icons_overrides]
-disk_drive = "\ue1b0"
+disk_drive = ""
 # # # # #
 
 # performance
@@ -107,8 +107,8 @@ cmd = "pavucontrol"
 block = "kdeconnect"
 format = " $icon {$bat_charge $bat_icon |}{$notif_icon $notif_count |}"
 [block.icons_overrides]
-phone = "\uf879"
-phone_disconnected = "\uf3dd"
+phone = ""
+phone_disconnected = ""
 
 [[block]]
 block = "custom"
