@@ -5,12 +5,12 @@
 prepend_keymap = [
 	# Bookmarks
 	{ on = [ "g", "h" ], run = "cd ~/",                     desc = "Go to Home" },
-	{ on = [ "g", "." ], run = "cd ~/dotfiles",             desc = "Go to 'dot'-files" },
 	{ on = [ "g", "m" ], run = "cd /media",                 desc = "Go to Media" },
 	{ on = [ "g", "d" ], run = "cd ~/Downloads",            desc = "Go to Downloads" },
 	{ on = [ "g", "G" ], run = "cd ~/gits",                 desc = "Go to GIT's projects" },
-	{ on = [ "g", "c" ], run = "cd ~/.local/share/chezmoi", desc = "Go to chezmoi" },
-	{ on = [ "g", "C" ], run = "cd ~/.config",              desc = "Go to config directory" },
+	{ on = [ "g", "." ], run = "cd ~/.local/share/chezmoi", desc = "Go to chezmoi" },
+	{ on = [ "g", "c" ], run = "cd ~/.config",              desc = "Go to config directory" },
+	{ on = [ "g", "y" ], run = "cd ~/Yandex.Disk",          desc = "Go to config Yandex.Disk" },
 
 	# Plugins
 	{ on = "M",          run = "plugin mount", desc = "Mount disks" },
