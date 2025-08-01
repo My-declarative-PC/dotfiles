@@ -4,7 +4,8 @@ file://{{ .chezmoi.homeDir }}/Music
 file://{{ .chezmoi.homeDir }}/Videos
 file://{{ .chezmoi.homeDir }}/Pictures
 file://{{ .chezmoi.homeDir }}/gits
-{{- if eq .chezmoi.username "work" }}
+file://{{ .chezmoi.homeDir }}/Yandex.Disk
+{{- if .isHome }}
 smb://storage/1c-builds/ 1C builds
 sftp://mpu_web/var/www/lk_test/www mpu web (ssh)
 smb://storage/1c-portal/%D0%9F%D0%B0%D1%82%D1%87%D0%B8/%D0%9F%D0%B0%D1%82%D1%87%D0%B8%20%D0%9B%D0%9A Патчи ЛК
