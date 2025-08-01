@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1736065616960656-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>folder-publicshare</icon>
+	<name>Publish via Yandex.Disk</name>
+	<submenu></submenu>
+	<unique-id>1754029140282860-1</unique-id>
+	<command>yandex-disk publish %f | xclip -filter -selection clipboard; zenity --info --window-icon=/usr/share/yd-tools/icons/yd-128.png --title=&quot;Yandex.Disk&quot; --ok-label=&quot;Close&quot; --text=&quot;URL to file: %f was copied into clipboard.&quot;</command>
+	<description></description>
+	<range></range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>folder</icon>
+	<name>Unpublish from Yandex.disk</name>
+	<submenu></submenu>
+	<unique-id>1754029140282868-2</unique-id>
+	<command>zenity --info --window-icon=/usr/share/yd-tools/icons/yd-128_g.png --ok-label=&quot;Close&quot; --title=&quot;Yandex.Disk&quot; --text=&quot;Unpublish from Yandex.disk: `yandex-disk unpublish %f`&quot;</command>
+	<description></description>
+	<range></range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>
