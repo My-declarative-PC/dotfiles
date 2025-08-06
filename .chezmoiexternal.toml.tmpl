@@ -46,6 +46,15 @@
     stripComponents = 1
     include = ["*/themes/*"]
 
+[".config/joplin-desktop/userchrome-main.css"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/joplin/refs/heads/main/src/mocha/userchrome.css"
+    refreshPeriod = "744h"
+[".config/joplin-desktop/userstyle-main.css"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/joplin/refs/heads/main/src/mocha/userstyle.css"
+    refreshPeriod = "744h"
+
 # Fonts
 [".local/share/fonts/fira-code"]
     type = "archive"
@@ -54,6 +63,7 @@
     stripComponents = 1
     refreshPeriod = "744h"
     include = ["*/*.ttf"]
+
 [".local/share/fonts/FontAwesome"]
     type = "archive"
     url = "https://use.fontawesome.com/releases/v7.0.0/fontawesome-free-7.0.0-desktop.zip"
