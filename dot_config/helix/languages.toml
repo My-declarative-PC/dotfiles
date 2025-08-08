@@ -81,12 +81,26 @@ language-servers = ["sql-language-server", "typos"]
 name = "javascript"
 language-servers = ["typescript-language-server", "typos"]
 indent = { tab-width = 4, unit = "    " }
+auto-format = true
+file-types = ["js"]
+formatter = { command = 'prettier', args = [
+  "--parser", "typescript",
+  "--tab-width", "4",
+  "--print-width", "100"
+] }
 
 ##### Language: TYPESCRIPT #####
 [[language]]
 name = "typescript"
 language-servers = ["typescript-language-server", "typos"]
 indent = { tab-width = 4, unit = "    " }
+auto-format = true
+file-types = ["js"]
+formatter = { command = 'prettier', args = [
+  "--parser", "typescript",
+  "--tab-width", "4",
+  "--print-width", "100"
+] }
 
 ##### Language: JSON #####
 [[language]]
