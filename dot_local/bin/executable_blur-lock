@@ -12,7 +12,7 @@ dunstify \
     Locking "The screen lock process has started"
 
 BLUR="2x5"
-magick $PICTURE -noise 4 -scale 10% -scale 1000% -blur $BLUR $PICTURE
+magick $PICTURE -scale 25% -noise 1 -blur $BLUR -scale 400% $PICTURE
 
 setxkbmap -layout us,ru
 playerctl pause
