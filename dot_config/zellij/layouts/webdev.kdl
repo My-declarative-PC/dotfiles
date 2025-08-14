@@ -1,0 +1,25 @@
+layout {
+    tab name="docker" cwd="docker" hide_floating_panes=true {
+        pane command="lazydocker"
+        floating_panes {
+            pane command="hx" {
+                args ".env"
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+    }
+    tab name="git" cwd="www" {
+        pane command="lazygit"
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+    }
+    tab name="dev" cwd="www" {
+        pane command="hx"
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+    }
+}
