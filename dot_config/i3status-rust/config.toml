@@ -100,7 +100,7 @@ driver = "pulseaudio"
 format = "{ $volume|} $icon "
 [[block.click]]
 button = "left"
-cmd = "pavucontrol"
+cmd = "flatpak run org.pulseaudio.pavucontrol"
 # # # # #
 
 [[block]]
