@@ -343,7 +343,7 @@ bindsym XF86AudioPlay exec --no-startup-id bash ~/.local/bin/volume_brightness p
 # bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym $mod+Shift+w exec --no-startup-id flatpak run app.zen_browser.zen || firefox
+bindsym $mod+Shift+w exec --no-startup-id flatpak run app.zen_browser.zen || dunstify --urgency critical --appname "i3" Пролеблема "Браузер 'Zen' не установлен"
 bindsym $mod+Shift+e exec --no-startup-id thunar
 bindsym $mod+Shift+t exec --no-startup-id flatpak run org.telegram.desktop || dunstify --urgency critical --appname "i3" Пролеблема "Телеграм не установлен"
 bindsym $mod+Shift+g exec --no-startup-id flatpak run be.alexandervanhee.gradia || dunstify --urgency critical --appname "i3" Пролеблема "Gradia не установлен"
@@ -422,24 +422,26 @@ workspace $ws20 output nonprimary
 
 # bind program to workspace and focus to them on startup:
 assign [class="org.wezfurlong.wezterm"] $ws1
-assign [class="zen"] $ws2
-assign [class="Thunar"] $ws3
-assign [class="thunderbird"] $ws4
-assign [class="vkteams"] $ws5
-assign [class="dbgate"] $ws7
-assign [class="org.remmina.Remmina"] $ws9
-assign [class="cassette"] $ws19
-assign [class="anytype"] $ws20
+assign [class="zen"]                    $ws2
+assign [class="Thunar"]                 $ws3
+assign [class="thunderbird"]            $ws4
+assign [class="vkteams"]                $ws5
+assign [class="dbgate"]                 $ws7
+assign [class="org.remmina.Remmina"]    $ws9
+assign [class="obs"]                    $ws12
+assign [class="cassette"]               $ws19
+assign [class="anytype"]                $ws20
 
 # automatic set focus new window if it opens on another workspace than the current:
+for_window [class=cassette] focus
+for_window [class=dbgate] focus
+for_window [class=obs] focus
+for_window [class=org.remmina.Remmina] focus
 for_window [class=org.wezfurlong.wezterm] focus
-for_window [class=zen] focus
 for_window [class=Thunar] focus
 for_window [class=Thunderbird] focus
 for_window [class=vkteams] focus
-for_window [class=dbgate] focus
-for_window [class=org.remmina.Remmina] focus
-for_window [class=cassette] focus
+for_window [class=zen] focus
 
 ##############
 # compositor #
@@ -576,6 +578,7 @@ for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="TelegramDesktop"] floating enable
+for_window [class="cuneo"] floating enable
 
 # set floating (nontiling) for special apps
 for_window [class="Xsane" instance="xsane"] floating enable
@@ -595,6 +598,7 @@ for_window [class="urxvt"] border pixel 1
 # set size of floating window
 #for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
 for_window [class=".*"] resize set width 50 ppt height 50 ppt
+for_window [class="cuneo"] resize set width 50 ppt height 65 px
 # for_window [class="TelegramDesktop"] resize set width 50 ppt height 50 ppt
 
 # set position of floating window
@@ -628,8 +632,7 @@ mode "Rofi" {
         mode "default"
 
     ## rofi bindings for calc
-    bindsym k exec --no-startup-id rofi -show calc -no-show-match -no-sort \
-        -calc-command "echo -n '{result}' | xclip -i -selection clipboard"; \
+    bindsym k exec --no-startup-id flatpak run io.github.heidefinnischen.cuneo; \
         mode "default"
 
     ## rofi bindings for bluetooth
