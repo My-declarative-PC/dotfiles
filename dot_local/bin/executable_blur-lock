@@ -11,8 +11,8 @@ dunstify \
     --icon ~/.local/share/icons/${ICON_THEME}/24x24/actions/lock.svg \
     Locking "The screen lock process has started"
 
-BLUR="2x5"
-magick $PICTURE -scale 25% -noise 1 -blur $BLUR -scale 400% $PICTURE
+BLUR="1x1"
+magick $PICTURE -scale 20% -blur $BLUR -scale 500% -scale 25% -scale 400% $PICTURE
 
 setxkbmap -layout us,ru
 playerctl pause
