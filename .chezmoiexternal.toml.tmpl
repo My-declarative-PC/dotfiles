@@ -58,11 +58,10 @@
 # Fonts
 [".local/share/fonts/fira-code"]
     type = "archive"
-    url = '{{ gitHubLatestReleaseAssetURL "tonsky/FiraCode" (printf "Fira_Code_*.zip") }}'
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
     exact = false
-    stripComponents = 1
     refreshPeriod = "744h"
-    include = ["*/*.ttf"]
+    include = ["**/*.ttf"]
 
 [".local/share/fonts/FontAwesome"]
     type = "archive"

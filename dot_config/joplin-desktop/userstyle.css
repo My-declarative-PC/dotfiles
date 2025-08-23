@@ -1,6 +1,6 @@
 @import "userstyle-main.css";
 
 :root {
-    --font-face: "Fira Code", Arial, Helvetica, sans-serif;
-    --font-mono: "Fira Code", Courier, monospace;
+    --font-face: "FiraCode Nerd Font", Arial, Helvetica, sans-serif;
+    --font-mono: "FiraCode Nerd Font", Courier, monospace;
 }
