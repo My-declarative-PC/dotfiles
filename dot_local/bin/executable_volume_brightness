@@ -200,19 +200,19 @@ brightness_down)
 
 next_track)
     # Skips to the next song and displays the notification
-    playerctl next
+    playerctl --all-players next
     sleep 0.5 && show_music_notif "⏭"
     ;;
 
 prev_track)
     # Skips to the previous song and displays the notification
-    playerctl previous
+    playerctl --all-players previous
     sleep 0.5 && show_music_notif "⏮"
     ;;
 
 play_pause)
     # Pauses/resumes playback and displays the notification
-    playerctl play-pause
+    playerctl --all-players play-pause
     sleep 0.5
     show_music_notif
     ;;
