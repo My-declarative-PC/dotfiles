@@ -26,6 +26,13 @@ ltex.dictionary = { "ru-RU" = ["builtin"] }
 command = "helix-snippets-ls"
 args = ["--stdio"]
 
+### python
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
 
 #
 ##
@@ -144,7 +151,7 @@ file-types = [
 ##### Language: PYTHON #####
 [[language]]
 name = "python"
-formatter = { command = "black", args = ["-q", "-"] }
+language-servers = [ "pyright", "ruff" ]
 auto-format = true
 
 ##### Language: YAML #####
