@@ -59,11 +59,6 @@ indent = { tab-width = 4, unit = "    " }
 [[language]]
 name = "php"
 auto-format = true
-scope = "source.php"
-injection-regex = "php"
-file-types = ["php", "inc", "php4", "php5", "phtml", "ctp"]
-shebangs = ["php"]
-roots = ["composer.json", "index.php"]
 language-servers = [ "phpactor", "typos", "helix-snippets-ls" ]
 indent = { tab-width = 4, unit = "    " }
 
