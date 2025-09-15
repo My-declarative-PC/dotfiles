@@ -36,22 +36,6 @@ function lsusb
     end
 end
 
-function cat
-    if command -sq bat
-        bat $argv
-    else
-        bash -c cat $argv
-    end
-end
-
-function rg
-    if command -sq batgrep
-        batgrep $argv
-    else
-        bash -c rg $argv
-    end
-end
-
 ### ls
 function ls
     if command -sq eza
