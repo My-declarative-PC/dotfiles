@@ -12,6 +12,14 @@ icons = "awesome6"
 [[block]]
 block = "scratchpad"
 
+[[block]]
+block = "weather"
+format = " $icon $temp "
+format_alt = " $icon $temp{({$temp_fmin}-{$temp_fmax})|} {{$sunrise}-{$sunset} |}"
+[block.service]
+name = "metno"
+coordinates = ["45.04926", "41.9752"]
+
 # disk space
 [[block]]
 block = "disk_space"
