@@ -1,0 +1,19 @@
+# full update
+full-update: sys-update flat-update pnpm-update brew-update
+
+
+# update system
+sys-update:
+    sudo zypper ref && sudo zypper dup -y
+
+# update flatpak
+flat-update:
+    flatpak update -y
+
+# update pnpm
+pnpm-update:
+    pnpm -g update
+
+# update brew
+brew-update:
+    brew update && brew upgrade
