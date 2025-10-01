@@ -2,4 +2,7 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -f ~/.profile ]] && . ~/.profile
-[[ -f ~/.Xresources ]] && xrdb ~/.Xresources
+
+if command -v xrdb &>/dev/null; then
+    [[ -f ~/.Xresources ]] && xrdb ~/.Xresources
+fi
