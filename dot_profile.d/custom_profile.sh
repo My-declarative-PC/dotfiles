@@ -38,7 +38,13 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS: \
 "
 # fzf end
 
+# clipboard
+export CLIPBOARD_THEME='help=203;166;247,info=137;180;250,error=243;139;168,success=166;227;161,progress=249;226;175'
+export CLIPBOARD_HISTORY=123d
+# clipboard end
+
 export EDITOR=hx
+export VISUAL='gtk-launch Helix.desktop'
 export QT_STYLE_OVERRIDE=kvantum
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export XAUTHORITY=$HOME/.Xauthority
