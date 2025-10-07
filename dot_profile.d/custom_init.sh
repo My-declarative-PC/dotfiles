@@ -65,3 +65,7 @@ fi
 if command -v atuin &>/dev/null; then
     eval "$(atuin init bash)"
 fi
+
+if command -v yq &>/dev/null; then
+    yq shell-completion fish | source
+fi

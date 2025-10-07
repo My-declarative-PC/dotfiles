@@ -44,7 +44,7 @@ export CLIPBOARD_HISTORY=123d
 # clipboard end
 
 export EDITOR=hx
-export VISUAL='gtk-launch Helix.desktop'
+export VISUAL=hx
 export QT_STYLE_OVERRIDE=kvantum
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export XAUTHORITY=$HOME/.Xauthority
