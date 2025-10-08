@@ -67,5 +67,5 @@ if command -v atuin &>/dev/null; then
 fi
 
 if command -v yq &>/dev/null; then
-    yq shell-completion fish | source
+    eval "$(yq shell-completion bash)"
 fi

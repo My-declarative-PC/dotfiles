@@ -91,3 +91,7 @@ end
 if command -sq atuin
     atuin init fish | source
 end
+
+if command -sq yq
+    yq shell-completion fish | source
+end
