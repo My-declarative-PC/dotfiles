@@ -95,3 +95,7 @@ end
 if command -sq yq
     yq shell-completion fish | source
 end
+
+if command -sq docker
+    docker completion fish | source
+end

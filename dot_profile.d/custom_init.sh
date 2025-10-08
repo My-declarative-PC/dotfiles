@@ -69,3 +69,7 @@ fi
 if command -v yq &>/dev/null; then
     eval "$(yq shell-completion bash)"
 fi
+
+if command -v docker &>/dev/null; then
+    eval "$(docker completion bash)"
+fi
