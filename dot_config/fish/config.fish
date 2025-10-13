@@ -112,3 +112,7 @@ end
 if command -sq docker
     docker completion fish | source
 end
+
+if command -sq wezterm
+    wezterm shell-completion --shell fish | source
+end

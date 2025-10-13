@@ -73,3 +73,7 @@ fi
 if command -v docker &>/dev/null; then
     eval "$(docker completion bash)"
 fi
+
+if command -v docker &>/dev/null; then
+    eval "$(wezterm shell-completion --shell bash)"
+fi
