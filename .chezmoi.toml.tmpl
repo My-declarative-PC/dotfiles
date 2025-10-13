@@ -1,6 +1,11 @@
 {{ $hasGUI := promptBoolOnce . "hasGUI" "Does this machine have a GUI" }}
 {{ $isHome := promptBoolOnce . "isHome" "Does this machine in home" }}
 
+encryption = "age"
+[age]
+    identity = "~/.config/chezmoi/key.txt"
+    recipient = "age1u465zpnu0rgm5uww0jmjkc6dsv9lugltzmqcndercqgea7jvw4yqqal4sl"
+
 [data]
 # machine
 hasGUI = {{ $hasGUI }}
