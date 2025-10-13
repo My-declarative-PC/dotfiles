@@ -77,3 +77,7 @@ fi
 if command -v docker &>/dev/null; then
     eval "$(wezterm shell-completion --shell bash)"
 fi
+
+if command -v bat &>/dev/null; then
+    eval "$(bat --completion bash)"
+fi

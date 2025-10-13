@@ -116,3 +116,7 @@ end
 if command -sq wezterm
     wezterm shell-completion --shell fish | source
 end
+
+if command -sq bat
+    bat --completion fish | source
+end

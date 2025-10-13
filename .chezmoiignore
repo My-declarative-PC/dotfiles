@@ -1,4 +1,3 @@
-key.txt
 key.txt.age
 README.md
 {{ if not .hasGUI }}
