@@ -1,132 +1,139 @@
-local wezterm = require 'wezterm'
+local wezterm = require "wezterm"
+local config = wezterm.config_builder()
 
-local homePath = wezterm.home_dir;
+config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace";
+config.front_end = "OpenGL";
+config.default_prog = { "/home/linuxbrew/.linuxbrew/bin/fish", "-l" };
+config.scrollback_lines = 50000;
+config.tab_bar_at_bottom = true;
+config.use_fancy_tab_bar = false;
+config.window_decorations = "RESIZE";
+config.hide_tab_bar_if_only_one_tab = true;
+config.pane_focus_follows_mouse = true;
+config.window_close_confirmation = "NeverPrompt";
 
-local config = {
-  -- Set color
-  color_scheme = "Catppuccin Mocha",
-  colors = { selection_bg = 'rgba(245 194 231 42%)' },
-  window_background_gradient = {
-    colors = {
-      'rgba(30 30 46 100%)',
-      'rgba(30 30 46 100%)',
-      'rgba(30 30 46 095%)',
-      'rgba(30 30 46 073%)',
-      'rgba(30 30 46 073%)',
-      'rgba(30 30 46 095%)',
-      'rgba(30 30 46 100%)',
-      'rgba(30 30 46 100%)',
-    },
-    orientation = { Linear = { angle = -100.0 } },
+config.window_padding = {
+  left   = 4,
+  right  = 4,
+  top    = 4,
+  bottom = 4,
+};
+
+config.skip_close_confirmation_for_processes_named = {
+  "bash",
+  "fish",
+  "nu",
+  "pwsh",
+  "sh",
+  "tmux",
+  "zsh",
+};
+
+-- #
+-- ## Set color
+-- #
+config.color_scheme = "Catppuccin Mocha";
+config.colors = { selection_bg = "rgba(245 194 231 42%)" };
+config.window_background_gradient = {
+  colors = {
+    "rgba(30 30 46 100%)",
+    "rgba(30 30 46 100%)",
+    "rgba(30 30 46 095%)",
+    "rgba(30 30 46 073%)",
+    "rgba(30 30 46 073%)",
+    "rgba(30 30 46 095%)",
+    "rgba(30 30 46 100%)",
+    "rgba(30 30 46 100%)",
   },
-  -- -- -- -- --
+  orientation = { Linear = { angle = -100.0 } },
+};
+-- -- -- -- --
 
-  allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
-  font = wezterm.font_with_fallback({
-    "{{ .font_family }}",
-    "Font Awesome 5 Free Solid",
-    "Font Awesome 5 Free Regular",
-    "Font Awesome 5 Brands Regular",
-    "Font Awesome 7 Free Solid",
-    "Font Awesome 7 Free Regular",
-    "Font Awesome 7 Brands Regular",
-    "Noto Color Emoji",
-    "Symbols Nerd Font Mono",
-  }),
-  front_end = 'OpenGL',
-  default_prog = { '/home/linuxbrew/.linuxbrew/bin/fish', '-l' },
-  scrollback_lines = 50000,
-  tab_bar_at_bottom = true,
-  use_fancy_tab_bar = false,
-  window_decorations = "RESIZE",
-  hide_tab_bar_if_only_one_tab = true,
-  pane_focus_follows_mouse = true,
-  window_close_confirmation = 'NeverPrompt',
+-- #
+-- ## Font
+-- #
+config.font = wezterm.font_with_fallback({
+  "{{ .font_family }}",
+  "Font Awesome 5 Free Solid",
+  "Font Awesome 5 Free Regular",
+  "Font Awesome 5 Brands Regular",
+  "Font Awesome 7 Free Solid",
+  "Font Awesome 7 Free Regular",
+  "Font Awesome 7 Brands Regular",
+  "Noto Color Emoji",
+  "Symbols Nerd Font Mono",
+});
+-- -- -- -- --
 
-  window_padding = {
-    left   = 4,
-    right  = 4,
-    top    = 4,
-    bottom = 4,
+-- #
+-- ## Keys
+-- #
+config.keys = {
+  {
+    key = "w",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.CloseCurrentPane { confirm = false },
   },
-
-  skip_close_confirmation_for_processes_named = {
-    'bash',
-    'fish',
-    'nu',
-    'pwsh',
-    'sh',
-    'tmux',
-    'zsh',
+  {
+    key = "]",
+    mods = "CTRL|ALT",
+    action = wezterm.action.ActivateTabRelative(1),
   },
-  keys = {
-    {
-      key = 'w',
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.CloseCurrentPane { confirm = false },
-    },
-    {
-      key = "]",
-      mods = "CTRL|ALT",
-      action = wezterm.action.ActivateTabRelative(1),
-    },
-    {
-      key = "[",
-      mods = "CTRL|ALT",
-      action = wezterm.action.ActivateTabRelative(-1),
-    },
-    {
-      key = "d",
-      mods = "CTRL|ALT",
-      action = wezterm.action.ShowLauncher
-      -- action = wezterm.action.ShowLauncherArgs { flags = 'DOMAINS' },
-      -- action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|TABS|DOMAINS' }
-    },
-  }
+  {
+    key = "[",
+    mods = "CTRL|ALT",
+    action = wezterm.action.ActivateTabRelative(-1),
+  },
+  {
+    key = "d",
+    mods = "CTRL|ALT",
+    -- action = wezterm.action.ShowLauncher
+    -- action = wezterm.action.ShowLauncherArgs { flags = "DOMAINS" },
+    action = wezterm.action.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS|FUZZY|TABS|DOMAINS" }
+  },
 }
 
 for i = 1, 8 do
   -- CTRL+ALT + number to move to that position
   table.insert(config.keys, {
     key = tostring(i),
-    mods = 'CTRL|ALT',
+    mods = "CTRL|ALT",
     action = wezterm.action.MoveTab(i - 1),
   })
 end
+-- -- -- -- --
 
--- SSH
+-- #
+-- ## SSH
+-- #
 local ssh_domains = {}
+local ssh_launch_menu = {}
 
-for host, ssh_config in pairs(wezterm.enumerate_ssh_hosts()) do
-  table.insert(ssh_domains, {
-    -- the name can be anything you want; we're just using the hostname
-    name = host,
-    -- remote_address must be set to `host` for the ssh config to apply to it
-    remote_address = ssh_config.hostname .. ":" .. ssh_config.port,
+for hostname, ssh_config in pairs(wezterm.enumerate_ssh_hosts()) do
+  if type(hostname) == "string" then
+    table.insert(ssh_launch_menu, {
+      label = string.format("SSH %s", hostname),
+      args = { "wezterm", "ssh", hostname }
+    })
 
-    username = ssh_config.user,
+    table.insert(ssh_domains, {
+      name = hostname,
+      remote_address = ssh_config.hostname .. ":" .. ssh_config.port,
 
-    ssh_option = {
-      identityfile = ssh_config.identityfile,
-    },
+      username = ssh_config.user,
 
-    remote_wezterm_path = "/home/" .. ssh_config.user .. "/bin/wezterm",
+      ssh_option = {
+        identityfile = ssh_config.identityfile,
+      },
 
-    -- if you don't have wezterm's mux server installed on the remote
-    -- host, you may wish to set multiplexing = "None" to use a direct
-    -- ssh connection that supports multiple panes/tabs which will close
-    -- when the connection is dropped.
-
-    -- multiplexing = "None",
-
-    -- if you know that the remote host has a posix/unix environment,
-    -- setting assume_shell = "Posix" will result in new panes respecting
-    -- the remote current directory when multiplexing = "None".
-    assume_shell = "Posix",
-  })
+      multiplexing = "None",
+      assume_shell = "Posix",
+    })
+  end
 end
+-- -- -- -- --
 
 config.ssh_domains = ssh_domains
---
+config.launch_menu = ssh_launch_menu
 
 return config;
