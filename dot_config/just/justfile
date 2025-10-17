@@ -1,5 +1,5 @@
 # full update
-full-update: sys-update flat-update pnpm-update brew-update
+full-update: sys-update flat-update brew-update pnpm-update
 
 
 # update system
