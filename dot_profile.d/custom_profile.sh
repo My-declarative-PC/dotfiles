@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# SSH
-export SSH_AUTH_SOCK=$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
-# SSH end
-
 # PATH
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/bin"
@@ -52,3 +48,7 @@ export VISUAL=hx
 export QT_STYLE_OVERRIDE=kvantum
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export XAUTHORITY=$HOME/.Xauthority
+
+# SSH
+export SSH_AUTH_SOCK=$HOME/.bitwarden-ssh-agent.sock
+# SSH end
