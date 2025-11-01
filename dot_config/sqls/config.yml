@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/sqls-server/sqls/refs/heads/master/schema.json
+
+lowercaseKeywords: true
+connections:
+  - alias: rgau_(local)
+    driver: postgresql
+    proto: tcp
+    user: rgau
+    passwd: rgau
+    host: 127.0.1.6
+    port: 3306
+    dbName: rgau
+    params:
+      sslmode: disable

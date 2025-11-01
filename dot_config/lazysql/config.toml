@@ -1,0 +1,19 @@
+ConfigFile = '/home/sitnikov/.config/lazysql/config.toml'
+
+[application]
+DefaultPageSize = 300
+DisableSidebar = false
+SidebarOverlay = false
+MaxQueryHistoryPerConnection = 100
+
+[[database]]
+Name = 'rgau'
+URL = 'pg://rgau:rgau@127.0.1.6:3306/rgau?sslmode=disable'
+Provider = 'postgres'
+Username = 'rgau'
+Password = 'rgau'
+Hostname = '127.0.1.6'
+Port = '3306'
+DBName = 'rgau'
+URLParams = ''
+Commands = []

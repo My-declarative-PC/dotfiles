@@ -4,6 +4,7 @@
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/share/flatpak/exports/share"
+export PATH="$PATH:$HOME/go/bin/"
 # PATH end
 
 # homebrew

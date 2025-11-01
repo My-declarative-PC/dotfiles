@@ -82,6 +82,17 @@ args = { mode = "debug", program = "{0}" }
 [[language]]
 name = "sql"
 language-servers = ["sql-language-server", "typos"]
+formatter = { command = "sqlformat", args = [
+  "--reindent",
+  "--indent_width",
+  "4",
+  "--keywords",
+  "upper",
+  "--identifiers",
+  "lower",
+  "-",
+] }
+auto-format = true
 
 ##### Language: JAVASCRIPT #####
 [[language]]
@@ -91,9 +102,12 @@ indent = { tab-width = 4, unit = "    " }
 auto-format = true
 file-types = ["js"]
 formatter = { command = 'prettier', args = [
-  "--parser", "typescript",
-  "--tab-width", "4",
-  "--print-width", "100"
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+  "--print-width",
+  "100",
 ] }
 
 ##### Language: TYPESCRIPT #####
@@ -104,9 +118,12 @@ indent = { tab-width = 4, unit = "    " }
 auto-format = true
 file-types = ["js"]
 formatter = { command = 'prettier', args = [
-  "--parser", "typescript",
-  "--tab-width", "4",
-  "--print-width", "100"
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+  "--print-width",
+  "100",
 ] }
 
 ##### Language: JSON #####
@@ -151,7 +168,7 @@ file-types = [
 ##### Language: PYTHON #####
 [[language]]
 name = "python"
-language-servers = [ "pyright", "ruff" ]
+language-servers = ["pyright", "ruff"]
 auto-format = true
 
 ##### Language: YAML #####
