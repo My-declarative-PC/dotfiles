@@ -203,22 +203,22 @@ mode "resize" {
 
     # Pressing left will shrink the window's width.
     bindsym h resize shrink width 10 px or 10 ppt
-    bindsym р resize shrink width 10 px or 10 ppt # for RUS
+    bindsym ч resize shrink width 10 px or 10 ppt # for RUS
     bindsym Left resize shrink width 10 px or 10 ppt
 
     # Pressing down will grow the window's height.
     bindsym j resize grow height 10 px or 10 ppt
-    bindsym о resize grow height 10 px or 10 ppt # for RUS
+    bindsym й resize grow height 10 px or 10 ppt # for RUS
     bindsym Down resize grow height 10 px or 10 ppt
 
     # Pressing up will shrink the window's height.
     bindsym k resize shrink height 10 px or 10 ppt
-    bindsym л resize shrink height 10 px or 10 ppt # for RUS
+    bindsym к resize shrink height 10 px or 10 ppt # for RUS
     bindsym Up resize shrink height 10 px or 10 ppt
 
     # Pressing right will grow the window's width.
     bindsym l resize grow width 10 px or 10 ppt
-    bindsym д resize grow width 10 px or 10 ppt # for RUS
+    bindsym л resize grow width 10 px or 10 ppt # for RUS
     bindsym Right resize grow width 10 px or 10 ppt
 
     # back to normal: Enter or Escape
@@ -226,6 +226,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+bindsym $mod+р mode "resize" # for RUS
 
 ######################################
 # keybindings for different actions: #
@@ -236,6 +237,7 @@ bindsym $mod+Return exec --no-startup-id org.wezfurlong.wezterm || wezterm
 
 # kill focused window
 bindsym $mod+q kill
+bindsym $mod+я kill # for RUS
 
 # Lock the system
 # lock with a picture:
@@ -246,44 +248,61 @@ bindsym $mod+Escape exec --no-startup-id ~/.local/bin/blur-lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+bindsym $mod+Shift+ц reload # for RUS
 
 # restart i3 inplace (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
+bindsym $mod+Shift+р restart # for RUS
 
 # Reload autorandr setup.
 bindsym $mod+Control+r exec "autorandr -c"
+bindsym $mod+Control+р exec "autorandr -c" # for RUS
 
+# move focus
 bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
+bindsym $mod+ч focus left # for RUS
 bindsym $mod+Left focus left
+
+bindsym $mod+j focus down
+bindsym $mod+й focus down # for RUS
 bindsym $mod+Down focus down
+
+bindsym $mod+k focus up
+bindsym $mod+к focus up # for RUS
 bindsym $mod+Up focus up
+
+bindsym $mod+l focus right
+bindsym $mod+л focus right # for RUS
 bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+ч move left # for RUS
 bindsym $mod+Shift+Left move left
+
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+й move down # for RUS
 bindsym $mod+Shift+Down move down
+
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+к move up # for RUS
 bindsym $mod+Shift+Up move up
+
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+л move right # for RUS
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+Shift+v split h
+bindsym $mod+Shift+ж split h # for RUS
 
 # split in vertical orientation
 bindsym $mod+v split v
+bindsym $mod+ж split v # for RUS
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym $mod+ф fullscreen toggle # for RUS
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+t layout stacking
@@ -344,9 +363,13 @@ bindsym XF86AudioPlay exec --no-startup-id bash ~/.local/bin/volume_brightness p
 
 ## App shortcuts
 bindsym $mod+Shift+w exec --no-startup-id flatpak run app.zen_browser.zen || dunstify --urgency critical --appname "i3" Пролеблема "Браузер 'Zen' не установлен"
+bindsym $mod+Shift+в exec --no-startup-id flatpak run app.zen_browser.zen || dunstify --urgency critical --appname "i3" Пролеблема "Браузер 'Zen' не установлен" # for RUS
 bindsym $mod+Shift+e exec --no-startup-id thunar
+bindsym $mod+Shift+е exec --no-startup-id thunar # for RUS
 bindsym $mod+Shift+t exec --no-startup-id flatpak run org.telegram.desktop || dunstify --urgency critical --appname "i3" Пролеблема "Телеграм не установлен"
+bindsym $mod+Shift+т exec --no-startup-id flatpak run org.telegram.desktop || dunstify --urgency critical --appname "i3" Пролеблема "Телеграм не установлен" # for RUS
 bindsym $mod+Shift+g exec --no-startup-id flatpak run be.alexandervanhee.gradia || dunstify --urgency critical --appname "i3" Пролеблема "Gradia не установлен"
+bindsym $mod+Shift+г exec --no-startup-id flatpak run be.alexandervanhee.gradia || dunstify --urgency critical --appname "i3" Пролеблема "Gradia не установлен" # for RUS
 
 # Screenshots
 exec --no-startup-id mkdir -p /home/$USER/Pictures/Screenshots/
@@ -623,6 +646,7 @@ include ~/.config/i3/conf.d/bar.conf
 
 ## rofi bindings fancy application menu
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+д exec --no-startup-id rofi -show drun # for RUS
 
 mode "Rofi" {
     ## rofi bindings for window menu
