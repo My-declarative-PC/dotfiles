@@ -1,7 +1,7 @@
 [global]
     width = (300, 600)
     height = (50, 220)
-    offset = (10, 10)
+    offset = (10, 35)
     origin = top-right
     format = "<b>%s</b>\n%b\n\n<u><i>%a</i></u>"
     follow = mouse
@@ -15,6 +15,7 @@
     notification_limit = 0
     enable_recursive_icon_lookup = true
     icon_theme = "{{ .icon_theme }}"
+    icon_path = ~/.local/share/icons/{{ .icon_theme }}/
     vertical_alignment = center
     browser = flatpak run app.zen_browser.zen -new-tab
     mouse_left_click = close_current
