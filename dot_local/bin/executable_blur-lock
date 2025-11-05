@@ -8,7 +8,7 @@ $SCREENSHOT
 dunstify \
     --appname "i3 blur-lock" \
     --hints string:x-dunst-stack-tag:volume_notif \
-    --icon ~/.local/share/icons/${ICON_THEME}/24x24/actions/lock.svg \
+    --icon xfsm-lock \
     Locking "The screen lock process has started"
 
 BLUR="1x1"
