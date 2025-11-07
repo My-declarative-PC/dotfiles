@@ -80,6 +80,6 @@ right = [
   "spacer",
   "mode"
 ]
-mode.normal = "󰫻"
-mode.insert = "󱂈"
-mode.select = "󱎤"
+mode.normal = ""
+mode.insert = ""
+mode.select = ""
