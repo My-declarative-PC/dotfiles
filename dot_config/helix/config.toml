@@ -79,9 +79,9 @@ right = [
   "position-percentage",
   "spacer"
 ]
-# mode.select = "░▒▓█🭩█▓▒░"
-# mode.normal = "░▒▓█𜵑█▓▒░"
-# mode.insert = "░▒▓█🭫█▓▒░"
-mode.normal = ""
-mode.insert = ""
-mode.select = ""
+mode.select = "░▒▓𜵰𜴐𜷥▓▒░"
+
+mode.normal = "░▒▓▌𜷆▐▓▒░"
+
+mode.insert = "░▒▓𜵮⠀𜶪▓▒░"
+
