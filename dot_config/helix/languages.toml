@@ -33,6 +33,11 @@ typeCheckingMode = "basic"
 command = "ruff"
 args = ["server"]
 
+### biome
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
 
 #
 ##
@@ -91,23 +96,55 @@ indent = { tab-width = 4, unit = "    " }
 auto-format = true
 file-types = ["js"]
 formatter = { command = 'prettier', args = [
-  "--parser", "typescript",
-  "--tab-width", "4",
-  "--print-width", "100"
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+  "--print-width",
+  "100",
 ] }
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+indent = { tab-width = 4, unit = "    " }
 
 ##### Language: TYPESCRIPT #####
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server", "typos"]
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "typos",
+]
 indent = { tab-width = 4, unit = "    " }
 auto-format = true
-file-types = ["js"]
+file-types = ["ts"]
 formatter = { command = 'prettier', args = [
-  "--parser", "typescript",
-  "--tab-width", "4",
-  "--print-width", "100"
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+  "--print-width",
+  "100",
 ] }
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+indent = { tab-width = 4, unit = "    " }
 
 ##### Language: JSON #####
 [[language]]
@@ -151,7 +188,7 @@ file-types = [
 ##### Language: PYTHON #####
 [[language]]
 name = "python"
-language-servers = [ "pyright", "ruff" ]
+language-servers = ["pyright", "ruff"]
 auto-format = true
 
 ##### Language: YAML #####
