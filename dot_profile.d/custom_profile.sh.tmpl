@@ -12,6 +12,11 @@ export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 # homebrew end
 
+# php
+export PATH="/home/linuxbrew/.linuxbrew/opt/php@{{ .php_version }}/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/opt/php@{{ .php_version }}/sbin:$PATH"
+# php end
+
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
@@ -22,13 +27,13 @@ esac
 
 # GTK
 export GTK_USE_PORTAL=1
-export FLAVOR="mocha"
-export ACCENT="mauve"
+export FLAVOR="{{ .catppuccin_flavor }}"
+export ACCENT="{{ .catppuccin_accent }}"
 export GTK_THEME=catppuccin-$FLAVOR-$ACCENT-standard+default
 export ADW_DISABLE_PORTAL=1
 export GTK2_RC_FILES=/usr/share/themes/$GTK_THEME
 export XCURSOR_THEME=catppuccin-$FLAVOR-$ACCENT-cursors
-export ICON_THEME="Papirus"
+export ICON_THEME="{{ .icon_theme }}"
 # GTK end
 
 # fzf
