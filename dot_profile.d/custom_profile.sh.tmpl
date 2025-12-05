@@ -12,11 +12,6 @@ export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 # homebrew end
 
-# php
-export PATH="/home/linuxbrew/.linuxbrew/opt/php@{{ .php_version }}/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/opt/php@{{ .php_version }}/sbin:$PATH"
-# php end
-
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
