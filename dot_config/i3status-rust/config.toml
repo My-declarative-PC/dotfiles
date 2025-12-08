@@ -40,8 +40,8 @@ info_type = "used"
 interval = 30
 warning = 70.0
 alert = 80.0
-format = " $percentage $icon"
-format_alt = " $used/$total $icon"
+format = " $percentage $icon "
+format_alt = " $used/$total $icon "
 if_command = "! [ \"$(df -P /home | awk 'NR==2 {print $1}')\" = \"$(df -P / | awk 'NR==2 {print $1}')\" ]"
 merge_with_next = true
 
@@ -52,8 +52,8 @@ info_type = "used"
 interval = 30
 warning = 70.0
 alert = 80.0
-format = " $percentage $icon  "
-format_alt = " $used/$total $icon  "
+format = " $percentage $icon "
+format_alt = " $used/$total $icon "
 if_command = "! [ \"$(df -P /home | awk 'NR==2 {print $1}')\" = \"$(df -P / | awk 'NR==2 {print $1}')\" ]"
 [block.icons_overrides]
 disk_drive = ""
@@ -65,6 +65,8 @@ block = "cpu"
 interval = 5
 format = " $utilization $icon "
 merge_with_next = true
+[block.icons_overrides]
+cpu = ""
 
 [[block]]
 block = "memory"
@@ -72,6 +74,8 @@ format = " $mem_used_percents $icon "
 format_alt = " $mem_used/$mem_total $icon"
 interval = 5
 merge_with_next = true
+[block.icons_overrides]
+memory_mem = ""
 
 [[block]]
 block = "temperature"
@@ -105,7 +109,7 @@ merge_with_next = true
 block = "sound"
 step_width = 2
 driver = "pulseaudio"
-format = "{ $volume|} $icon "
+format = "{ $volume|} $icon  "
 [[block.click]]
 button = "left"
 cmd = "flatpak run org.pulseaudio.pavucontrol"
