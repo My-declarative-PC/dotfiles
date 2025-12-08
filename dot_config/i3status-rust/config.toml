@@ -71,7 +71,7 @@ cpu = ""
 [[block]]
 block = "memory"
 format = " $mem_used_percents $icon "
-format_alt = " $mem_used/$mem_total $icon"
+format_alt = " $mem_used/$mem_total $icon "
 interval = 5
 merge_with_next = true
 [block.icons_overrides]
