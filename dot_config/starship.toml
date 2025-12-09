@@ -2,12 +2,13 @@
 palette = "catppuccin_mocha"
 
 format = """
-$os ([($username)($sudo)($hostname)](bg:surface0) )$directory( $direnv)( $cmd_duration)\
+$os${custom.distrobox} ([($username)($sudo)($hostname)](bg:surface0) )$directory( $direnv)( $cmd_duration)\
 (
 [  ](bg:surface0 fg:text) $git_branch$git_metrics $git_status\
 )
 ([ $shell](bg:surface0) )[$status](bg:surface0) \
 """
+
 [username]
 show_always = true
 style_user = "bg:surface0 fg:text"
@@ -19,7 +20,7 @@ disabled = false
 ssh_symbol = "[](bg:surface0 fg:sky)"
 ssh_only = true
 style = "bg:surface0 fg:maroon"
-format = "[in $ssh_symbol [$hostname](bg:surface0 fg:red bold) ]($style)"
+format = "[on $ssh_symbol [$hostname](bg:surface0 fg:red bold) ]($style)"
 disabled = false
 
 [os]
@@ -127,6 +128,14 @@ loaded_msg = ""
 unloaded_msg = ""
 detect_files = [ ".envrc" ]
 format = "[ $symbol $loaded/$allowed ]($style)"
+
+[custom.distrobox]
+disabled = false
+description = "Indicate if inside distrobox"
+when = "test -f /run/.containerenv || test -f /.dockerenv"
+command = "echo \" [$CONTAINER_ID]\""
+style = "bg:surface0 fg:mauve"
+format = "[in ](bg:surface0 fg:text)[$output ]($style)"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
