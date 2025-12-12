@@ -364,8 +364,8 @@ bindsym XF86AudioPlay exec --no-startup-id bash ~/.local/bin/volume_brightness p
 ## App shortcuts
 bindsym $mod+Shift+w exec --no-startup-id flatpak run app.zen_browser.zen || dunstify --urgency critical --appname "i3" Пролеблема "Браузер 'Zen' не установлен"
 bindsym $mod+Shift+в exec --no-startup-id flatpak run app.zen_browser.zen || dunstify --urgency critical --appname "i3" Пролеблема "Браузер 'Zen' не установлен" # for RUS
-bindsym $mod+Shift+e exec --no-startup-id thunar
-bindsym $mod+Shift+е exec --no-startup-id thunar # for RUS
+bindsym $mod+Shift+e exec --no-startup-id nemo
+bindsym $mod+Shift+е exec --no-startup-id nemo # for RUS
 bindsym $mod+Shift+t exec --no-startup-id flatpak run org.telegram.desktop || dunstify --urgency critical --appname "i3" Пролеблема "Телеграм не установлен"
 bindsym $mod+Shift+т exec --no-startup-id flatpak run org.telegram.desktop || dunstify --urgency critical --appname "i3" Пролеблема "Телеграм не установлен" # for RUS
 bindsym $mod+Shift+g exec --no-startup-id flatpak run be.alexandervanhee.gradia || dunstify --urgency critical --appname "i3" Пролеблема "Gradia не установлен"
@@ -446,7 +446,7 @@ workspace $ws20 output nonprimary
 # bind program to workspace and focus to them on startup:
 assign [class="org.wezfurlong.wezterm"] $ws1
 assign [class="zen"]                    $ws2
-assign [class="Thunar"]                 $ws3
+assign [class="Nemo"]                   $ws3
 assign [class="thunderbird"]            $ws4
 assign [class="vkteams"]                $ws5
 assign [class="dbgate"]                 $ws7
@@ -462,7 +462,7 @@ for_window [class=obs] focus
 for_window [class=org.remmina.Remmina] focus
 for_window [class=org.remmina.Remmina] layout stacking
 for_window [class=org.wezfurlong.wezterm] focus
-for_window [class=Thunar] focus
+for_window [class=Nemo] focus
 for_window [class=Thunderbird] focus
 for_window [class=vkteams] focus
 for_window [class=zen] focus
