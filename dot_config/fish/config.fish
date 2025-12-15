@@ -120,3 +120,7 @@ end
 if command -sq bat
     bat --completion fish | source
 end
+
+if command -sq sk
+    sk --shell fish | source
+end

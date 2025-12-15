@@ -82,6 +82,10 @@ if command -v bat &>/dev/null; then
     eval "$(bat --completion bash)"
 fi
 
+if command -v sk &>/dev/null; then
+    source <(sk --shell bash)
+fi
+
 command_not_found_handle() {
     # don't run if not in a container
     if [ ! -e /run/.containerenv ] && [ ! -e /.dockerenv ]; then

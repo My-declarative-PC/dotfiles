@@ -41,6 +41,13 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS: \
 "
 # fzf end
 
+# skim
+export SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTIONS \
+--preview \"if [ -d {} ]; then eza --icons --color=always --group-directories-first -l {}; else bat --color=always --style=numbers,changes,plain --line-range=:500 {}; fi\" \
+--color=fg:#cdd6f4,bg:#1e1e2e,matched:#313244,matched_bg:#f2cdcd,current:#cdd6f4,current_bg:#45475a,current_match:#1e1e2e,current_match_bg:#f5e0dc,spinner:#a6e3a1,info:#cba6f7,prompt:#89b4fa,cursor:#f38ba8,selected:#eba0ac,header:#94e2d5,border:#6c7086 \
+"
+# skim end
+
 # clipboard
 export CLIPBOARD_THEME='help=203;166;247,info=137;180;250,error=243;139;168,success=166;227;161,progress=249;226;175'
 export CLIPBOARD_HISTORY=123d

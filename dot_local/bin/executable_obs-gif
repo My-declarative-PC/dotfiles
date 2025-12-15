@@ -4,4 +4,8 @@ if [ ! -d ~/Videos/OBS-gif ]; then
     mkdir -p ~/Videos/OBS-gif/
 fi
 
-gifski -o ~/Videos/OBS-gif/$(date +%d_%m_%Y__%H_%M_%S).gif $(fd . ~/Videos/OBS/ | fzf --tac)
+gifski -o ~/Videos/OBS-gif/$(date +%d_%m_%Y__%H_%M_%S).gif $(fd . ~/Videos/OBS/ | sk --tac --preview="if file --mime-type {} | grep -q video; then
+ffprobe -v error -show_entries format=duration,size:stream=codec_name -of default=noprint_wrappers=1 {}
+    else
+    echo 'Выберите видеофайл (mp4, mkv, avi...)'
+fi")
