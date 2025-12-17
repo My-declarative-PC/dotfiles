@@ -1,5 +1,6 @@
 key.txt.age
 README.md
+**/*__pycache__
 {{ if not .hasGUI }}
 .config/autorandr/
 .config/dunst/

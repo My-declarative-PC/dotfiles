@@ -1,3 +1,4 @@
 *~
 *.sw*
 key.txt
+**/*__pycache__
