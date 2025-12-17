@@ -1,4 +1,4 @@
-# Catppuccin Themes
+# Catppuccin Themes ################################################################################
 [".config/zellij/themes/catppuccin.kdl"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/zellij/refs/heads/main/catppuccin.kdl"
@@ -9,14 +9,14 @@
     url = "https://raw.githubusercontent.com/catppuccin/fzf/refs/heads/main/themes/catppuccin-fzf-{{ .catppuccin_flavor }}.sh"
     refreshPeriod = "168h"
 
-[".config/btop/themes/catppuccin_mocha.theme"]
+[".config/btop/themes/catppuccin_{{ .catppuccin_flavor }}.theme"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/btop/refs/heads/main/themes/catppuccin_mocha.theme"
+    url = "https://raw.githubusercontent.com/catppuccin/btop/refs/heads/main/themes/catppuccin_{{ .catppuccin_flavor }}.theme"
     refreshPeriod = "168h"
 
-[".config/bat/themes/Catppuccin Mocha.tmTheme"]
+[".config/bat/themes/Catppuccin {{ .catppuccin_flavor_up }}.tmTheme"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/bat/refs/heads/main/themes/Catppuccin%20Mocha.tmTheme"
+    url = "https://raw.githubusercontent.com/catppuccin/bat/refs/heads/main/themes/Catppuccin%20{{ .catppuccin_flavor_up }}.tmTheme"
     refreshPeriod = "168h"
 
 [".config/git/catppuccin.gitconfig"]
@@ -48,14 +48,15 @@
 
 [".config/joplin-desktop/userchrome-main.css"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/joplin/refs/heads/main/src/mocha/userchrome.css"
+    url = "https://raw.githubusercontent.com/catppuccin/joplin/refs/heads/main/src/{{ .catppuccin_flavor }}/userchrome.css"
     refreshPeriod = "744h"
 [".config/joplin-desktop/userstyle-main.css"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/joplin/refs/heads/main/src/mocha/userstyle.css"
+    url = "https://raw.githubusercontent.com/catppuccin/joplin/refs/heads/main/src/{{ .catppuccin_flavor }}/userstyle.css"
     refreshPeriod = "744h"
+# end ##############################################################################################
 
-# Fonts
+# Fonts ############################################################################################
 [".local/share/fonts/fira-code"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
@@ -75,14 +76,16 @@
     stripComponents = 2
     refreshPeriod = "744h"
     include = ["**/*.otf"]
+# end ##############################################################################################
 
-# Wallpaper
+# Wallpaper ########################################################################################
 [".wallpaper"]
     type = "file"
     url = "https://github.com/My-declarative-PC/wallpapers/blob/master/evening-sky.png?raw=true"
     refreshPeriod = "744h"
+# end ##############################################################################################
 
-# Utils
+# Utils ############################################################################################
 [".local/bin/greenclip"]
     type = "file"
     executable = true
@@ -101,8 +104,22 @@
     url = "https://raw.githubusercontent.com/P3rf/rofi-network-manager/refs/heads/master/src/ronema"
     refreshPeriod = "744h"
 
-[".local/bin/phpactor"]
+## Bluetooth
+[".local/bin/bluetui"]
     type = "file"
     executable = true
-    url = "https://github.com/phpactor/phpactor/releases/latest/download/phpactor.phar"
+    url = "https://github.com/pythops/bluetui/releases/latest/download/bluetui-x86_64-linux-gnu"
     refreshPeriod = "744h"
+[".local/share/applications/bluetui.desktop"]
+    type = "file"
+    executable = true
+    url = "https://github.com/pythops/bluetui/releases/latest/download/bluetui.desktop"
+    refreshPeriod = "744h"
+
+[".local/bin/bluetuith"]
+    type = "archive-file"
+    executable = true
+    url = '{{ gitHubLatestRelease "bluetuith-org/bluetuith" | toJson | fromJson | jq ".assets[] | select(.name | ascii_downcase | contains(\"linux_x86\")) | .browser_download_url" | first}}'
+    refreshPeriod = "744h"
+    path = "bluetuith"
+# end ##############################################################################################
