@@ -1,0 +1,15 @@
+[general]
+mod = "mod4"
+browser = "flatpak run app.zen_browser.zen"
+terminal = "wezterm"
+font = "sans"
+fontsize = 12
+
+[colors]
+bg = "#000000"
+fg = "#ffffff"
+active = "#ff0000"
+inactive = "#444444"
+focus = "#d75f5f"
+unfocus = "#8f3d3d"
+panel_bg = "#222222"
