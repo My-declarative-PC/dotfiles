@@ -14,6 +14,10 @@ flat-update:
 pnpm-update:
     pnpm -g update
 
+# update qtile
+qtile-update:
+    uv tool install qtile
+
 # update brew
 brew-update:
     brew update && brew upgrade
