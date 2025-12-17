@@ -6,6 +6,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy as L
 
 mod = "mod4"
+browser = "flatpak run app.zen_browser.zen"
 terminal = "wezterm"
 
 keys = [
@@ -46,6 +47,7 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", L.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "w", L.spawn(browser), desc="Launch browser"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", L.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", L.window.kill(), desc="Kill focused window"),
