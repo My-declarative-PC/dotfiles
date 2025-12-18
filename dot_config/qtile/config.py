@@ -1,11 +1,11 @@
-from modules.keys import keys, mod
-from modules.groups import groups
-from modules.layouts import layouts, floating_layout
-from modules.screens import init_screens
 from libqtile.config import Click, Drag
 from libqtile.lazy import lazy as L
+from modules import hooks
+from modules.groups import groups
+from modules.keys import keys, mod
+from modules.layouts import floating_layout, layouts
+from modules.screens import init_screens
 
-# Основные переменные, которые требует Qtile
 dgroups_key_binder = None
 dgroups_app_rules = []
 follow_mouse_focus = True
@@ -17,10 +17,8 @@ reconfigure_screens = True
 auto_minimize = True
 wmname = "LG3D"
 
-# Инициализация экранов
 screens = init_screens()
 
-# Мышиные привязки (можно тоже вынести в отдельный файл, если их много)
 mouse = [
     Drag(
         [mod],
