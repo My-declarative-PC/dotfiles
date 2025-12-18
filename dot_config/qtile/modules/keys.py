@@ -1,7 +1,8 @@
-from libqtile.config import Key
+from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy as L
-from .utils import general
 from libqtile.utils import guess_terminal
+
+from .utils import general
 
 mod = general.get("mod", "mod4")
 terminal = general.get("terminal", guess_terminal())
@@ -64,4 +65,48 @@ keys = [
     Key([mod, "control"], "r", L.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", L.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", L.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Rofi
+    Key(
+        [mod],
+        "d",
+        L.spawn("rofi -show drun"),
+        desc="Lounch Rofi",
+    ),
+    KeyChord(
+        [mod, "shift"],
+        "d",
+        [
+            Key([], "w", L.spawn("rofi -show window"), desc="Переключить окна"),
+            Key(
+                [],
+                "e",
+                L.spawn("rofimoji -f emojis math arrows"),
+                desc="Rofi-emiji",
+            ),
+            Key(
+                [],
+                "k",
+                L.spawn("flatpak run io.github.heidefinnischen.cuneo"),
+                desc="calculator",
+            ),
+            Key([], "b", L.spawn("rofi-bluetooth"), desc="Bluetooth manager"),
+            Key([], "n", L.spawn("ronema"), desc="Network manager"),
+            Key(
+                ["shift"],
+                "w",
+                L.spawn("~/.local/bin/rofi-weather"),
+                desc="Weather",
+            ),
+            Key(
+                [],
+                "c",
+                L.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard"),
+                desc="Clipboard",
+            ),
+            # Exit key
+            Key([], "Escape", L.ungrab_all()),
+        ],
+        mode=True,
+        name="Rofi",
+    ),
 ]
