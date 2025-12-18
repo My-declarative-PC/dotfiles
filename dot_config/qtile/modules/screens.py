@@ -29,6 +29,7 @@ def init_screens():
                     widget.Chord(
                         chords_colors={
                             "launch": ("#ff0000", "#ffffff"),
+                            "Rofi": ("#ffff00", "#ffffff"),
                         },
                         name_transform=lambda name: name.upper(),
                     ),
