@@ -1,9 +1,11 @@
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy as L
 from libqtile.utils import guess_terminal
+import os
 
 from .utils import general
 
+home = os.path.expanduser("~")
 mod = general.get("mod", "mod4")
 terminal = general.get("terminal", guess_terminal())
 browser = general.get("browser", "firefox")
@@ -65,6 +67,25 @@ keys = [
     Key([mod, "control"], "r", L.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", L.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", L.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Layout Switch
+    Key(
+        [mod],
+        "F1",
+        L.spawn(home + "/.local/bin/layout_switch.py ru"),
+        desc="Switch layout",
+    ),
+    Key(
+        [mod],
+        "F2",
+        L.spawn(home + "/.local/bin/layout_switch.py"),
+        desc="Switch layout",
+    ),
+    Key(
+        [mod],
+        "F3",
+        L.spawn(home + "/.local/bin/layout_switch.py us"),
+        desc="Switch layout",
+    ),
     # Rofi
     Key(
         [mod],
