@@ -1,11 +1,10 @@
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy as L
 from libqtile.utils import guess_terminal
-import os
 
 from .utils import general
+from .keyboard import set_layout_and_notify
 
-home = os.path.expanduser("~")
 mod = general.get("mod", "mod4")
 terminal = general.get("terminal", guess_terminal())
 browser = general.get("browser", "firefox")
@@ -70,21 +69,21 @@ keys = [
     # Layout Switch
     Key(
         [mod],
-        "F1",
-        L.spawn(home + "/.local/bin/layout_switch.py ru"),
-        desc="Switch layout",
+        "F3",
+        L.function(set_layout_and_notify, layout_code="us"),
+        desc="Switch to US layout",
     ),
     Key(
         [mod],
         "F2",
-        L.spawn(home + "/.local/bin/layout_switch.py"),
-        desc="Switch layout",
+        L.function(set_layout_and_notify),
+        desc="Toggle keyboard layout",
     ),
     Key(
         [mod],
-        "F3",
-        L.spawn(home + "/.local/bin/layout_switch.py us"),
-        desc="Switch layout",
+        "F1",
+        L.function(set_layout_and_notify, layout_code="ru"),
+        desc="Switch to RU layout",
     ),
     # Rofi
     Key(

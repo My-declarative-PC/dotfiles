@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import subprocess
-import sys
 
 
 def run_command(command):
@@ -54,23 +53,13 @@ def send_notification(label):
     )
 
 
-def handle_layout_change(arg):
+def set_layout_and_notify(qtile, layout_code=None):
     """Определяет, какую раскладку установить на основе аргумента."""
-    if arg == "ru":
+    if layout_code == "ru":
         new_layout = set_russian_layout()
-    elif arg == "us":
+    elif layout_code == "us":
         new_layout = set_english_layout()
     else:
         new_layout = toggle_layout()
 
     send_notification(new_layout)
-
-
-def main():
-    # Передаем первый аргумент, если он есть, иначе None
-    target_arg = sys.argv[1] if len(sys.argv) > 1 else None
-    handle_layout_change(target_arg)
-
-
-if __name__ == "__main__":
-    main()

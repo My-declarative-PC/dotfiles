@@ -2,3 +2,4 @@
 *.sw*
 key.txt
 **/*__pycache__
+**/*.venv
