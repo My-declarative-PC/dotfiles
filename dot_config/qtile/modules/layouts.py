@@ -5,13 +5,14 @@ from .utils import colors
 # Используем цвета из TOML
 layouts = [
     layout.Columns(
+        margin=6,
         border_focus_stack=[
             colors.get("focus", "#d75f5f"),
             colors.get("unfocus", "#8f3d3d"),
         ],
         border_width=4,
     ),
-    layout.Max(),
+    layout.Max(margin=3),
 ]
 
 floating_layout = layout.Floating(
