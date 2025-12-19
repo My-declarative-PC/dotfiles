@@ -129,4 +129,8 @@ keys = [
         mode=True,
         name="Rofi",
     ),
+    # Win + Period (.) -> Фокус на следующий экран
+    Key([mod], "period", L.next_screen(), desc="Move focus to next monitor"),
+    # Win + Comma (,) -> Фокус на предыдущий экран
+    Key([mod], "comma", L.prev_screen(), desc="Move focus to prev monitor"),
 ]
