@@ -1,7 +1,5 @@
-import os
 from libqtile import bar, widget
 from libqtile.config import Screen
-import libqtile.resources
 from .utils import colors, general
 
 widget_defaults = dict(

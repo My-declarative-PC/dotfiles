@@ -1,3 +1,4 @@
+import os
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy as L
 from libqtile.utils import guess_terminal
@@ -5,6 +6,7 @@ from libqtile.utils import guess_terminal
 from .utils import general
 from .keyboard import set_layout_and_notify
 
+home = os.path.expanduser("~")
 mod = general.get("mod", "mod4")
 terminal = general.get("terminal", guess_terminal())
 browser = general.get("browser", "firefox")
@@ -58,8 +60,8 @@ keys = [
         desc="Toggle fullscreen on the focused window",
     ),
     Key(
-        [mod],
-        "t",
+        [mod, "shift"],
+        "f",
         L.window.toggle_floating(),
         desc="Toggle floating on the focused window",
     ),
@@ -129,8 +131,9 @@ keys = [
         mode=True,
         name="Rofi",
     ),
-    # Win + Period (.) -> Фокус на следующий экран
     Key([mod], "period", L.next_screen(), desc="Move focus to next monitor"),
-    # Win + Comma (,) -> Фокус на предыдущий экран
     Key([mod], "comma", L.prev_screen(), desc="Move focus to prev monitor"),
+    Key(
+        [mod], "Escape", L.spawn(f"{home}/.local/bin/blur-lock"), desc="Launch browser"
+    ),
 ]
