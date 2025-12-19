@@ -35,7 +35,7 @@ for i in workspace_keys:
             Key(
                 [mod, "shift"],
                 i,
-                L.window.togroup(i, switch_group=True),
+                L.window.togroup(i, switch_group=False),
                 desc=f"Move focused window to group {i}",
             ),
         ]
@@ -62,7 +62,7 @@ for i in workspace_keys:
             Key(
                 [mod, AltKey, "shift"],
                 i,
-                L.window.togroup(sec_group_name, switch_group=True),
+                L.window.togroup(sec_group_name, switch_group=False),
                 desc=f"Move focused window to group {sec_group_name} (Second Screen)",
             ),
         ]
