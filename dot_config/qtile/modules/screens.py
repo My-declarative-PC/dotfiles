@@ -1,6 +1,20 @@
+from catppuccin import PALETTE
 from libqtile import bar, widget
 from libqtile.config import Screen
-from .utils import colors, general
+
+from .utils import general
+
+theme_name = general.get("theme", "mocha").lower()
+
+flavor = getattr(PALETTE, theme_name, PALETTE.mocha)
+
+colors = {
+    "active": flavor.colors.red.hex,
+    "fg": flavor.colors.text.hex,
+    "focus": flavor.colors.pink.hex,
+    "inactive": flavor.colors.blue.hex,
+    "panel_bg": flavor.colors.base.hex,
+}
 
 widget_defaults = dict(
     font=general.get("font", "sans"),
@@ -24,10 +38,10 @@ def init_screens():
                     widget.CurrentLayout(),
                     widget.GroupBox(
                         visible_groups=main_groups,
-                        active=colors.get("active", "#ff0000"),
-                        inactive=colors.get("inactive", "#aaaaaa"),
+                        active=colors["active"],
+                        inactive=colors["inactive"],
                         highlight_method="block",
-                        this_current_screen_border=colors.get("focus", "#ff0000"),
+                        this_current_screen_border=colors["focus"],
                     ),
                     widget.Chord(
                         chords_colors={
@@ -37,12 +51,12 @@ def init_screens():
                         name_transform=lambda name: name.upper(),
                     ),
                     widget.Prompt(),
-                    widget.WindowName(foreground=colors.get("fg", "#ffffff")),
+                    widget.WindowName(foreground=colors["fg"]),
                     widget.Systray(),
                     widget.Clock(format="%d.%m.%Y %H:%M"),
                 ],
                 24,
-                background=colors.get("panel_bg", "#222222"),
+                background=colors["panel_bg"],
             ),
         ),
         Screen(
@@ -51,10 +65,10 @@ def init_screens():
                     widget.CurrentLayout(),
                     widget.GroupBox(
                         visible_groups=sec_groups,
-                        active=colors.get("active", "#ff0000"),
-                        inactive=colors.get("inactive", "#aaaaaa"),
+                        active=colors["active"],
+                        inactive=colors["inactive"],
                         highlight_method="block",
-                        this_current_screen_border=colors.get("focus", "#ff0000"),
+                        this_current_screen_border=colors["focus"],
                     ),
                     widget.Chord(
                         chords_colors={
@@ -63,10 +77,10 @@ def init_screens():
                         },
                         name_transform=lambda name: name.upper(),
                     ),
-                    widget.WindowName(foreground=colors.get("fg", "#ffffff")),
+                    widget.WindowName(foreground=colors["fg"]),
                 ],
                 24,
-                background=colors.get("panel_bg", "#222222"),
+                background=colors["panel_bg"],
             ),
         ),
     ]
