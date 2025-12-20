@@ -1,6 +1,7 @@
+from modules import hooks
+
 from libqtile.config import Click, Drag
 from libqtile.lazy import lazy as L
-from modules import hooks
 from modules.groups import groups
 from modules.keys import keys, mod
 from modules.layouts import floating_layout, layouts

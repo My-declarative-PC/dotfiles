@@ -7,6 +7,7 @@ theme_name = general.get("theme", "mocha").lower()
 flavor = getattr(PALETTE, theme_name, PALETTE.mocha)
 font = general.get("font", "FiraCode Nerd Font")
 fontsize = general.get("fontsize", 12)
+padding = 5
 
 colors = {
     "bg": flavor.colors.base.hex,
@@ -16,8 +17,15 @@ colors = {
     "urgent": flavor.colors.red.hex,
     "focus_bg": flavor.colors.mauve.hex,
     "scond_bg": flavor.colors.teal.hex,
-    "lihgt_bg": flavor.colors.surface1.hex,
+    "lihgt_bg": flavor.colors.surface0.hex,
     "chord": flavor.colors.peach.hex,
+}
+
+primary_widgets = {
+    "font": font,
+    "padding": padding,
+    "foreground": colors["fg"],
+    "background": colors["lihgt_bg"],
 }
 
 widget_defaults = dict(
@@ -36,7 +44,12 @@ def init_screens():
 
     def create_bar(groups, is_primary=False):
         widgets = [
-            widget.CurrentLayout(font=font, mode="icon", foreground=colors["fg"]),
+            widget.CurrentLayout(
+                font=font,
+                foreground=colors["fg"],
+                background=colors["bg"],
+                mode="icon",
+            ),
             widget.GroupBox(
                 font=f"{font} Bold",
                 visible_groups=groups,
@@ -66,20 +79,81 @@ def init_screens():
         if is_primary:
             widgets.extend(
                 [
+                    widget.DF(
+                        **primary_widgets,
+                        visible_on_warn=False,
+                        partition="/",
+                        warn_color=colors["urgent"],
+                        warn_space=10,
+                        format=" {uf}{m}|{r:.0f}%",
+                    ),
+                    widget.DF(
+                        **primary_widgets,
+                        visible_on_warn=False,
+                        partition="/home",
+                        warn_color=colors["urgent"],
+                        warn_space=10,
+                        format=" {uf}{m}|{r:.0f}%",
+                    ),
+                    spacer,
+                    widget.CPU(
+                        **primary_widgets,
+                        measure_mem="G",
+                        format=" {load_percent}%",
+                        update_interval=5,
+                    ),
+                    spacer,
+                    widget.Memory(
+                        **primary_widgets,
+                        measure_mem="G",
+                        format="{MemUsed: .1f}{mm}/{MemTotal:.0f}{mm}",
+                    ),
+                    spacer,
                     widget.KeyboardLayout(
-                        font=font,
-                        padding=5,
+                        **primary_widgets,
                         display_map={"us": "🇺🇸", "ru phonetic_winkeys": "🇷🇺"},
+                    ),
+                    spacer,
+                    widget.Spacer(
+                        length=5,
+                        background=colors["lihgt_bg"],
+                    ),
+                    widget.Volume(
+                        font=font,
                         foreground=colors["fg"],
+                        background=colors["lihgt_bg"],
+                        emoji=True,
+                        emoji_list=[" ", " ", " ", " "],
+                    ),
+                    widget.Volume(
+                        font=font,
+                        foreground=colors["fg"],
+                        background=colors["lihgt_bg"],
+                        emoji=False,
+                        unmute_format="{volume}%",
+                        mute_format="",
+                    ),
+                    widget.Spacer(
+                        length=5,
                         background=colors["lihgt_bg"],
                     ),
                     spacer,
                     widget.Clock(
-                        font=font,
-                        padding=5,
+                        **primary_widgets,
                         format="%d.%m %H:%M",
-                        foreground=colors["fg"],
-                        background=colors["lihgt_bg"],
+                    ),
+                    spacer,
+                    widget.Net(
+                        **primary_widgets,
+                        format=" {down:4.0f}{down_suffix} ↓↑ {up:4.0f}{up_suffix}",
+                        interface="enp3s0",
+                        update_interval=5,
+                    ),
+                    widget.Net(
+                        **primary_widgets,
+                        format=" {down:4.0f}{down_suffix}/{up:4.0f}{up_suffix}",
+                        interface="wlp3s0",
+                        update_interval=5,
                     ),
                     spacer,
                     widget.Systray(),
