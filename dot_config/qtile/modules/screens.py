@@ -16,22 +16,27 @@ colors = {
     "urgent": flavor.colors.red.hex,
     "focus_bg": flavor.colors.mauve.hex,
     "scond_bg": flavor.colors.teal.hex,
+    "lihgt_bg": flavor.colors.surface1.hex,
+    "chord": flavor.colors.peach.hex,
 }
 
 widget_defaults = dict(
     font=font,
     fontsize=fontsize,
-    padding=3,
 )
 
 
 def init_screens():
     main_groups = [str(i) for i in range(0, 10)]
     sec_groups = [str(i + 10) for i in range(0, 10)]
+    spacer = widget.Spacer(
+        length=5,
+        background=colors["bg"],
+    )
 
     def create_bar(groups, is_primary=False):
         widgets = [
-            widget.CurrentLayout(foreground=colors["fg"]),
+            widget.CurrentLayout(font=font, mode="icon", foreground=colors["fg"]),
             widget.GroupBox(
                 font=f"{font} Bold",
                 visible_groups=groups,
@@ -49,18 +54,34 @@ def init_screens():
                 urgent_text=colors["bg"],
             ),
             widget.Chord(
+                font=font,
                 chords_colors={
-                    "launch": (colors["urgent"], colors["fg"]),
+                    "launch": (colors["chord"], colors["bg"]),
+                    "Rofi": (colors["chord"], colors["bg"]),
                 },
                 name_transform=lambda name: name.upper(),
             ),
-            widget.WindowName(foreground=colors["fg"]),
+            widget.WindowName(font=font, foreground=colors["fg"]),
         ]
         if is_primary:
             widgets.extend(
                 [
+                    widget.KeyboardLayout(
+                        font=font,
+                        display_map={"us": "🇺🇸", "ru phonetic_winkeys": "🇷🇺"},
+                        foreground=colors["fg"],
+                        background=colors["lihgt_bg"],
+                    ),
+                    spacer,
+                    widget.Clock(
+                        font=font,
+                        format="%d.%m %H:%M",
+                        foreground=colors["fg"],
+                        background=colors["lihgt_bg"],
+                    ),
+                    spacer,
                     widget.Systray(),
-                    widget.Clock(format="%d.%m.%Y %H:%M", foreground=colors["fg"]),
+                    spacer,
                 ]
             )
 
