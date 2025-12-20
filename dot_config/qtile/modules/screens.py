@@ -68,6 +68,7 @@ def init_screens():
                 [
                     widget.KeyboardLayout(
                         font=font,
+                        padding=5,
                         display_map={"us": "🇺🇸", "ru phonetic_winkeys": "🇷🇺"},
                         foreground=colors["fg"],
                         background=colors["lihgt_bg"],
@@ -75,6 +76,7 @@ def init_screens():
                     spacer,
                     widget.Clock(
                         font=font,
+                        padding=5,
                         format="%d.%m %H:%M",
                         foreground=colors["fg"],
                         background=colors["lihgt_bg"],
