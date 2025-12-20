@@ -39,7 +39,7 @@ def init_screens():
                     widget.Prompt(),
                     widget.WindowName(foreground=colors.get("fg", "#ffffff")),
                     widget.Systray(),
-                    widget.Clock(format="%Y-%m-%d %H:%M"),
+                    widget.Clock(format="%d.%m.%Y %H:%M"),
                 ],
                 24,
                 background=colors.get("panel_bg", "#222222"),
