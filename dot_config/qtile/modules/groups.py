@@ -45,9 +45,7 @@ for i in workspace_keys:
     screen_number = 1
     sec_group_name = str(int(i) + 10)
     # screen_affinity=1 заставляет группу открываться на 2-м мониторе
-    groups.append(
-        Group(name=sec_group_name, label=f"{i}`", screen_affinity=screen_number)
-    )
+    groups.append(Group(name=sec_group_name, label=i, screen_affinity=screen_number))
 
     keys.extend(
         [
