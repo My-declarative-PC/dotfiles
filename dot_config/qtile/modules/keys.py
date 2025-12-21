@@ -133,7 +133,37 @@ keys = [
     ),
     Key([mod], "period", L.next_screen(), desc="Move focus to next monitor"),
     Key([mod], "comma", L.prev_screen(), desc="Move focus to prev monitor"),
+    Key([mod], "Escape", L.spawn(f"{home}/.local/bin/blur-lock"), desc="Lock WM"),
+    # Volume
     Key(
-        [mod], "Escape", L.spawn(f"{home}/.local/bin/blur-lock"), desc="Launch browser"
+        [],
+        "XF86AudioRaiseVolume",
+        L.spawn(f"{home}/.local/bin/volume_brightness volume_up"),
+        desc="Volume up",
+    ),
+    Key(
+        [],
+        "XF86AudioLowerVolume",
+        L.spawn(f"{home}/.local/bin/volume_brightness volume_down"),
+        desc="Volume down",
+    ),
+    # Audio control
+    Key(
+        [],
+        "XF86AudioNext",
+        L.spawn(f"{home}/.local/bin/volume_brightness next_track"),
+        desc="Next track",
+    ),
+    Key(
+        [],
+        "XF86AudioPrev",
+        L.spawn(f"{home}/.local/bin/volume_brightness prev_track"),
+        desc="Prev track",
+    ),
+    Key(
+        [],
+        "XF86AudioPlay",
+        L.spawn(f"{home}/.local/bin/volume_brightness play_pause"),
+        desc="Play/Pause",
     ),
 ]
