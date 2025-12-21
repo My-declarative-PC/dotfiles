@@ -4,7 +4,7 @@ from .keys import keys, mod  # Импортируем список ключей 
 
 AltKey = "mod1"
 groups = []
-workspace_keys = "0123456789"
+workspace_keys = "1234567890"
 
 
 def go_to_group(name, screen_number=0):
