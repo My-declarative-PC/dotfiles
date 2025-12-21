@@ -143,19 +143,6 @@ def init_screens():
                         format="%d.%m %H:%M",
                     ),
                     spacer,
-                    widget.Net(
-                        **primary_widgets,
-                        format=" {down:4.0f}{down_suffix} ↓↑ {up:4.0f}{up_suffix}",
-                        interface="enp3s0",
-                        update_interval=5,
-                    ),
-                    widget.Net(
-                        **primary_widgets,
-                        format=" {down:4.0f}{down_suffix}/{up:4.0f}{up_suffix}",
-                        interface="wlp3s0",
-                        update_interval=5,
-                    ),
-                    spacer,
                     widget.Systray(),
                     spacer,
                 ]
