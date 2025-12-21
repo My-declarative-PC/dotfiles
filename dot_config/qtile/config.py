@@ -2,6 +2,7 @@ from modules import hooks
 
 from libqtile.config import Click, Drag
 from libqtile.lazy import lazy as L
+from libqtile.scripts.main import VERSION
 from modules.groups import groups
 from modules.keys import keys, mod
 from modules.layouts import floating_layout, layouts
@@ -16,7 +17,7 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
-wmname = "LG3D"
+wmname = f"Qtile {VERSION}"
 
 screens = init_screens()
 
