@@ -1,10 +1,11 @@
 import os
+
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy as L
 from libqtile.utils import guess_terminal
 
-from .utils import general
 from .keyboard import set_layout_and_notify
+from .utils import general
 
 home = os.path.expanduser("~")
 mod = general.get("mod", "mod4")
