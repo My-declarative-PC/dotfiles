@@ -23,3 +23,30 @@ config_data = load_config()
 # Удобные шорткаты для переменных
 colors = config_data.get("colors", {})
 general = config_data.get("general", {})
+
+# Правила для приложений: привязка к группе и автофокус
+APP_RULES = {
+    "org.wezfurlong.wezterm": {"group": "1", "focus": True},
+    "zen": {"group": "2", "focus": True},
+    "Nemo": {"group": "3", "focus": True},
+    "thunderbird": {"group": "4", "focus": True},
+    "vkteams": {"group": "5", "focus": True},
+    "dbgate": {"group": "7", "focus": True},
+    "org.remmina.Remmina": {"group": "9", "focus": True},
+    "obs": {"group": "12", "focus": True},
+    "cassette": {"group": "19", "focus": True},
+    "anytype": {"group": "20", "focus": True},
+}
+
+# Список классов для плавающих окон (Floating)
+FLOATING_CLASSES = [
+    "Yad",
+    "Galculator",
+    "Blueberry.py",
+    "TelegramDesktop",
+    "wezterm_helix",
+    "cuneo",
+    "Xsane",
+    "Pavucontrol",
+    "qt5ct",
+]

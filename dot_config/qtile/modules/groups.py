@@ -1,67 +1,83 @@
-from libqtile.config import Group, Key
+from libqtile.config import Group, Key, Match
 from libqtile.lazy import lazy as L
-from .keys import keys, mod  # Импортируем список ключей для его модификации
+from .keys import keys, mod
+from .utils import APP_RULES
 
 AltKey = "mod1"
 groups = []
 workspace_keys = "1234567890"
 
 
+def get_matches_for_group(group_name):
+    return [
+        Match(wm_class=wm_class)
+        for wm_class, cfg in APP_RULES.items()
+        if cfg.get("group") == group_name
+    ]
+
+
 def go_to_group(name, screen_number=0):
     def _inner(qtile):
-        group = qtile.groups_map[name]
-        group.toscreen(screen_number)
-        qtile.to_screen(screen_number)
+        if name in qtile.groups_map:
+            group = qtile.groups_map[name]
+            group.toscreen(screen_number)
+            qtile.to_screen(screen_number)
 
     return _inner
 
 
 for i in workspace_keys:
-    # --- ГРУППЫ ГЛАВНОГО МОНИТОРА (1-9) ---
+    # --- ГРУППЫ ГЛАВНОГО МОНИТОРА (1-10) ---
     screen_number = 0
-    # screen_affinity=0 заставляет группу открываться на 1-м мониторе
-    groups.append(Group(name=i, label=i, screen_affinity=screen_number))
+    group_name = i
+    groups.append(
+        Group(
+            name=group_name,
+            label="10" if i == "0" else i,
+            screen_affinity=screen_number,
+            matches=get_matches_for_group(group_name),
+        )
+    )
 
     keys.extend(
         [
-            # Win + [1-9] -> Переключение на основном мониторе
             Key(
                 [mod],
                 i,
-                L.function(go_to_group(i, screen_number)),
+                L.function(go_to_group(group_name, screen_number)),
                 desc=f"Switch to group {i} (Main Screen)",
             ),
-            # Win + Shift + [1-9] -> Перенос окна на группу основного монитора
             Key(
                 [mod, "shift"],
                 i,
-                L.window.togroup(i, switch_group=False),
-                desc=f"Move focused window to group {i}",
+                L.window.togroup(group_name, switch_group=False),
+                desc=f"Switch to group {i} (Main Screen)",
             ),
         ]
     )
 
-    # --- ГРУППЫ ВТОРОГО МОНИТОРА (11-19) ---
+    # --- ГРУППЫ ВТОРОГО МОНИТОРА (11-20) ---
     screen_number = 1
     sec_group_name = str(int(i) + 10)
-    # screen_affinity=1 заставляет группу открываться на 2-м мониторе
-    groups.append(Group(name=sec_group_name, label=i, screen_affinity=screen_number))
+    groups.append(
+        Group(
+            name=sec_group_name,
+            label="10" if i == "0" else i,
+            screen_affinity=screen_number,
+            matches=get_matches_for_group(sec_group_name),
+        )
+    )
 
     keys.extend(
         [
-            # Win + Alt + [1-9] -> Переключение на группу второго монитора (имя группы "11".."19")
             Key(
-                [mod, AltKey],
-                i,
-                L.function(go_to_group(sec_group_name, screen_number)),
-                desc=f"Switch to group {i} (Second Screen)",
+                [mod, AltKey], i, L.function(go_to_group(sec_group_name, screen_number))
             ),
-            # Win + Alt + Shift + [1-9] -> Перенос окна на группу второго монитора
             Key(
                 [mod, AltKey, "shift"],
                 i,
                 L.window.togroup(sec_group_name, switch_group=False),
-                desc=f"Move focused window to group {sec_group_name} (Second Screen)",
+                desc=f"Switch to group {i} (Main Screen)",
             ),
         ]
     )

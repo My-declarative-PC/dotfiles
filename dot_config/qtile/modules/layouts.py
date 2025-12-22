@@ -2,7 +2,7 @@ from catppuccin import PALETTE
 from libqtile import layout
 from libqtile.config import Match
 
-from .utils import general
+from .utils import general, FLOATING_CLASSES
 
 theme_name = general.get("theme", "mocha").lower()
 flavor = getattr(PALETTE, theme_name, PALETTE.mocha)
@@ -38,5 +38,6 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),
         Match(title="branchdialog"),
         Match(title="pinentry"),
+        *[Match(wm_class=cls) for cls in FLOATING_CLASSES],
     ],
 )
