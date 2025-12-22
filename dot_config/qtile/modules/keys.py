@@ -38,7 +38,7 @@ keys = [
     Key([mod, "control"], "l", L.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", L.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", L.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", L.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "control"], "n", L.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -51,6 +51,16 @@ keys = [
     ),
     Key([mod], "Return", L.spawn(terminal), desc="Launch terminal"),
     Key([mod], "w", L.spawn(browser), desc="Launch browser"),
+    Key([mod], "e", L.spawn("nemo"), desc="Launch file manager"),
+    Key(
+        [mod], "t", L.spawn("flatpak run org.telegram.desktop"), desc="Launch telegram"
+    ),
+    Key(
+        [mod],
+        "g",
+        L.spawn("flatpak run be.alexandervanhee.gradia"),
+        desc="Launch browser",
+    ),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", L.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", L.window.kill(), desc="Kill focused window"),
