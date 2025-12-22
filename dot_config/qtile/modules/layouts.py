@@ -18,7 +18,12 @@ layouts = [
         border_focus_stack=[flavor.colors.mauve.hex, flavor.colors.blue.hex],
         border_width=2,
     ),
-    layout.Max(margin=3),
+    layout.Max(
+        margin=3,
+        border_focus=flavor.colors.lavender.hex,
+        border_normal=flavor.colors.surface0.hex,
+        border_width=2,
+    ),
 ]
 
 floating_layout = layout.Floating(

@@ -45,9 +45,7 @@ def init_screens():
     def create_bar(groups, is_primary=False):
         widgets = [
             widget.CurrentLayout(
-                font=font,
-                foreground=colors["fg"],
-                background=colors["bg"],
+                **primary_widgets,
                 mode="icon",
             ),
             widget.GroupBox(
@@ -74,7 +72,19 @@ def init_screens():
                 },
                 name_transform=lambda name: name.upper(),
             ),
-            widget.WindowName(font=font, foreground=colors["fg"]),
+            widget.TaskList(
+                font=font,
+                padding=padding,
+                border=colors["lihgt_bg"],
+                urgent_alert_method="border",
+                highlight_method="block",
+                unfocused_border=colors["bg"],
+                urgent_border=colors["urgent"],
+                rounded=False,
+                txt_floating=" ",
+                txt_maximized=" ",
+                txt_minimized=" ",
+            ),
         ]
         if is_primary:
             widgets.extend(
