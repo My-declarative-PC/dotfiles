@@ -14,23 +14,26 @@ def auto_focus_on_match(client: backend.base.Window):
     if not wm_classes:
         return
 
+    qtile = client.qtile
+
     for wm_class in wm_classes:
         rule = APP_RULES.get(wm_class)
-        if not rule:
+        if not rule or not rule.get("focus"):
             continue
 
-        if not rule.get("focus"):
-            return
-
         group_name = rule.get("group")
-        if not group_name:
+        group = qtile.groups_map.get(group_name)
+        if not group:
             return
 
-        qtile = client.qtile
-        group = qtile.groups_map.get(group_name)
+        screen_index = group.screen_affinity
 
-        if group:
+        if screen_index is None:
             group.toscreen()
+        else:
+            group.toscreen(screen_index)
+            qtile.focus_screen(screen_index)
+
         return
 
 
