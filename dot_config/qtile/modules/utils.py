@@ -1,9 +1,6 @@
 import os
 
-try:
-    import tomllib  # Python 3.11+
-except ModuleNotFoundError:
-    import tomli as tomllib  # Для старых версий
+import tomllib
 
 # Путь к конфигу
 config_path = os.path.expanduser("~/.config/qtile/theme.toml")
@@ -43,7 +40,6 @@ FLOATING_CLASSES = [
     "Yad",
     "Galculator",
     "Blueberry.py",
-    "TelegramDesktop",
     "wezterm_helix",
     "cuneo",
     "Xsane",

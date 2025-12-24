@@ -7,6 +7,12 @@ from libqtile.utils import guess_terminal
 from .keyboard import set_layout_and_notify
 from .utils import general
 
+
+def spawn_floating(qtile, cmd):
+    qtile._float_spawn = True
+    qtile.cmd_spawn(cmd)
+
+
 home = os.path.expanduser("~")
 mod = general.get("mod", "mod4")
 terminal = general.get("terminal", guess_terminal())
@@ -43,23 +49,47 @@ keys = [
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
+    Key([mod], "Return", L.spawn(terminal), desc="Launch terminal"),
     Key(
         [mod, "shift"],
         "Return",
-        L.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
+        L.function(spawn_floating, terminal),
+        desc="Launch floating terminal",
     ),
-    Key([mod], "Return", L.spawn(terminal), desc="Launch terminal"),
     Key([mod], "w", L.spawn(browser), desc="Launch browser"),
+    Key(
+        [mod, "shift"],
+        "w",
+        L.function(spawn_floating, browser),
+        desc="Launch floating browser",
+    ),
     Key([mod], "e", L.spawn("nemo"), desc="Launch file manager"),
     Key(
+        [mod, "shift"],
+        "e",
+        L.function(spawn_floating, "nemo"),
+        desc="Launch floating file manager",
+    ),
+    Key(
         [mod], "t", L.spawn("flatpak run org.telegram.desktop"), desc="Launch telegram"
+    ),
+    Key(
+        [mod, "shift"],
+        "t",
+        L.function(spawn_floating, "flatpak run org.telegram.desktop"),
+        desc="Launch floating telegram",
     ),
     Key(
         [mod],
         "g",
         L.spawn("flatpak run be.alexandervanhee.gradia"),
-        desc="Launch browser",
+        desc="Launch gradia",
+    ),
+    Key(
+        [mod, "shift"],
+        "g",
+        L.function(spawn_floating, "flatpak run be.alexandervanhee.gradia"),
+        desc="Launch floating gradia",
     ),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", L.next_layout(), desc="Toggle between layouts"),
