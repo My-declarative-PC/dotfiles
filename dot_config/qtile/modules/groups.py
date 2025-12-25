@@ -1,11 +1,15 @@
-from libqtile.config import Group, Key, Match
+from libqtile.config import DropDown, Group, Key, Match, ScratchPad
 from libqtile.lazy import lazy as L
+from libqtile.utils import guess_terminal
+
 from .keys import keys, mod
-from .utils import APP_RULES
+from .utils import APP_RULES, general
 
 AltKey = "mod1"
 groups = []
 workspace_keys = "1234567890"
+terminal = general.get("terminal", guess_terminal())
+browser = general.get("browser", "firefox")
 
 
 def get_matches_for_group(group_name):
@@ -26,6 +30,7 @@ def go_to_group(name, screen_number=0):
     return _inner
 
 
+# ---------- ОСНОВНЫЕ ГРУППЫ ----------
 for i in workspace_keys:
     # --- ГРУППЫ ГЛАВНОГО МОНИТОРА (1-10) ---
     screen_number = 0
@@ -50,7 +55,7 @@ for i in workspace_keys:
             Key(
                 [mod, "shift"],
                 i,
-                L.window.togroup(group_name, switch_group=False),
+                L.window.togroup(group_name),
                 desc=f"Switch to group {i} (Main Screen)",
             ),
         ]
@@ -71,13 +76,59 @@ for i in workspace_keys:
     keys.extend(
         [
             Key(
-                [mod, AltKey], i, L.function(go_to_group(sec_group_name, screen_number))
+                [mod, AltKey],
+                i,
+                L.function(go_to_group(sec_group_name, screen_number)),
+                desc=f"Switch to group {i} (Second Screen)",
             ),
             Key(
                 [mod, AltKey, "shift"],
                 i,
-                L.window.togroup(sec_group_name, switch_group=False),
-                desc=f"Switch to group {i} (Main Screen)",
+                L.window.togroup(sec_group_name),
+                desc=f"Switch to group {i} (Second Screen)",
             ),
         ]
     )
+
+
+# ---------- SCRATCHPAD ----------
+groups.append(
+    ScratchPad(
+        "scratchpad",
+        [
+            DropDown(
+                "term",
+                terminal,
+                width=0.6,
+                height=0.6,
+                x=0.2,
+                y=0.2,
+                opacity=1.0,
+            ),
+            DropDown(
+                "browser",
+                browser,
+                width=0.9,
+                height=0.9,
+                x=0.05,
+                y=0.05,
+            ),
+            DropDown(
+                "files",
+                "nemo",
+                width=0.7,
+                height=0.7,
+                x=0.15,
+                y=0.15,
+            ),
+            DropDown(
+                "telegram",
+                "flatpak run org.telegram.desktop",
+                width=0.5,
+                height=0.7,
+                x=0.25,
+                y=0.15,
+            ),
+        ],
+    )
+)

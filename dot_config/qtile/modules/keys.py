@@ -8,11 +8,6 @@ from .keyboard import set_layout_and_notify
 from .utils import general
 
 
-def spawn_floating(qtile, cmd):
-    qtile._float_spawn = True
-    qtile.cmd_spawn(cmd)
-
-
 home = os.path.expanduser("~")
 mod = general.get("mod", "mod4")
 terminal = general.get("terminal", guess_terminal())
@@ -53,22 +48,22 @@ keys = [
     Key(
         [mod, "shift"],
         "Return",
-        L.function(spawn_floating, terminal),
-        desc="Launch floating terminal",
+        L.group["scratchpad"].dropdown_toggle("term"),
+        desc="Launch terminal in scratchpad",
     ),
     Key([mod], "w", L.spawn(browser), desc="Launch browser"),
     Key(
         [mod, "shift"],
         "w",
-        L.function(spawn_floating, browser),
-        desc="Launch floating browser",
+        L.group["scratchpad"].dropdown_toggle("browser"),
+        desc="Launch browser in scratchpad",
     ),
     Key([mod], "e", L.spawn("nemo"), desc="Launch file manager"),
     Key(
         [mod, "shift"],
         "e",
-        L.function(spawn_floating, "nemo"),
-        desc="Launch floating file manager",
+        L.group["scratchpad"].dropdown_toggle("files"),
+        desc="Launch file manager in scratchpad",
     ),
     Key(
         [mod], "t", L.spawn("flatpak run org.telegram.desktop"), desc="Launch telegram"
@@ -76,20 +71,14 @@ keys = [
     Key(
         [mod, "shift"],
         "t",
-        L.function(spawn_floating, "flatpak run org.telegram.desktop"),
-        desc="Launch floating telegram",
+        L.group["scratchpad"].dropdown_toggle("telegram"),
+        desc="Launch telegram in scratchpad",
     ),
     Key(
         [mod],
         "g",
         L.spawn("flatpak run be.alexandervanhee.gradia"),
         desc="Launch gradia",
-    ),
-    Key(
-        [mod, "shift"],
-        "g",
-        L.function(spawn_floating, "flatpak run be.alexandervanhee.gradia"),
-        desc="Launch floating gradia",
     ),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", L.next_layout(), desc="Toggle between layouts"),
