@@ -6,17 +6,25 @@ README.md
 .config/gtk-3.0/
 .config/i3/
 .config/i3status-rust/
-.var/app/com.obsproject.Studio/config/obs-studio/
+.config/joplin-desktop/
 .config/picom/
 .config/rofi/
 .config/wezterm/
 .gtkrc-2.0
+.local/bin/bluetui
+.local/bin/bluetuith
+.local/bin/caligula
+.local/bin/greenclip
+.local/bin/ronema
 .local/share/fonts/
 .local/share/fonts/fira-code/
+.local/share/fonts/FontAwesome/
+.local/share/fonts/FontAwesomeLTS/
 .local/share/fonts/JetBrainsMono/
 .local/share/icons/
 .local/share/icons/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors/
 .local/share/themes/
 .local/share/themes/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-standard+default/
+.var/app/com.obsproject.Studio/config/obs-studio/
 .wallpaper
 {{ end }}
