@@ -158,7 +158,6 @@ keys = [
             # Exit key
             Key([], "Escape", L.ungrab_all()),
         ],
-        mode=True,
         name="Rofi",
     ),
     Key([mod], "period", L.next_screen(), desc="Move focus to next monitor"),
