@@ -1,14 +1,17 @@
 [Settings]
-gtk-application-prefer-dark-theme=1
-gtk-button-images=1
-gtk-cursor-theme-name=catppuccin-mocha-mauve-cursors
+gtk-application-prefer-dark-theme=true
+gtk-button-images=true
+gtk-cursor-blink-time=1000
+gtk-cursor-blink=true
+gtk-cursor-theme-name=catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors
 gtk-cursor-theme-size=24
+gtk-enable-animations=false
 gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-font-name={{ .font_family }} {{ .font_size }}
 gtk-icon-theme-name={{ .icon_theme }}
-gtk-menu-images=1
-gtk-theme-name=catppuccin-mocha-mauve-standard+default
+gtk-menu-images=true
+gtk-theme-name=catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-standard+default
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
 gtk-xft-antialias=1
