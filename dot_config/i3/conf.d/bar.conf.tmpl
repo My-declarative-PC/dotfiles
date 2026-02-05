@@ -16,8 +16,12 @@ bar {
     output primary
     font pango: $font
     position top
+
+    workspace_buttons yes
+    tray_output primary
     tray_padding 0
     strip_workspace_name no
+
     status_command i3status-rs
 
     colors {
@@ -37,6 +41,8 @@ bar {
     output nonprimary
     font pango: $font
     position top
+
+    workspace_buttons yes
     tray_output none
     strip_workspace_name no
 
