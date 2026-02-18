@@ -1,0 +1,9 @@
+[Unit]
+Description=Clean up old files in Download and Screenshots
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/find %h/Downloads %h/Pictures/Screenshots %h/Videos/OBS %h/Videos/OBS-gif -type f -atime +29 -delete
+Nice=19
+IOSchedulingClass=idle
+
