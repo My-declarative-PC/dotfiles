@@ -17,7 +17,9 @@ layout {
         pane command="lazygit"
     }
     tab name="dev" cwd="www" {
-        pane command="hx"
+        pane command="distrobox-enter" {
+            args "php" "--" "/home/linuxbrew/.linuxbrew/bin/hx"
+        }
     }
     tab name="console" cwd="www" {
         pane
