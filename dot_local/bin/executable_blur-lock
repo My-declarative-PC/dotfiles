@@ -6,7 +6,7 @@ SCREENSHOT="maim $PICTURE"
 $SCREENSHOT
 
 dunstify \
-    --appname "i3 blur-lock" \
+    --app-name "i3 blur-lock" \
     --hints string:x-dunst-stack-tag:volume_notif \
     --icon xfsm-lock \
     Locking "The screen lock process has started"

@@ -83,7 +83,7 @@ function show_volume_notif {
         fi
 
         dunstify \
-            --appname $appname \
+            --app-name $appname \
             --hints string:x-dunst-stack-tag:volume_notif \
             --hints int:value:$volume \
             --hints string:hlcolor:$bar_color \
@@ -92,7 +92,7 @@ function show_volume_notif {
             "$volume_icon $volume%" "$current_song"
     else
         dunstify \
-            --appname "volume control" \
+            --app-name "volume control" \
             --hints string:x-dunst-stack-tag:volume_notif \
             --hints int:value:$volume \
             --hints string:hlcolor:$bar_color \
@@ -123,7 +123,7 @@ function show_music_notif {
     fi
 
     dunstify \
-        --appname "music" \
+        --app-name "music" \
         --hints string:x-dunst-stack-tag:music_notif \
         --hints int:value:$percent \
         --hints string:hlcolor:$bar_color \
@@ -138,7 +138,7 @@ function show_brightness_notif {
     echo $brightness
     get_brightness_icon
     dunstify \
-        --appname "brightness control" \
+        --app-name "brightness control" \
         --hints string:x-dunst-stack-tag:brightness_notif \
         --hints int:value:$brightness \
         --hints string:hlcolor:$bar_color \
