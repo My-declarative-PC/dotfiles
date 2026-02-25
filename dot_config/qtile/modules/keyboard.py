@@ -45,7 +45,7 @@ def send_notification(label):
             "keyboard",
             "--urgency",
             "low",
-            "--appname",
+            "--app-name",
             "layout switch",
             "Раскладка",
             label,
