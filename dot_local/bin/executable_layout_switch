@@ -37,5 +37,5 @@ fi
 dunstify \
     --icon keyboard \
     --urgency low \
-    --appname "layout switch" \
+    --app-name "layout switch" \
     "Раскладка" "$NEW_LAYOUT"
