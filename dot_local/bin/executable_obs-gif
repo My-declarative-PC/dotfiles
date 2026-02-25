@@ -1,11 +1,57 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
-if [ ! -d ~/Videos/OBS-gif ]; then
-    mkdir -p ~/Videos/OBS-gif/
+set -euo pipefail
+
+OUT_DIR="$HOME/Videos/OBS-gif"
+SRC_DIR="$HOME/Videos/OBS"
+
+# Проверка зависимостей
+for cmd in yazi gifski gum file; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "Требуется установленная утилита: $cmd"
+        exit 1
+    fi
+done
+
+# Создание каталога назначения
+if [ ! -d "$OUT_DIR" ]; then
+    mkdir -p "$OUT_DIR"
+    gum log --level info "Создан каталог $OUT_DIR"
 fi
 
-gifski -o ~/Videos/OBS-gif/$(date +%d_%m_%Y__%H_%M_%S).gif $(fd . ~/Videos/OBS/ | sk --tac --preview="if file --mime-type {} | grep -q video; then
-ffprobe -v error -show_entries format=duration,size:stream=codec_name -of default=noprint_wrappers=1 {}
-    else
-    echo 'Выберите видеофайл (mp4, mkv, avi...)'
-fi")
+gum style \
+    --foreground 212 \
+    --bold \
+    "Выберите видеофайл для конвертации в GIF"
+
+# Временный файл
+cd /tmp
+tmp="$(mktemp -t yazi-picker.XXXXXX)"
+
+# Запуск yazi
+yazi "$SRC_DIR" --chooser-file "$tmp"
+
+selected_file="$(cat -- "$tmp")"
+rm -f -- "$tmp"
+
+# Проверка выбора
+if [ -z "${selected_file:-}" ]; then
+    gum log --level warn "Файл не выбран"
+    exit 1
+fi
+
+# Проверка типа файла
+if ! file --mime-type "$selected_file" | grep -q video; then
+    gum log --level error "Выберите видеофайл (mp4, mkv, avi...)"
+    exit 1
+fi
+
+output_file="$OUT_DIR/$(date +%d_%m_%Y__%H_%M_%S).gif"
+
+gum spin \
+    --spinner dot \
+    --title "Создание GIF..." \
+    -- gifski -o "$output_file" "$selected_file"
+
+gum log --level info "GIF успешно создан:"
+gum style --foreground 42 --bold "$output_file"
