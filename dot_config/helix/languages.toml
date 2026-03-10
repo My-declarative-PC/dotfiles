@@ -196,6 +196,24 @@ auto-format = true
 name = "yaml"
 formatter = { command = "prettierd", args = [".yaml"] }
 auto-format = true
+file-types = [
+  "yml",
+  "yaml",
+  { glob = ".prettierrc" },
+  { glob = ".clangd" },
+  { glob = ".clang-format" },
+  { glob = ".clang-tidy" },
+  { glob = ".gem/credentials" },
+  { glob = ".kube/config" },
+  { glob = ".kube/kuberc" },
+  { glob = "yarn.lock" },
+  { glob = "*.yml.tmpl" },
+  { glob = "*.yaml.tmpl" },
+  "sublime-syntax",
+  "bu",
+  { glob = ".stylelintrc" },
+  { glob = ".puppeteerrc" },
+]
 
 ##### Language: BASH #####
 [[language]]
