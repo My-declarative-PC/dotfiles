@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 mkdir -p ~/.var/app/com.obsproject.Studio/config/obs-studio/themes
 mkdir -p ~/Downloads
