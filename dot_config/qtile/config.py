@@ -1,10 +1,11 @@
 import os
 
-import libqtile.resources
-from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile import bar, layout, qtile, widget
 from libqtile.lazy import lazy
+from libqtile.scripts.main import VERSION
 from libqtile.utils import guess_terminal
+import libqtile.resources
 
 mod = "mod4"
 terminal = "wezterm"
@@ -231,4 +232,4 @@ idle_inhibitors = []  # type: list
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname = f"Qtile {VERSION}"
