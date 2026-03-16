@@ -11,6 +11,7 @@ prepend_keymap = [
 	{ on = [ "g", "." ], run = "cd ~/.local/share/chezmoi", desc = "Go to chezmoi" },
 	{ on = [ "g", "c" ], run = "cd ~/.config",              desc = "Go to config directory" },
 	{ on = [ "g", "y" ], run = "cd ~/Yandex.Disk",          desc = "Go to config Yandex.Disk" },
+	{ on = [ "g", "r" ], run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"', desc = "cd back to the root of the current Git repository" },
 
 	# Plugins
 	{ on = "M",          run = "plugin mount", desc = "Mount disks" },
