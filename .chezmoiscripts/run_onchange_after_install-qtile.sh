@@ -6,3 +6,5 @@ uv tool install \
     --with psutil \
     --with pyxdg \
     qtile[widgets] --force
+
+sudo cp ~/.config/qtile/qtile.desktop /usr/share/xsessions/
