@@ -90,7 +90,11 @@
 # Wallpaper ########################################################################################
 [".wallpaper"]
     type = "file"
-    url = "https://github.com/My-declarative-PC/wallpapers/blob/master/evening-sky.png?raw=true"
+    {{- if .isHome }}
+    url = "https://thumb.cloud.mail.ru/weblink/thumb/xw1/PEKf/k73tmyLZd/Rainy%20cyberpunk%20city%20at%20night.png?mt=1775576532000"
+    {{- else }}
+    url = "https://thumb.cloud.mail.ru/weblink/thumb/xw1/PEKf/k73tmyLZd/Cyberpunk%20cityscape%20under%20rainy%20night%20sky.png?mt=1775576532000"
+    {{- end }}
     refreshPeriod = "744h"
 # end ##############################################################################################
 
