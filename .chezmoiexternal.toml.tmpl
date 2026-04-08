@@ -29,6 +29,7 @@
     url = "https://raw.githubusercontent.com/catppuccin/atuin/refs/heads/main/themes/{{ .catppuccin_flavor }}/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}.toml"
     refreshPeriod = "168h"
 
+{{- if .hasGUI }}
 [".local/share/icons"]
     type = "archive"
     url = "https://github.com/catppuccin/cursors/releases/latest/download/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors.zip"
@@ -96,6 +97,7 @@
     url = "https://thumb.cloud.mail.ru/weblink/thumb/xw1/PEKf/k73tmyLZd/Cyberpunk%20cityscape%20under%20rainy%20night%20sky.png?mt=1775576532000"
     {{- end }}
     refreshPeriod = "744h"
+{{- end }}
 # end ##############################################################################################
 
 # Utils ############################################################################################
@@ -111,11 +113,13 @@
     url = "https://github.com/ifd3f/caligula/releases/latest/download/caligula-x86_64-linux"
     refreshPeriod = "744h"
 
+{{- if .hasGUI }}
 [".local/bin/ronema"]
     type = "file"
     executable = true
     url = "https://raw.githubusercontent.com/P3rf/rofi-network-manager/refs/heads/master/src/ronema"
     refreshPeriod = "744h"
+{{- end }}
 
 ## Bluetooth
 [".local/bin/bluetui"]
