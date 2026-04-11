@@ -1,0 +1,187 @@
+# Managed by chezmoi
+
+### DEFAULTS ######################################################################################
+Host *
+    AddKeysToAgent yes
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    IdentitiesOnly yes
+	ForwardX11 no
+###################################################################################################
+
+#
+##
+### PERSONAL
+##
+#
+### PERSONAL: GIT #################################################################################
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/keys/github_personal
+    PreferredAuthentications publickey
+###################################################################################################
+
+### PERSONAL: homelab #############################################################################
+Host laptop
+    HostName 192.168.10.151
+    User timofey
+    IdentityFile ~/.ssh/keys/id_personal
+    IdentitiesOnly yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+
+Host mini-server
+    HostName 192.168.10.132
+    User timofey
+    IdentityFile ~/.ssh/keys/id_personal
+    IdentitiesOnly yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+
+Host qemu
+    HostName 127.0.0.1
+    User timofey
+    Port 2222
+###################################################################################################
+
+### PERSONAL: VPS #################################################################################
+Host vpn-server
+    HostName timofey-awesome-cloud.ru
+    User timofey
+    IdentityFile ~/.ssh/keys/id_personal
+    IdentitiesOnly yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+###################################################################################################
+
+#
+##
+### WORK
+##
+#
+### WORK: GIT #####################################################################################
+Host git.infolan.org
+    HostName git.infolan.org
+    User git
+    IdentityFile ~/.ssh/keys/gitlab
+    PreferredAuthentications publickey
+###################################################################################################
+
+### WORK: SGU #####################################################################################
+Host sgu-inf
+    Port 22
+    User sitnikov
+    Hostname sgu-infocom.ru
+    IdentityFile ~/.ssh/keys/sgu-infocom
+    PreferredAuthentications publickey
+###################################################################################################
+
+### WORK: LK ######################################################################################
+Host LK_dev_app
+    Port 22
+    User sitnikov.t
+    Hostname dis-univerwin-web-app-dev.infocom.local
+
+Host LK_dev_db
+    Port 22
+    User sitnikov@infocom.local
+    Hostname dis-univerwin-web-db-dev.infocom.local
+
+Host LK_prod_app
+    Port 22
+    User sitnikov@infocom.local
+    Hostname dis-webinar-web-app-sup.infocom.local
+    PreferredAuthentications password
+
+Host LK_prod_db
+    Port 22
+    User sitnikov@infocom.local
+    Hostname dis-webinar-web-db-sup.infocom.local
+    PreferredAuthentications password
+###################################################################################################
+
+### WORK: CI/CD ###################################################################################
+Host jenkins
+    Port 22
+    User sitnikov@infocom.local
+    Hostname jenkins-debian.infocom.local
+
+Host jenkins_new
+    Port 22
+    User sitnikov@infocom.local
+    Hostname dev-jenkins-ci.infocom.local
+    PreferredAuthentications password
+
+Host sonar
+    Port 22
+    User sitnikov@infocom.local
+    Hostname sonarcube.infocom.local
+    PreferredAuthentications password
+###################################################################################################
+
+### WORK: Demo LK #################################################################################
+Host mgmsu_*
+    User sitnikov@DMZ.local
+    PreferredAuthentications password
+
+Host demo_app
+    Hostname dis-D-web-app.DMZ.local
+
+Host demo_db
+    Hostname dis-D-web-db.DMZ.local
+###################################################################################################
+
+### WORK: MPU #####################################################################################
+Host mpu_web
+    User sitnikov.t
+    Hostname 172.27.1.96
+    PreferredAuthentications password
+
+Host mpu_bd
+    User mpudev
+    Hostname 172.27.1.95
+    PreferredAuthentications password
+###################################################################################################
+
+### WORK: MGMSU ###################################################################################
+Host mgmsu_*
+    User sitnikov
+    IdentityFile ~/.ssh/keys/mgmsu
+    PreferredAuthentications publickey
+
+Host mgmsu_lk_prod
+    Hostname 10.70.5.4
+
+Host mgmsu_lk_test
+    Hostname 10.70.5.9
+
+Host mgmsu_db_prod
+    Hostname 10.70.5.11
+
+Host mgmsu_db_test
+    Hostname 10.70.5.12
+
+Host mgmsu_old
+    User sitnikov.t
+    Hostname 10.80.0.20
+
+Host mgmsu_old_as_root
+    User root
+    Hostname 10.80.0.20
+###################################################################################################
+
+### WORK: Other ###################################################################################
+Host skolkovo
+    Port 2222
+    User www-data
+    Hostname 10.1.105.26
+    PreferredAuthentications password
+
+Host mobile_uni
+    Port 49185
+    User root
+    Hostname ovz2.besedin-igor0.n03kn.vps.myjino.ru
+    IdentityFile ~/.ssh/keys/personal
+    PreferredAuthentications publickey
+###################################################################################################
