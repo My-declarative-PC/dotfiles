@@ -1,4 +1,4 @@
-{{- if .isHome -}}
+{{- if .hasGUI -}}
 #!{{ lookPath "bash" }}
 
 uv python install $(/usr/bin/python3 -V | awk '{print $2}') --default
