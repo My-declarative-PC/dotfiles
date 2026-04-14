@@ -64,16 +64,8 @@ Host vpn-server
 Host git.infolan.org
     HostName git.infolan.org
     User git
-    IdentityFile ~/.ssh/keys/gitlab
-    PreferredAuthentications publickey
-###################################################################################################
-
-### WORK: SGU #####################################################################################
-Host sgu-inf
-    Port 22
-    User sitnikov
-    Hostname sgu-infocom.ru
-    IdentityFile ~/.ssh/keys/sgu-infocom
+    # Expiry date: 2028-08-14
+    IdentityFile ~/.ssh/keys/id_work
     PreferredAuthentications publickey
 ###################################################################################################
 
@@ -98,21 +90,10 @@ Host LK_prod_db
 
 ### WORK: CI/CD ###################################################################################
 Host jenkins
-    Port 22
     User sitnikov@infocom.local
     Hostname jenkins-debian.infocom.local
-
-Host jenkins_new
-    Port 22
-    User sitnikov@infocom.local
-    Hostname dev-jenkins-ci.infocom.local
-    PreferredAuthentications password
-
-Host sonar
-    Port 22
-    User sitnikov@infocom.local
-    Hostname sonarcube.infocom.local
-    PreferredAuthentications password
+    IdentityFile ~/.ssh/keys/id_work
+    PreferredAuthentications publickey
 ###################################################################################################
 
 ### WORK: Demo LK #################################################################################
@@ -200,10 +181,9 @@ Host skolkovo
     Hostname 10.1.105.26
     PreferredAuthentications password
 
-Host mobile_uni
-    Port 49185
-    User root
-    Hostname ovz2.besedin-igor0.n03kn.vps.myjino.ru
-    IdentityFile ~/.ssh/keys/personal
+Host sgu-inf
+    User sitnikov
+    Hostname sgu-infocom.ru
+    IdentityFile ~/.ssh/keys/id_work
     PreferredAuthentications publickey
 ###################################################################################################
