@@ -64,60 +64,36 @@ Host vpn-server
 Host git.infolan.org
     HostName git.infolan.org
     User git
-    IdentityFile ~/.ssh/keys/gitlab
-    PreferredAuthentications publickey
-###################################################################################################
-
-### WORK: SGU #####################################################################################
-Host sgu-inf
-    Port 22
-    User sitnikov
-    Hostname sgu-infocom.ru
-    IdentityFile ~/.ssh/keys/sgu-infocom
+    # Expiry date: 2028-08-14
+    IdentityFile ~/.ssh/keys/id_work
     PreferredAuthentications publickey
 ###################################################################################################
 
 ### WORK: LK ######################################################################################
+Host LK_*
+    User sitnikov@infocom.local
+    IdentityFile ~/.ssh/keys/id_work
+    PreferredAuthentications publickey
+
 Host LK_dev_app
-    Port 22
-    User sitnikov.t
     Hostname dis-univerwin-web-app-dev.infocom.local
 
 Host LK_dev_db
-    Port 22
-    User sitnikov@infocom.local
     Hostname dis-univerwin-web-db-dev.infocom.local
 
 Host LK_prod_app
-    Port 22
-    User sitnikov@infocom.local
     Hostname dis-webinar-web-app-sup.infocom.local
-    PreferredAuthentications password
 
 Host LK_prod_db
-    Port 22
-    User sitnikov@infocom.local
     Hostname dis-webinar-web-db-sup.infocom.local
-    PreferredAuthentications password
 ###################################################################################################
 
 ### WORK: CI/CD ###################################################################################
 Host jenkins
-    Port 22
     User sitnikov@infocom.local
     Hostname jenkins-debian.infocom.local
-
-Host jenkins_new
-    Port 22
-    User sitnikov@infocom.local
-    Hostname dev-jenkins-ci.infocom.local
-    PreferredAuthentications password
-
-Host sonar
-    Port 22
-    User sitnikov@infocom.local
-    Hostname sonarcube.infocom.local
-    PreferredAuthentications password
+    IdentityFile ~/.ssh/keys/id_work
+    PreferredAuthentications publickey
 ###################################################################################################
 
 ### WORK: Demo LK #################################################################################
@@ -150,18 +126,45 @@ Host mgmsu_*
     IdentityFile ~/.ssh/keys/mgmsu
     PreferredAuthentications publickey
 
+### LK Prod
 Host mgmsu_lk_prod
     Hostname 10.70.5.4
 
+Host mgmsu_db_prod
+    Hostname 10.70.5.11
+###
+
+### LK Test
 Host mgmsu_lk_test
     Hostname 10.70.5.9
 
-Host mgmsu_db_prod
-    Hostname 10.70.5.11
+Host mgmsu_lk_test__sgu
+    User sgu
+    Hostname 10.70.5.9
 
 Host mgmsu_db_test
     Hostname 10.70.5.12
+###
 
+### LMS Test
+Host mgmsu_lms_test
+    Hostname 10.70.5.15
+
+Host mgmsu_lms_test__root
+    User sgu
+    Hostname 10.70.5.15
+###
+
+### LMS Prod
+Host mgmsu_lms_prod
+    Hostname 10.70.5.13
+
+Host mgmsu_lms_prod__root
+    User sgu
+    Hostname 10.70.5.13
+###
+
+### Old
 Host mgmsu_old
     User sitnikov.t
     Hostname 10.80.0.20
@@ -178,10 +181,9 @@ Host skolkovo
     Hostname 10.1.105.26
     PreferredAuthentications password
 
-Host mobile_uni
-    Port 49185
-    User root
-    Hostname ovz2.besedin-igor0.n03kn.vps.myjino.ru
-    IdentityFile ~/.ssh/keys/personal
+Host sgu-inf
+    User sitnikov
+    Hostname sgu-infocom.ru
+    IdentityFile ~/.ssh/keys/id_work
     PreferredAuthentications publickey
 ###################################################################################################

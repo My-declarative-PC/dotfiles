@@ -1,3 +1,9 @@
+[includeIf "gitdir:{{ .chezmoi.homeDir }}/wgits/"]
+    path = {{ .chezmoi.homeDir }}/.config/git/config_work
+
+[includeIf "gitdir:{{ .chezmoi.homeDir }}/gits/"]
+    path = {{ .chezmoi.homeDir }}/.config/git/config_personal
+
 [core]
     editor = hx
     pager = delta --dark --diff-so-fancy
@@ -5,6 +11,22 @@
 [user]
     email = {{ .email }}
     name = Sitnikov Timofey
+
+# Signing
+[gpg]
+    format = ssh
+[gpg "ssh"]
+	allowedSignersFile = {{ .chezmoi.homeDir }}/.config/git/allowed-signers
+
+[commit]
+    gpgsign = true
+
+[log]
+	showSignature = true
+
+[tag]
+	gpgsign = true
+###
 
 [pull]
     rebase = true
@@ -14,7 +36,7 @@
 	helper = store
 
 [credential "https://github.com"]
-   helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+    helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
     helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
@@ -37,7 +59,7 @@
     diffFilter = delta --color-only
 
 [include]
-    path = ~/.config/git/catppuccin.gitconfig
+    path = {{ .chezmoi.homeDir }}/.config/git/catppuccin.gitconfig
 
 [delta]
     features = catppuccin-mocha
@@ -58,3 +80,4 @@
     ddiff = -c diff.external=difft diff
     ###
     sl = log --graph --pretty=\"%Cgreen%aN %C(yellow)Hash %h %C(blue)Date %ad (%C(cyan)%cr%Cblue)%n%C(magenta)Message %Creset%s%n%b\" --date=human
+
