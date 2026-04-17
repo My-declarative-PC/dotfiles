@@ -121,13 +121,13 @@ Host mpu_bd
 ###################################################################################################
 
 ### WORK: MGMSU ###################################################################################
+Host *__sgu
+    User sgu
+
 Host mgmsu_*
     User sitnikov
     IdentityFile ~/.ssh/keys/mgmsu
     PreferredAuthentications publickey
-
-Host *__sgu
-    User sgu
 
 ### LK Prod
 Host mgmsu_lk_prod
