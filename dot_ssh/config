@@ -97,7 +97,7 @@ Host jenkins
 ###################################################################################################
 
 ### WORK: Demo LK #################################################################################
-Host mgmsu_*
+Host demo_*
     User sitnikov@DMZ.local
     PreferredAuthentications password
 
