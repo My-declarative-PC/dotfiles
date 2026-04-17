@@ -7,7 +7,11 @@ function Linemode:size_and_mtime()
     time = ""
   elseif os.date("%Y", time) == os.date("%Y") then
     if os.date("%m", time) == os.date("%m") then
-      time = os.date("%d %H:%M", time)
+      if os.date("%d", time) == os.date("%d") then
+        time = os.date("%H:%M", time)
+      else
+        time = os.date("%d %H:%M", time)
+      end
     else
       time = os.date("%d.%m %H:%M", time)
     end
