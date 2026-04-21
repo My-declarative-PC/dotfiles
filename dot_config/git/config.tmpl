@@ -4,6 +4,14 @@
 [includeIf "gitdir:{{ .chezmoi.homeDir }}/gits/"]
     path = {{ .chezmoi.homeDir }}/.config/git/config_personal
 
+{{ if .isHome -}}
+[include]
+    path = {{ .chezmoi.homeDir }}/.config/git/config_work
+{{ else -}}
+[include]
+    path = {{ .chezmoi.homeDir }}/.config/git/config_personal
+{{ end -}}
+
 [core]
     editor = hx
     pager = delta --dark --diff-so-fancy
