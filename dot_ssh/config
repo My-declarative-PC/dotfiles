@@ -109,15 +109,25 @@ Host demo_db
 ###################################################################################################
 
 ### WORK: MPU #####################################################################################
-Host mpu_web
+Host *__root
+    User mpudev
+
+Host mpu_*
     User sitnikov.t
+    IdentityFile ~/.ssh/keys/mpu
+    PreferredAuthentications publickey
+
+Host mpu_web
     Hostname 172.27.1.96
-    PreferredAuthentications password
+
+Host mpu_web__root
+    Hostname 172.27.1.96
 
 Host mpu_bd
-    User mpudev
     Hostname 172.27.1.95
-    PreferredAuthentications password
+
+Host mpu_bd__root
+    Hostname 172.27.1.95
 ###################################################################################################
 
 ### WORK: MGMSU ###################################################################################
