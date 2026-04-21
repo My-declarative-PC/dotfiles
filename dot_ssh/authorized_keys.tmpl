@@ -1,3 +1,7 @@
 {{ range gitHubKeys "imperatorMarsa" -}}
 {{   .Key }}
 {{ end -}}
+
+{{ range glob (joinPath .chezmoi.sourceDir "dot_ssh/keys/*.pub") -}}
+{{   include . | trim }}
+{{ end -}}
