@@ -107,8 +107,43 @@ Host demo_db
     Hostname dis-D-web-db.DMZ.local
 ###################################################################################################
 
+### WORK: FU ######################################################################################
+Host jump_fu
+    User develop01
+    # RealHostname 10.49.150.133
+    Hostname dis-sitnikov-winserver.infocom.local
+    Port 2201
+    IdentityFile ~/.ssh/keys/fu_rsa
+    PreferredAuthentications publickey
+    ForwardX11 yes
+    ForwardX11Trusted yes
+
+Host fu_*__root
+    User root
+
+Host fu_*
+    User sitnikov.t
+    ProxyJump jump_fu
+    IdentityFile ~/.ssh/keys/fu
+    PreferredAuthentications publickey
+    ForwardX11 yes
+    ForwardX11Trusted yes
+
+Host fu_web
+    Hostname 10.49.205.67
+
+Host fu_web__root
+    Hostname 10.49.205.67
+
+Host fu_db
+    Hostname 10.49.205.74
+
+Host fu_db__root
+    Hostname 10.49.205.74
+###################################################################################################
+
 ### WORK: MPU #####################################################################################
-Host *__root
+Host mpu_*__root
     User mpudev
 
 Host mpu_*
@@ -132,7 +167,7 @@ Host mpu_bd__root
 ###################################################################################################
 
 ### WORK: MGMSU ###################################################################################
-Host *__sgu
+Host mgmsu_*__sgu
     User sgu
 
 Host mgmsu_*
