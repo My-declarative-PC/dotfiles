@@ -6,7 +6,6 @@ Host *
     ServerAliveInterval 60
     ServerAliveCountMax 3
     IdentitiesOnly yes
-	ForwardX11 no
 ###################################################################################################
 
 #
@@ -97,7 +96,7 @@ Host jenkins
 ###################################################################################################
 
 ### WORK: Demo LK #################################################################################
-Host mgmsu_*
+Host demo_*
     User sitnikov@DMZ.local
     PreferredAuthentications password
 
@@ -108,19 +107,69 @@ Host demo_db
     Hostname dis-D-web-db.DMZ.local
 ###################################################################################################
 
-### WORK: MPU #####################################################################################
-Host mpu_web
+### WORK: FU ######################################################################################
+Host jump_fu
+    User develop01
+    # RealHostname 10.49.150.133
+    Hostname dis-sitnikov-winserver.infocom.local
+    Port 2201
+    IdentityFile ~/.ssh/keys/fu_rsa
+    PreferredAuthentications publickey
+    ForwardX11 yes
+    ForwardX11Trusted yes
+
+Host fu_*__root
+    User root
+
+Host fu_*
     User sitnikov.t
+    ProxyJump jump_fu
+    IdentityFile ~/.ssh/keys/fu
+    PreferredAuthentications publickey
+    ForwardX11 yes
+    ForwardX11Trusted yes
+
+Host fu_web
+    Hostname 10.49.205.67
+
+Host fu_web__root
+    Hostname 10.49.205.67
+
+Host fu_db
+    Hostname 10.49.205.74
+
+Host fu_db__root
+    Hostname 10.49.205.74
+###################################################################################################
+
+### WORK: MPU #####################################################################################
+Host mpu_*__root
+    User mpudev
+
+Host mpu_*
+    User sitnikov.t
+    IdentityFile ~/.ssh/keys/mpu
+    PreferredAuthentications publickey
+    ForwardX11 yes
+    ForwardX11Trusted yes
+
+Host mpu_web
     Hostname 172.27.1.96
-    PreferredAuthentications password
+
+Host mpu_web__root
+    Hostname 172.27.1.96
 
 Host mpu_bd
-    User mpudev
     Hostname 172.27.1.95
-    PreferredAuthentications password
+
+Host mpu_bd__root
+    Hostname 172.27.1.95
 ###################################################################################################
 
 ### WORK: MGMSU ###################################################################################
+Host mgmsu_*__sgu
+    User sgu
+
 Host mgmsu_*
     User sitnikov
     IdentityFile ~/.ssh/keys/mgmsu
@@ -130,7 +179,13 @@ Host mgmsu_*
 Host mgmsu_lk_prod
     Hostname 10.70.5.4
 
+Host mgmsu_lk_prod__sgu
+    Hostname 10.70.5.4
+
 Host mgmsu_db_prod
+    Hostname 10.70.5.11
+
+Host mgmsu_db_prod__sgu
     Hostname 10.70.5.11
 ###
 
@@ -139,10 +194,12 @@ Host mgmsu_lk_test
     Hostname 10.70.5.9
 
 Host mgmsu_lk_test__sgu
-    User sgu
     Hostname 10.70.5.9
 
 Host mgmsu_db_test
+    Hostname 10.70.5.12
+
+Host mgmsu_db_test__sgu
     Hostname 10.70.5.12
 ###
 
@@ -150,8 +207,7 @@ Host mgmsu_db_test
 Host mgmsu_lms_test
     Hostname 10.70.5.15
 
-Host mgmsu_lms_test__root
-    User sgu
+Host mgmsu_lms_test__sgu
     Hostname 10.70.5.15
 ###
 
@@ -159,8 +215,7 @@ Host mgmsu_lms_test__root
 Host mgmsu_lms_prod
     Hostname 10.70.5.13
 
-Host mgmsu_lms_prod__root
-    User sgu
+Host mgmsu_lms_prod__sgu
     Hostname 10.70.5.13
 ###
 

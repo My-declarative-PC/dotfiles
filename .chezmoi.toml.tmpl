@@ -1,5 +1,7 @@
 {{ $hasGUI := promptBoolOnce . "hasGUI" "Does this machine have a GUI" }}
 {{ $isHome := promptBoolOnce . "isHome" "Does this machine in home" }}
+{{ $emailHome := "tima.sitnikov@mail.ru" }}
+{{ $emailWork := "t.sitnikov@infocom-s.ru" }}
 
 encryption = "age"
 [age]
@@ -22,11 +24,9 @@ catppuccin_accent = "mauve"
 catppuccin_flavor_up = "Mocha"
 catppuccin_accent_up = "Mauve"
 # identety
-{{- if $isHome }}
-email = "tima.sitnikov@mail.ru"
-{{- else }}
-email = "t.sitnikov@infocom-s.ru"
-{{- end }}
+emailHome = {{ $emailHome | quote }}
+emailWork = {{ $emailWork | quote }}
+email = {{ (ternary $emailHome $emailWork $isHome) | quote }}
 
 [diff]
     pager = "delta"
