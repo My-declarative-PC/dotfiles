@@ -1,0 +1,12 @@
+[Profile0]
+Name=Default (release)
+IsRelative=1
+Path={{ .zen_profile }}
+
+[General]
+StartWithLastProfile=1
+Version=2
+
+[Install{{ mozillaInstallHash .zen_install_path }}]
+Default={{ .zen_profile }}
+Locked=1

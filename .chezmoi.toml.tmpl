@@ -27,6 +27,9 @@ catppuccin_accent_up = "Mauve"
 emailHome = {{ $emailHome | quote }}
 emailWork = {{ $emailWork | quote }}
 email = {{ (ternary $emailHome $emailWork $isHome) | quote }}
+# browser
+zen_install_path = "/app/zen"
+zen_profile = "timofey.Default (release)"
 
 [diff]
     pager = "delta"
