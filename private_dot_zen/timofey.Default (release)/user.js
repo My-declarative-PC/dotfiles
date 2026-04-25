@@ -29,3 +29,11 @@ user_pref("browser.urlbar.trimURLs", true);
 
 // Who is bogus? (fixes Sidebery tab dragging on Linux)
 user_pref("widget.gtk.ignore-bogus-leave-notify", 1);
+
+// Аппаратное ускорение
+user_pref("gfx.webrender.all", true);
+user_pref("media.hardware-video-decoding.enabled", true);
+
+// Плавный скролл
+user_pref("general.smoothScroll", true);
+user_pref("mousewheel.min_line_scroll_amount", 22);
