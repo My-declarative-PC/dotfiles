@@ -27,4 +27,5 @@ README.md
 .local/share/themes/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-standard+default/
 .var/app/com.obsproject.Studio/config/obs-studio/
 .wallpaper
+.zen/
 {{ end }}
