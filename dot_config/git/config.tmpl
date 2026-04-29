@@ -15,6 +15,7 @@
 [core]
     editor = hx
     pager = delta --dark --diff-so-fancy
+    attributesfile = {{ .chezmoi.homeDir }}/.config/git/attributes
 
 [user]
     email = {{ .email }}
@@ -77,6 +78,13 @@
     light = false
     side-by-side = true
 ###
+
+[diff "json-pretty"]
+    textconv = yq --prettyPrint --indent 4 --input-format json --output-format json
+    prompt = false
+[diff "age-decrypt"]
+    textconv = age --decrypt --identity {{ .chezmoi.homeDir }}/.config/chezmoi/key.txt
+    cachetextconv = true
 
 [safe]
     directory = *

@@ -33,3 +33,7 @@ zen_profile = "timofey.Default (release)"
 
 [diff]
     pager = "delta"
+[[textconv]]
+    pattern = "**/*.json"
+    command = "yq"
+    args = ["--prettyPrint", "--indent", "4", "--input-format", "json", "--output-format", "json"]
