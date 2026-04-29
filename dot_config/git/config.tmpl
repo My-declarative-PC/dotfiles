@@ -1,74 +1,75 @@
-[includeIf "gitdir:{{ .chezmoi.homeDir }}/wgits/"]
+# ===== Identity =====
+# Дефолт (переопределяется через includeIf ниже)
+{{ if .isHome -}}
+[include]
+    path = {{ .chezmoi.homeDir }}/.config/git/config_personal
+{{ else -}}
+[include]
     path = {{ .chezmoi.homeDir }}/.config/git/config_work
+{{ end -}}
 
+# Контекстные оверрайды по директории
 [includeIf "gitdir:{{ .chezmoi.homeDir }}/gits/"]
     path = {{ .chezmoi.homeDir }}/.config/git/config_personal
 
-{{ if .isHome -}}
-[include]
+[includeIf "gitdir:{{ .chezmoi.homeDir }}/wgits/"]
     path = {{ .chezmoi.homeDir }}/.config/git/config_work
-{{ else -}}
-[include]
-    path = {{ .chezmoi.homeDir }}/.config/git/config_personal
-{{ end -}}
 
+[user]
+    name = Sitnikov Timofey
+    email = {{ .email }}
+
+# ===== Signing =====
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = {{ .chezmoi.homeDir }}/.config/git/allowed-signers
+
+[log]
+    showSignature = true
+
+# ===== Core behaviour =====
 [core]
     editor = hx
     pager = delta --dark --diff-so-fancy
     attributesfile = {{ .chezmoi.homeDir }}/.config/git/attributes
 
-[user]
-    email = {{ .email }}
-    name = Sitnikov Timofey
-
-# Signing
-[gpg]
-    format = ssh
-[gpg "ssh"]
-	allowedSignersFile = {{ .chezmoi.homeDir }}/.config/git/allowed-signers
-
-[commit]
-    gpgsign = true
-
-[log]
-	showSignature = true
-
-[tag]
-	gpgsign = true
-###
+[init]
+    defaultBranch = master
 
 [pull]
     rebase = true
 
-# Credential
+[merge]
+    conflictstyle = zdiff3
+
+# ===== Credentials =====
 [credential]
-	helper = store
+    helper = store
 
 [credential "https://github.com"]
     helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
     helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
-###
 
-[init]
-    defaultBranch = master
-
-[merge]
-    conflictstyle = zdiff3
-
+# ===== LFS =====
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
 
-# Delta
+# ===== Delta =====
 [interactive]
     diffFilter = delta --color-only
-
-[include]
-    path = {{ .chezmoi.homeDir }}/.config/git/catppuccin.gitconfig
 
 [delta]
     features = catppuccin-mocha
@@ -77,23 +78,28 @@
     dark = true
     light = false
     side-by-side = true
-###
 
+[include]
+    path = {{ .chezmoi.homeDir }}/.config/git/catppuccin.gitconfig
+
+# ===== Diff drivers =====
 [diff "json-pretty"]
-    textconv = yq --prettyPrint --indent 4 --input-format json --output-format json
+    textconv = json-pretty
     prompt = false
+
 [diff "age-decrypt"]
-    textconv = age --decrypt --identity {{ .chezmoi.homeDir }}/.config/chezmoi/key.txt
-    cachetextconv = true
+    textconv = age-decrypt
 
-[safe]
-    directory = *
+[diff "age-decrypt-json"]
+    textconv = age-decrypt-json
 
+# ===== Aliases =====
 [alias]
-    # Difftastic
     dlog = -c diff.external=difft log --ext-diff
     dshow = -c diff.external=difft show --ext-diff
     ddiff = -c diff.external=difft diff
-    ###
-    sl = log --graph --pretty=\"%Cgreen%aN %C(yellow)Hash %h %C(blue)Date %ad (%C(cyan)%cr%Cblue)%n%C(magenta)Message %Creset%s%n%b\" --date=human
+    sl = log --graph --pretty="%Cgreen%aN %C(yellow)Hash %h %C(blue)Date %ad (%C(cyan)%cr%Cblue)%n%C(magenta)Message %Creset%s%n%b" --date=human
 
+# ===== Safety =====
+[safe]
+    directory = *

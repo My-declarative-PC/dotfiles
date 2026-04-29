@@ -1,0 +1,5 @@
+#!/bin/bash
+# Decrypt age-encrypted file
+# Usage: age-decrypt [file]  OR  cat file | age-decrypt
+
+age-decrypt "${@:--}" | json-pretty

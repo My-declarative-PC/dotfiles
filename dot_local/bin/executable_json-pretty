@@ -1,0 +1,5 @@
+#!/bin/bash
+# Format JSON to pretty-printed output
+# Usage: json-pretty [file]  OR  cat file | json-pretty
+
+yq --prettyPrint --indent 4 --input-format json --output-format json "${1:--}"
