@@ -107,6 +107,13 @@
     url = "https://github.com/erebe/greenclip/releases/latest/download/greenclip"
     refreshPeriod = "744h"
 
+[".local/bin/batctl"]
+    type = "archive-file"
+    executable = true
+    url = '{{ gitHubLatestRelease "Ooooze/batctl" | toJson | fromJson | jq ".assets[] | select(.name | ascii_downcase | contains(\"linux-x86_64\")) | .browser_download_url" | first}}'
+    refreshPeriod = "744h"
+    path = "batctl"
+
 [".local/bin/caligula"]
     type = "file"
     executable = true
