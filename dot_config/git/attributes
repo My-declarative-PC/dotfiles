@@ -1,2 +1,3 @@
 *.json diff=json-pretty
 encrypted_*.age diff=age-decrypt
+encrypted_*json*.age diff=age-decrypt-json
