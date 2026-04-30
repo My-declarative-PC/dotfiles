@@ -1,0 +1,5 @@
+#!{{ lookPath "bash" }}
+
+{{ lookPath "find" }} ~/Downloads ~/Pictures/Screenshots ~/Videos/OBS ~/Videos/OBS-gif -type f -atime +29 -delete
+{{ lookPath "find" }} ~/Downloads ~/Pictures/Screenshots ~/Videos/OBS ~/Videos/OBS-gif -mindepth 1 -type d -empty -delete
+
