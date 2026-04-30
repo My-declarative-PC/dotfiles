@@ -42,7 +42,7 @@ function get_brightness_icon {
 }
 
 function get_album_art {
-    url=$(playerctl -f "{{mpris:artUrl}}" metadata)
+    url=$(playerctl -f "{{ "{{mpris:artUrl}}" }}" metadata)
     if [[ $url == "file://"* ]]; then
         album_art="${url/file:\/\//}"
     elif [[ $url == http*://* ]] && [[ $download_album_art == "true" ]]; then
@@ -71,7 +71,7 @@ function show_volume_notif {
     get_volume_icon
 
     if [[ $show_music_in_volume_indicator == "true" ]]; then
-        current_song=$(playerctl -f "{{title}} - {{artist}}" metadata)
+        current_song=$(playerctl -f "{{ "{{title}}" }} - {{ "{{artist}}" }}" metadata)
 
         if [[ $show_album_art == "true" ]]; then
             get_album_art
@@ -113,9 +113,9 @@ function show_music_notif {
             action_icon="⏸"
         fi
     fi
-    song_title=$(playerctl -f "{{title}}" metadata)
-    song_artist=$(playerctl -f "{{artist}}" metadata)
-    song_album=$(playerctl -f "{{album}}" metadata)
+    song_title=$(playerctl -f "{{ "{{title}}" }}" metadata)
+    song_artist=$(playerctl -f "{{ "{{artist}}" }}" metadata)
+    song_album=$(playerctl -f "{{ "{{album}}" }}" metadata)
     notify_progress
 
     if [[ $show_album_art == "true" ]]; then
