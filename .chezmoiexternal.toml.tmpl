@@ -114,6 +114,13 @@
     refreshPeriod = "744h"
     path = "batctl"
 
+[".local/bin/netwatch"]
+    type = "archive-file"
+    executable = true
+    url = '{{ gitHubLatestRelease "matthart1983/netwatch" | toJson | fromJson | jq ".assets[] | select(.name | ascii_downcase | contains(\"linux-x86_64-static\")) | .browser_download_url" | first}}'
+    refreshPeriod = "744h"
+    path = "netwatch-linux-x86_64-static"
+
 [".local/bin/caligula"]
     type = "file"
     executable = true
