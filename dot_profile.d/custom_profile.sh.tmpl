@@ -1,21 +1,22 @@
 #!{{ lookPath "bash" }}
 
+# homebrew
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+# homebrew end
+
 # PATH
-export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/share/flatpak/exports/share"
 if command -v composer &>/dev/null; then
     export PATH="$PATH:$(composer config -g home)/vendor/bin"
 fi
 # PATH end
 
-# homebrew
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-# homebrew end
-
 # pnpm
+export PATH="$PATH:$HOME/.local/share/pnpm/bin"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
