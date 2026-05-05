@@ -69,10 +69,11 @@
 # Fonts ############################################################################################
 [".local/share/fonts/fira-code"]
     type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
+    url = '{{ gitHubLatestRelease "tonsky/FiraCode" | toJson | fromJson | jq ".assets[0].browser_download_url" | first }}'
     exact = false
     refreshPeriod = "744h"
-    include = ["**/*.ttf"]
+    stripComponents = 1
+    include = ["ttf/**"]
 
 [".local/share/fonts/FontAwesome"]
     type = "archive"
