@@ -87,6 +87,17 @@
     stripComponents = 2
     refreshPeriod = "744h"
     include = ["**/*.otf"]
+{{- end }}
+
+{{- if (env "TERMUX_VERSION") }}
+[".termux/font.ttf"]
+    type = "archive-file"
+    url = '{{ gitHubLatestRelease "ryanoasis/nerd-fonts" | toJson | fromJson | jq ".assets[] | select(.name == \"FiraCode.tar.xz\") | .browser_download_url" | first }}'
+    path = "FiraCodeNerdFontMono-Regular.ttf"
+    refreshPeriod = "744h"
+{{- end }}
+
+{{- if .hasGUI }}
 # end ##############################################################################################
 
 # Wallpaper ########################################################################################
