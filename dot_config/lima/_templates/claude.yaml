@@ -1,0 +1,111 @@
+# lima.yaml — VM для безопасного запуска Claude Code
+# Основано на: https://lima-vm.io/docs/examples/ai/
+#
+# Идея: Claude Code работает внутри VM и не имеет прямого доступа
+# к файлам хоста, кроме явно смонтированного проектного каталога.
+#
+# Запуск:
+#   limactl start --name=claude ./claude-code.yaml
+#   limactl shell claude claude
+#
+# Альтернатива с --mount-only (Lima >= 2.0), без правки yaml:
+#   limactl start --mount-only $(pwd):w --name=claude ./claude-code.yaml
+
+# ---- Базовый образ ----------------------------------------------------------
+# Ubuntu 26.04 LTS — поддерживает snap, который нужен для установки Node.js
+# по инструкции из официальной документации Lima.
+images:
+  - location: "https://cloud-images.ubuntu.com/releases/26.04/release/ubuntu-26.04-server-cloudimg-amd64.img"
+    arch: "x86_64"
+  - location: "https://cloud-images.ubuntu.com/releases/26.04/release/ubuntu-26.04-server-cloudimg-arm64.img"
+    arch: "aarch64"
+
+# ---- Ресурсы VM -------------------------------------------------------------
+# Claude Code довольно лёгкий, но при работе с крупными репозиториями
+# (например, индексирование, билды) полезно иметь запас.
+cpus: 4
+memory: "8GiB"
+disk: "40GiB"
+
+# ---- Монтирование -----------------------------------------------------------
+# КЛЮЧЕВОЙ МОМЕНТ БЕЗОПАСНОСТИ.
+# По рекомендации Lima, в VM монтируется ТОЛЬКО проектный каталог,
+# чтобы агент не мог читать/писать/исполнять остальные файлы хоста.
+#
+# Замените location на путь к вашему проекту, либо запускайте с флагом
+# --mount-only (см. шапку файла).
+mountTypesUnsupported: ["9p"]
+mounts:
+  - location: "~/gits"
+    writable: true
+    # Если хотите read-only режим — поставьте writable: false
+  - location: "~/wgits"
+    writable: true
+
+# ---- Сеть -------------------------------------------------------------------
+# Дефолтная user-mode сеть достаточна: Claude Code ходит на api.anthropic.com
+# и в npm registry.
+networks: []
+
+# ---- Provision: установка Claude Code --------------------------------------
+# Согласно официальной документации Lima, Claude Code ставится через snap+npm.
+provision:
+  # 1) Node.js через snap (как в документации Lima)
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! command -v node >/dev/null 2>&1; then
+        snap install node --classic
+      fi
+
+  # 2) Claude Code из npm registry Anthropic
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! command -v claude >/dev/null 2>&1; then
+        npm install -g @anthropic-ai/claude-code
+      fi
+
+  # 3) Полезные утилиты для работы Claude Code:
+  #    git — для работы с репозиториями;
+  #    rsync — нужен для режима `limactl shell --sync` (Lima >= 2.1);
+  #    ripgrep — Claude Code использует его для быстрого поиска по коду.
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      apt-get update
+      apt-get install -y --no-install-recommends git rsync ripgrep ca-certificates curl
+
+# ---- Готовность -------------------------------------------------------------
+# Lima считает VM готовой, когда `claude` доступен в PATH.
+probes:
+  - description: "claude-code CLI installed"
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! timeout 60s bash -c "until command -v claude >/dev/null 2>&1; do sleep 3; done"; then
+        echo >&2 "claude is not installed yet"
+        exit 1
+      fi
+    hint: |
+      Claude Code не установился. Проверьте логи:
+        limactl shell claude sudo journalctl -u cloud-final
+
+# ---- Подсказка после старта -------------------------------------------------
+message: |
+  ✅ VM готова. Запуск Claude Code:
+
+      limactl shell {{.Name}} claude
+
+  Аутентификация — через интерактивную сессию (первый запуск)
+  либо переменной окружения:
+
+      limactl shell {{.Name}}
+      echo 'export ANTHROPIC_API_KEY=sk-ant-...' >> ~/.bash_profile
+
+  Проектный каталог хоста ({{.Dir}}) доступен внутри VM по тому же пути.
+
+  Документация: https://lima-vm.io/docs/examples/ai/
