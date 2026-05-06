@@ -86,12 +86,14 @@
     include = ["**/*.otf"]
 {{- end }}
 
+{{- if or .hasGUI (env "TERMUX_VERSION") }}
 [".local/share/fonts/fira-code"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
     exact = false
     refreshPeriod = "744h"
     include = ["**/*.ttf"]
+{{- end }}
 {{- if .hasGUI }}
 # end ##############################################################################################
 

@@ -1,3 +1,4 @@
+{{- if or .hasGUI (env "TERMUX_VERSION") }}
 #!{{ lookPath "bash" }}
 
 # Замораживает OpenType features в шрифте Fira Code Nerd Font,
@@ -70,3 +71,4 @@ fi
 count=$(find "${FROZEN_DIR}" -name '*.ttf' | wc -l)
 echo ":: Готово. Создано ${count} файл(ов) в ${FROZEN_DIR}"
 echo ":: Шрифт доступен в системе как 'FiraCode Nerd Font ${SUFFIX}'"
+{{- end }}
