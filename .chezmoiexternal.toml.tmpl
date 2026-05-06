@@ -72,13 +72,6 @@
 # end ##############################################################################################
 
 # Fonts ############################################################################################
-[".local/share/fonts/fira-code"]
-    type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
-    exact = false
-    refreshPeriod = "744h"
-    include = ["**/*.ttf"]
-
 [".local/share/fonts/FontAwesome"]
     type = "archive"
     url = "https://use.fontawesome.com/releases/v7.0.0/fontawesome-free-7.0.0-desktop.zip"
@@ -93,13 +86,12 @@
     include = ["**/*.otf"]
 {{- end }}
 
-{{- if (env "TERMUX_VERSION") }}
-[".termux/font.ttf"]
-    type = "archive-file"
-    url = '{{ gitHubLatestRelease "ryanoasis/nerd-fonts" | toJson | fromJson | jq ".assets[] | select(.name == \"FiraCode.tar.xz\") | .browser_download_url" | first }}'
-    path = "FiraCodeNerdFontMono-Regular.ttf"
+[".local/share/fonts/fira-code"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
+    exact = false
     refreshPeriod = "744h"
-{{- end }}
+    include = ["**/*.ttf"]
 {{- if .hasGUI }}
 # end ##############################################################################################
 

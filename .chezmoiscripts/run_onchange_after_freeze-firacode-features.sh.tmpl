@@ -1,0 +1,72 @@
+#!{{ lookPath "bash" }}
+
+# Замораживает OpenType features в шрифте Fira Code Nerd Font,
+# чтобы выбранные стилистические альтернативы стали активными по умолчанию
+# во всех приложениях (i3, i3bar, Firefox, GTK через fontconfig и т.д.).
+#
+# Скрипт выполняется только когда меняется содержимое папки со шрифтами
+# (через хеш ниже) или когда меняется список features.
+
+# chezmoi:template: hash of fonts directory to retrigger on update
+# fonts hash: {{ include "../fonts/fira-code/FiraCodeNerdFont-Regular.ttf" | sha256sum }}
+
+set -euo pipefail
+
+FONT_DIR="{{ .chezmoi.homeDir }}/.local/share/fonts/fira-code"
+FROZEN_DIR="${FONT_DIR}-custom"
+FEATURES="{{ list "cv06" "cv14" "cv25" "cv26" "cv27" "cv30" "cv32" "ss04" "ss06" "ss09" "ss10" "zero" | join "," }}"
+SUFFIX="Custom"
+MARKER="${FROZEN_DIR}/.frozen-features"
+
+echo ":: Freeze OpenType features в Fira Code Nerd Font"
+echo ":: Features: ${FEATURES}"
+
+# Проверка наличия uv
+if ! command -v uv >/dev/null 2>&1; then
+    echo "ERROR: uv не установлен. Установите: https://docs.astral.sh/uv/" >&2
+    exit 1
+fi
+
+# Проверка что исходные шрифты на месте
+if [[ ! -d "${FONT_DIR}" ]] || [[ -z "$(find "${FONT_DIR}" -name '*.ttf' -print -quit)" ]]; then
+    echo "ERROR: Не найдены TTF-файлы в ${FONT_DIR}" >&2
+    echo "Сначала выполните chezmoi apply для скачивания шрифтов" >&2
+    exit 1
+fi
+
+# Готовим выходную директорию
+mkdir -p "${FROZEN_DIR}"
+rm -f "${FROZEN_DIR}"/*.ttf
+
+# Запускаем pyftfeatfreeze через uv (без установки в систему).
+# uvx скачает opentype-feature-freezer в кэш и запустит изолированно.
+echo ":: Обработка шрифтов..."
+shopt -s globstar nullglob
+for font in "${FONT_DIR}"/**/*.ttf; do
+    filename="$(basename "${font}" .ttf)"
+    output="${FROZEN_DIR}/${filename}-${SUFFIX}.ttf"
+
+    echo "  → ${filename}"
+    uvx --quiet \
+        --from opentype-feature-freezer \
+        pyftfeatfreeze \
+        -f "${FEATURES}" \
+        -S \
+        -U "${SUFFIX}" \
+        "${font}" \
+        "${output}"
+done
+
+# Маркер, чтобы при необходимости можно было отследить состояние
+echo "features=${FEATURES}" >"${MARKER}"
+echo "frozen_at=$(date -Iseconds)" >>"${MARKER}"
+
+# Обновляем кэш fontconfig, чтобы система увидела новый шрифт
+echo ":: Обновление кэша fontconfig..."
+if command -v fc-cache >/dev/null 2>&1; then
+    fc-cache -f "${FROZEN_DIR}"
+fi
+
+count=$(find "${FROZEN_DIR}" -name '*.ttf' | wc -l)
+echo ":: Готово. Создано ${count} файл(ов) в ${FROZEN_DIR}"
+echo ":: Шрифт доступен в системе как 'FiraCode Nerd Font ${SUFFIX}'"

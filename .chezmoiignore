@@ -29,3 +29,6 @@ README.md
 .wallpaper
 .zen/
 {{ end }}
+{{- if not (env "TERMUX_VERSION") }}
+.termux/
+{{- end }}
