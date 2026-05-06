@@ -1,4 +1,4 @@
-{{- if or .hasGUI (env "TERMUX_VERSION") }}
+{{- if or .hasGUI (env "TERMUX_VERSION") -}}
 #!{{ lookPath "bash" }}
 
 # Замораживает OpenType features в шрифте Fira Code Nerd Font,
