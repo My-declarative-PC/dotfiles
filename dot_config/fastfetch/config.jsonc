@@ -48,7 +48,7 @@
         },
         {
             "type": "memory",
-            "key": "│   \u001b[1D\u001b[32m╰ 󰍛 RAM"
+            "key": "│   \u001b[1D\u001b[32m╰  RAM"
         },
         {
             "type": "custom",
