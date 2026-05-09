@@ -4,13 +4,13 @@ sort_reverse=true
 linemode = "size_and_mtime"
 
 [[plugin.prepend_fetchers]]
-id = "git"
-name = "*"
+group = "git"
+url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
-id = "git"
-name = "*/"
+group = "git"
+url = "*/"
 run = "git"
 
 [plugin]
