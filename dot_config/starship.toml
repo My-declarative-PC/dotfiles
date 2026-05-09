@@ -20,7 +20,7 @@ disabled = false
 ssh_symbol = "[](bg:surface0 fg:sky)"
 ssh_only = true
 style = "bg:surface0 fg:maroon"
-format = "[on $ssh_symbol [$hostname](bg:surface0 fg:red bold) ]($style)"
+format = "[on $ssh_symbol 󰅁[$hostname](bg:surface0 fg:red bold)󰅂 ]($style)"
 disabled = false
 
 [os]
@@ -31,13 +31,13 @@ format = "[ $symbol ]($style)"
 Alpine = ""
 Android = ""
 Arch = ""
-Debian = ""
-Fedora = ""
-Linux = ""
+Debian = ""
+Fedora = ""
+Linux = "󰌽"
 Mint = ""
-openSUSE = ""
-Ubuntu = ""
-Unknown = ""
+openSUSE = ""
+Ubuntu = ""
+Unknown = "󰋖"
 
 [sudo]
 style = "bg:surface0 fg:pink bold"
@@ -57,15 +57,15 @@ truncation_length = 5
 truncation_symbol = "…/"
 truncate_to_repo = false
 read_only = "󰌾"
-home_symbol = ""
+home_symbol = "󰋜"
 
 [directory.substitutions]
-".config" = "."
+".config" = ".󰒓"
 "Documents" = "󰈙"
 "Downloads" = ""
 "wgits" = ""
 "gits" = ""
-"home/" = "/"
+"home/" = "󰋜/"
 "Music" = ""
 "Pictures" = ""
 
@@ -120,7 +120,7 @@ disabled = false
 [direnv]
 disabled = false
 style = "bg:surface0 fg:yellow"
-symbol = "."
+symbol = ".󰒓"
 allowed_msg = ""
 not_allowed_msg = ""
 denied_msg = ""

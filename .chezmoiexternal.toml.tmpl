@@ -64,16 +64,14 @@
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/qt5ct/refs/heads/main/themes/catppuccin-mocha-mauve.conf"
     refreshPeriod = "168h"
+
+[".zen/timofey.Default (release)/chrome/zen-browser"]
+    type = "git-repo"
+    url = "https://github.com/catppuccin/zen-browser.git"
+    refreshPeriod = "744h"
 # end ##############################################################################################
 
 # Fonts ############################################################################################
-[".local/share/fonts/fira-code"]
-    type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
-    exact = false
-    refreshPeriod = "744h"
-    include = ["**/*.ttf"]
-
 [".local/share/fonts/FontAwesome"]
     type = "archive"
     url = "https://use.fontawesome.com/releases/v7.0.0/fontawesome-free-7.0.0-desktop.zip"
@@ -86,6 +84,17 @@
     stripComponents = 2
     refreshPeriod = "744h"
     include = ["**/*.otf"]
+{{- end }}
+
+{{- if or .hasGUI (env "TERMUX_VERSION") }}
+[".local/share/fonts/fira-code"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
+    exact = false
+    refreshPeriod = "744h"
+    include = ["**/*.ttf"]
+{{- end }}
+{{- if .hasGUI }}
 # end ##############################################################################################
 
 # Wallpaper ########################################################################################

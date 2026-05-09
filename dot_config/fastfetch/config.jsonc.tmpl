@@ -10,7 +10,7 @@
     "display": {
         "separator": "",
         "key": {
-            "width": 14
+            "width": 15
         },
         "color": {
             "keys": "default"
@@ -28,77 +28,79 @@
                 "at": "magenta",
                 "host": "blue"
             },
-            "key": "\u001b[31m──User"
+            "key": "├─── \u001b[31m󰀄 User"
         },
         {
             "type": "custom",
-            "format": "\u001b[1m\u001b[32m ─Hardware─Information───────────────╼"
+            "format": "\u001b[1m├──\u001b[32mHardware─Information\u001b[39m───────────────╼"
         },
         {
             "type": "cpu",
-            "key": "│   \u001b[1D\u001b[32m├ CPU"
+            "key": "│   \u001b[1D\u001b[32m├ 󰻠 CPU"
         },
         {
             "type": "gpu",
-            "key": "│   \u001b[1D\u001b[32m├ GPU"
+            "key": "│   \u001b[1D\u001b[32m├ 󰍹 GPU"
         },
         {
             "type": "disk",
-            "key": "│   \u001b[1D\u001b[32m├ Disk"
+            "key": "│   \u001b[1D\u001b[32m├ 󰋊 Disk"
         },
         {
             "type": "memory",
-            "key": "│   \u001b[1D\u001b[32m╰ RAM"
+            "key": "│   \u001b[1D\u001b[32m╰  RAM"
         },
         {
             "type": "custom",
-            "format": "\u001b[1m\u001b[33m──Software─Information───────────────╼"
+            "format": "\u001b[1m├──\u001b[33mSoftware─Information\u001b[39m───────────────╼"
         },
         {
             "type": "os",
-            "key": "│   \u001b[1D\u001b[33m├ OS"
+            "key": "│   \u001b[1D\u001b[33m├ 󰌽 OS"
         },
         {
             "type": "kernel",
-            "key": "│   \u001b[1D\u001b[33m├ Kernel"
+            "key": "│   \u001b[1D\u001b[33m├  Kernel"
         },
         {
             "type": "shell",
-            "key": "│   \u001b[1D\u001b[33m├ Shell"
+            "key": "│   \u001b[1D\u001b[33m├ 󰆍 Shell"
         },
         {
             "type": "wm",
-            "key": "│   \u001b[1D\u001b[33m├ WM"
+            "key": "│   \u001b[1D\u001b[33m├ 󰖲 WM"
         },
         {
             "type": "packages",
-            "key": "│   \u001b[1D\u001b[33m╰ pkgs"
+            "key": "│   \u001b[1D\u001b[33m╰  pkgs"
         },
+        {{- if .hasGUI }}
         {
             "type": "custom",
-            "format": "\u001b[1m\u001b[36m ─Appearance─────────────────────────╼"
+            "format": "\u001b[1m├──\u001b[36mAppearance\u001b[39m─────────────────────────╼"
         },
         {
             "type": "font",
-            "key": "│   \u001b[1D\u001b[36m├ Font"
+            "key": "│   \u001b[1D\u001b[36m├ 󰛖 Font"
         },
         {
             "type": "theme",
-            "key": "│   \u001b[1D\u001b[36m├ Theme"
+            "key": "│   \u001b[1D\u001b[36m├ 󰔐 Theme"
         },
         {
             "type": "icons",
-            "key": "│   \u001b[1D\u001b[36m├ Icons"
+            "key": "│   \u001b[1D\u001b[36m├ 󰀻 Icons"
         },
         {
             "type": "cursor",
-            "key": "│   \u001b[1D\u001b[36m├ Cursor"
+            "key": "│   \u001b[1D\u001b[36m├ 󰉏 Cursor"
         },
         {
             "type": "colors",
-            "key": "│   \u001b[1D\u001b[36m╰ Colors",
+            "key": "│   \u001b[1D\u001b[36m╰ 󰏘 Colors",
             "symbol": "circle"
         },
+        {{- end }}
         {
             "type": "custom",
             "format": "╰─────────────────────────────────────╼"

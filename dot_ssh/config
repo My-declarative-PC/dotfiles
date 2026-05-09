@@ -108,11 +108,11 @@ Host demo_db
 ###################################################################################################
 
 ### WORK: FU ######################################################################################
-Host jump_fu
-    User develop01
+Host old_fu_web
     # RealHostname 10.49.150.133
     Hostname dis-sitnikov-winserver.infocom.local
     Port 2201
+    User develop01
     IdentityFile ~/.ssh/keys/fu_rsa
     PreferredAuthentications publickey
     ForwardX11 yes
@@ -122,24 +122,28 @@ Host fu_*__root
     User root
 
 Host fu_*
+    Hostname dis-sitnikov-winserver.infocom.local
     User sitnikov.t
-    ProxyJump jump_fu
     IdentityFile ~/.ssh/keys/fu
     PreferredAuthentications publickey
     ForwardX11 yes
     ForwardX11Trusted yes
 
 Host fu_web
-    Hostname 10.49.205.67
+    # RealHostname 10.49.205.67
+    Port 2202
 
 Host fu_web__root
-    Hostname 10.49.205.67
+    # RealHostname 10.49.205.67
+    Port 2202
 
 Host fu_db
-    Hostname 10.49.205.74
+    # RealHostname 10.49.205.74
+    Port 2203
 
 Host fu_db__root
-    Hostname 10.49.205.74
+    # RealHostname 10.49.205.74
+    Port 2203
 ###################################################################################################
 
 ### WORK: MPU #####################################################################################

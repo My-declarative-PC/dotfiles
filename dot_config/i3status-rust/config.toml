@@ -32,6 +32,8 @@ format = " $percentage $icon "
 format_alt = " $used/$total $icon "
 if_command = "[ \"$(df -P /home | awk 'NR==2 {print $1}')\" = \"$(df -P / | awk 'NR==2 {print $1}')\" ]"
 merge_with_next = false
+[block.icons_overrides]
+disk_drive = "󰋊"
 
 [[block]]
 block = "disk_space"
@@ -44,6 +46,8 @@ format = " $percentage $icon "
 format_alt = " $used/$total $icon "
 if_command = "! [ \"$(df -P /home | awk 'NR==2 {print $1}')\" = \"$(df -P / | awk 'NR==2 {print $1}')\" ]"
 merge_with_next = true
+[block.icons_overrides]
+disk_drive = "󰋊"
 
 [[block]]
 block = "disk_space"
@@ -66,7 +70,7 @@ interval = 5
 format = " $utilization $icon "
 merge_with_next = true
 [block.icons_overrides]
-cpu = ""
+cpu = "󰻠"
 
 [[block]]
 block = "memory"

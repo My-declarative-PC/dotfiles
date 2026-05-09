@@ -18,7 +18,6 @@ README.md
 .local/bin/greenclip
 .local/bin/ronema
 .local/share/fonts/
-.local/share/fonts/fira-code/
 .local/share/fonts/FontAwesome/
 .local/share/fonts/FontAwesomeLTS/
 .local/share/fonts/JetBrainsMono/
@@ -30,3 +29,10 @@ README.md
 .wallpaper
 .zen/
 {{ end }}
+{{- if not (or .hasGUI (env "TERMUX_VERSION")) }}
+.local/share/fonts/fira-code/
+.local/share/fonts/fira-code-custom/
+{{ end }}
+{{- if not (env "TERMUX_VERSION") }}
+.termux/
+{{- end }}
