@@ -36,9 +36,11 @@ disk: "40GiB"
 # --mount-only (см. шапку файла).
 mountTypesUnsupported: ["9p"]
 mounts:
+    # Если хотите read-only режим — поставьте writable: false
+  - location: "~/.claude"
+    writable: true
   - location: "~/gits"
     writable: true
-    # Если хотите read-only режим — поставьте writable: false
   - location: "~/wgits"
     writable: true
 
