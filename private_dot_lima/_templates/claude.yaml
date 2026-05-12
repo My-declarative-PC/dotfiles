@@ -20,11 +20,16 @@ images:
   - location: "https://cloud-images.ubuntu.com/releases/26.04/release/ubuntu-26.04-server-cloudimg-arm64.img"
     arch: "aarch64"
 
+firmware:
+  images:
+    - location: "/home/linuxbrew/.linuxbrew/share/qemu/edk2-x86_64-code.fd"
+      arch: "x86_64"
+
 # ---- Ресурсы VM -------------------------------------------------------------
 # Claude Code довольно лёгкий, но при работе с крупными репозиториями
 # (например, индексирование, билды) полезно иметь запас.
 cpus: 4
-memory: "8GiB"
+memory: "4GiB"
 disk: "40GiB"
 
 # ---- Монтирование -----------------------------------------------------------
@@ -36,7 +41,7 @@ disk: "40GiB"
 # --mount-only (см. шапку файла).
 mountTypesUnsupported: ["9p"]
 mounts:
-    # Если хотите read-only режим — поставьте writable: false
+  # Если хотите read-only режим — поставьте writable: false
   - location: "~/.claude"
     writable: true
   - location: "~/gits"
