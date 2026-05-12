@@ -10,6 +10,7 @@ README.md
 .config/picom/
 .config/rofi/
 .config/wezterm/
+.dbgate/
 .gtkrc-2.0
 .local/bin/bluetui
 .local/bin/bluetuith
