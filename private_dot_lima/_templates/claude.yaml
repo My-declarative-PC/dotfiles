@@ -11,20 +11,23 @@
 # Альтернатива с --mount-only (Lima >= 2.0), без правки yaml:
 #   limactl start --mount-only $(pwd):w --name=claude ./claude-code.yaml
 
+minimumLimaVersion: 2.0.0
+
 # ---- Базовый образ ----------------------------------------------------------
-# Ubuntu 26.04 LTS — поддерживает snap, который нужен для установки Node.js
+# Ubuntu LTS — поддерживает snap, который нужен для установки Node.js
 # по инструкции из официальной документации Lima.
-images:
-  - location: "https://cloud-images.ubuntu.com/releases/26.04/release/ubuntu-26.04-server-cloudimg-amd64.img"
-    arch: "x86_64"
-  - location: "https://cloud-images.ubuntu.com/releases/26.04/release/ubuntu-26.04-server-cloudimg-arm64.img"
-    arch: "aarch64"
+base: template:default
+
+firmware:
+  images:
+    - location: "/home/linuxbrew/.linuxbrew/share/qemu/edk2-x86_64-code.fd"
+      arch: "x86_64"
 
 # ---- Ресурсы VM -------------------------------------------------------------
 # Claude Code довольно лёгкий, но при работе с крупными репозиториями
 # (например, индексирование, билды) полезно иметь запас.
 cpus: 4
-memory: "8GiB"
+memory: "4GiB"
 disk: "40GiB"
 
 # ---- Монтирование -----------------------------------------------------------
@@ -36,9 +39,18 @@ disk: "40GiB"
 # --mount-only (см. шапку файла).
 mountTypesUnsupported: ["9p"]
 mounts:
+  # Если хотите read-only режим — поставьте writable: false
+  - location: "~/.config/git"
+    mountPoint: "/home/{{.User}}.guest/.config/git"
+    writable: false
+  - location: "~/.ssh/keys/"
+    mountPoint: "/home/{{.User}}.guest/.ssh/keys"
+    writable: false
+  - location: "~/.claude"
+    mountPoint: "/home/{{.User}}.guest/.claude"
+    writable: true
   - location: "~/gits"
     writable: true
-    # Если хотите read-only режим — поставьте writable: false
   - location: "~/wgits"
     writable: true
 
@@ -47,10 +59,13 @@ mounts:
 # и в npm registry.
 networks: []
 
-# ---- Provision: установка Claude Code --------------------------------------
-# Согласно официальной документации Lima, Claude Code ставится через snap+npm.
+# ---- Provision --------------------------------------------------------------
 provision:
-  # 1) Node.js через snap (как в документации Lima)
+  # 1) Node.js через snap (как в документации Lima).
+  #    Snap-версия Node ставится в /snap/node/..., а её /usr/local/lib/node_modules
+  #    принадлежит root, поэтому глобальная установка npm-пакетов от обычного
+  #    пользователя падает с EACCES. Чтобы этого избежать, ниже мы настраиваем
+  #    npm prefix в домашней папке пользователя.
   - mode: system
     script: |
       #!/bin/bash
@@ -59,19 +74,10 @@ provision:
         snap install node --classic
       fi
 
-  # 2) Claude Code из npm registry Anthropic
-  - mode: system
-    script: |
-      #!/bin/bash
-      set -eux -o pipefail
-      if ! command -v claude >/dev/null 2>&1; then
-        npm install -g @anthropic-ai/claude-code
-      fi
-
-  # 3) Полезные утилиты для работы Claude Code:
-  #    git — для работы с репозиториями;
-  #    rsync — нужен для режима `limactl shell --sync` (Lima >= 2.1);
-  #    ripgrep — Claude Code использует его для быстрого поиска по коду.
+  # 2) Системные утилиты, которые нужны Claude Code и smoke-сценариям:
+  #    git — работа с репозиториями;
+  #    rsync — режим `limactl shell --sync` (Lima >= 2.1);
+  #    ripgrep — быстрый поиск по коду, используется Claude Code.
   - mode: system
     script: |
       #!/bin/bash
@@ -79,20 +85,67 @@ provision:
       apt-get update
       apt-get install -y --no-install-recommends git rsync ripgrep ca-certificates curl
 
-# ---- Готовность -------------------------------------------------------------
-# Lima считает VM готовой, когда `claude` доступен в PATH.
-probes:
-  - description: "claude-code CLI installed"
+  # 3) Настройка npm prefix в домашней папке пользователя.
+  #    Выполняется ОТ ПОЛЬЗОВАТЕЛЯ (mode: user), потому что мы хотим править
+  #    именно его ~/.npmrc и его dotfiles, а не root'овы.
+  - mode: user
     script: |
       #!/bin/bash
       set -eux -o pipefail
-      if ! timeout 60s bash -c "until command -v claude >/dev/null 2>&1; do sleep 3; done"; then
+
+      # Куда складывать глобальные npm-пакеты пользователя
+      NPM_GLOBAL="$HOME/.npm-global"
+      mkdir -p "$NPM_GLOBAL"
+
+      # Прописываем prefix в ~/.npmrc, если его там ещё нет
+      npm config set prefix "$NPM_GLOBAL"
+
+      # PATH нужен и в интерактивной (.bashrc), и в неинтерактивной
+      # (.profile) сессиях, потому что `limactl shell <vm> <cmd>` стартует
+      # login-шелл и читает .profile, а интерактивный shell — .bashrc.
+      LINE='export PATH="$HOME/.npm-global/bin:$PATH"'
+      for rc in "$HOME/.profile" "$HOME/.bashrc"; do
+        touch "$rc"
+        grep -qxF "$LINE" "$rc" || echo "$LINE" >> "$rc"
+      done
+
+  # 4) Установка Claude Code БЕЗ sudo.
+  #    Благодаря шагу (3) `npm i -g` пишет в ~/.npm-global, а не в /usr/local.
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      export PATH="$HOME/.npm-global/bin:$PATH"
+
+      if ! command -v claude >/dev/null 2>&1; then
+        npm install -g @anthropic-ai/claude-code
+      fi
+
+      # Сообщим, где лежит бинарник — пригодится для отладки
+      command -v claude
+
+# ---- Готовность -------------------------------------------------------------
+# Проба запускается от имени пользователя VM (Lima по умолчанию).
+# Важно: явно подгружаем PATH, потому что probe не наследует .profile.
+probes:
+  - description: "claude-code CLI installed (user-local npm prefix)"
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      export PATH="$HOME/.npm-global/bin:$PATH"
+      if ! timeout 120s bash -c '
+        export PATH="$HOME/.npm-global/bin:$PATH"
+        until command -v claude >/dev/null 2>&1; do sleep 3; done
+      '; then
         echo >&2 "claude is not installed yet"
         exit 1
       fi
     hint: |
       Claude Code не установился. Проверьте логи:
         limactl shell claude sudo journalctl -u cloud-final
+        limactl shell claude cat /var/log/cloud-init-output.log
+      И убедитесь, что ~/.npm-global/bin в PATH:
+        limactl shell claude bash -lc 'echo $PATH; which claude'
 
 # ---- Подсказка после старта -------------------------------------------------
 message: |
@@ -105,6 +158,9 @@ message: |
 
       limactl shell {{.Name}}
       echo 'export ANTHROPIC_API_KEY=sk-ant-...' >> ~/.bash_profile
+
+  Глобальные npm-пакеты устанавливаются БЕЗ sudo в ~/.npm-global
+  (prefix настроен в ~/.npmrc, PATH прописан в ~/.profile и ~/.bashrc).
 
   Проектный каталог хоста ({{.Dir}}) доступен внутри VM по тому же пути.
 
