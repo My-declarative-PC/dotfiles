@@ -12,6 +12,7 @@ README.md
 .config/wezterm/
 .dbgate/
 .gtkrc-2.0
+.icons/
 .local/bin/bluetui
 .local/bin/bluetuith
 .local/bin/caligula
@@ -25,8 +26,12 @@ README.md
 .local/share/icons/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors/
 .local/share/themes/
 .local/share/themes/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-standard+default/
+.themes/
 .var/app/com.obsproject.Studio/config/obs-studio/
 .wallpaper
+.Xauthority
+.xprofile
+.Xresources
 .zen/
 {{ end }}
 {{- if not (or .hasGUI (env "TERMUX_VERSION")) }}
