@@ -1,0 +1,166 @@
+# lima.yaml — VM для безопасного запуска Codex CLI
+#
+# Идея: Codex CLI работает внутри VM и не имеет прямого доступа
+# к файлам хоста, кроме явно смонтированных проектных каталогов.
+#
+# Запуск:
+#   limactl start --name=codex ./codex.yaml
+#   limactl shell codex codex
+#
+# Альтернатива с --mount-only (Lima >= 2.0), без правки yaml:
+#   limactl start --mount-only $(pwd):w --name=codex ./codex.yaml
+
+minimumLimaVersion: 2.0.0
+
+# ---- Базовый образ ----------------------------------------------------------
+# Ubuntu LTS — поддерживает snap, который нужен для установки Node.js
+# по инструкции из официальной документации Lima.
+base: template:default
+
+firmware:
+  images:
+    - location: "/home/linuxbrew/.linuxbrew/share/qemu/edk2-x86_64-code.fd"
+      arch: "x86_64"
+
+# ---- Ресурсы VM -------------------------------------------------------------
+# Codex CLI требует минимум 4 GiB RAM; 6 GiB — запас для крупных репозиториев
+# и тяжёлых задач (компиляция, индексирование).
+cpus: 4
+memory: "6GiB"
+disk: "40GiB"
+
+# ---- Монтирование -----------------------------------------------------------
+# КЛЮЧЕВОЙ МОМЕНТ БЕЗОПАСНОСТИ.
+# В VM монтируется только то, что реально нужно агенту.
+# Проектные каталоги хоста доступны на запись; конфиги — только для чтения.
+#
+# Замените location на путь к вашему проекту, либо запускайте с флагом
+# --mount-only (см. шапку файла).
+mountTypesUnsupported: ["9p"]
+mounts:
+  - location: "~/.config/git"
+    mountPoint: "/home/{{.User}}.guest/.config/git"
+    writable: false
+  - location: "~/.ssh/keys/"
+    mountPoint: "/home/{{.User}}.guest/.ssh/keys"
+    writable: false
+  # Codex хранит конфиг и сессии в $CODEX_HOME (по умолчанию ~/.codex).
+  # Монтируем на запись, чтобы настройки и auth-сессии сохранялись на хосте.
+  - location: "~/.codex"
+    mountPoint: "/home/{{.User}}.guest/.codex"
+    writable: true
+  - location: "~/gits"
+    writable: true
+  - location: "~/wgits"
+    writable: true
+
+# ---- Сеть -------------------------------------------------------------------
+# Дефолтная user-mode сеть достаточна: Codex CLI обращается к api.openai.com
+# и в npm registry.
+networks: []
+
+# ---- Provision --------------------------------------------------------------
+provision:
+  # 1) Node.js через snap (как в документации Lima).
+  #    Snap-версия Node ставится в /snap/node/..., а её /usr/local/lib/node_modules
+  #    принадлежит root, поэтому глобальная установка npm-пакетов от обычного
+  #    пользователя падает с EACCES. Чтобы этого избежать, ниже мы настраиваем
+  #    npm prefix в домашней папке пользователя.
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! command -v node >/dev/null 2>&1; then
+        snap install node --classic
+      fi
+
+  # 2) Системные утилиты:
+  #    git       — работа с репозиториями (Codex рекомендует >= 2.23);
+  #    rsync     — режим `limactl shell --sync` (Lima >= 2.1);
+  #    ripgrep   — быстрый поиск по коду, используется Codex агентом.
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      apt-get update
+      apt-get install -y --no-install-recommends git rsync ripgrep ca-certificates curl
+
+  # 3) Настройка npm prefix в домашней папке пользователя.
+  #    Выполняется ОТ ПОЛЬЗОВАТЕЛЯ (mode: user), потому что мы хотим править
+  #    именно его ~/.npmrc, а не root'овы.
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+
+      NPM_GLOBAL="$HOME/.npm-global"
+      mkdir -p "$NPM_GLOBAL"
+
+      npm config set prefix "$NPM_GLOBAL"
+
+      # PATH нужен и в интерактивной (.bashrc), и в неинтерактивной
+      # (.profile) сессиях.
+      LINE='export PATH="$HOME/.npm-global/bin:$PATH"'
+      for rc in "$HOME/.profile" "$HOME/.bashrc"; do
+        touch "$rc"
+        grep -qxF "$LINE" "$rc" || echo "$LINE" >> "$rc"
+      done
+
+  # 4) Установка Codex CLI БЕЗ sudo.
+  #    Благодаря шагу (3) `npm i -g` пишет в ~/.npm-global, а не в /usr/local.
+  #    @openai/codex — тонкая обёртка над нативным бинарником; при первом
+  #    запуске он скачивает платформенный бинарник в ~/.codex/.bin/.
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      export PATH="$HOME/.npm-global/bin:$PATH"
+
+      if ! command -v codex >/dev/null 2>&1; then
+        npm install -g @openai/codex
+      fi
+
+      command -v codex
+
+# ---- Готовность -------------------------------------------------------------
+probes:
+  - description: "codex CLI installed (user-local npm prefix)"
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      export PATH="$HOME/.npm-global/bin:$PATH"
+      if ! timeout 120s bash -c '
+        export PATH="$HOME/.npm-global/bin:$PATH"
+        until command -v codex >/dev/null 2>&1; do sleep 3; done
+      '; then
+        echo >&2 "codex is not installed yet"
+        exit 1
+      fi
+    hint: |
+      Codex CLI не установился. Проверьте логи:
+        limactl shell codex sudo journalctl -u cloud-final
+        limactl shell codex cat /var/log/cloud-init-output.log
+      И убедитесь, что ~/.npm-global/bin в PATH:
+        limactl shell codex bash -lc 'echo $PATH; which codex'
+
+# ---- Подсказка после старта -------------------------------------------------
+message: |
+  ✅ VM готова. Запуск Codex CLI:
+
+      limactl shell {{.Name}} codex
+
+  Аутентификация — через интерактивную сессию (первый запуск выполнит
+  sign-in flow) либо переменной окружения:
+
+      limactl shell {{.Name}}
+      echo 'export OPENAI_API_KEY=sk-...' >> ~/.bash_profile
+
+  Конфиг и сессии Codex сохраняются в ~/.codex/ (примонтирован с хоста,
+  поэтому настройки переживают пересоздание VM).
+
+  Глобальные npm-пакеты устанавливаются БЕЗ sudo в ~/.npm-global
+  (prefix настроен в ~/.npmrc, PATH прописан в ~/.profile и ~/.bashrc).
+
+  Проектный каталог хоста ({{.Dir}}) доступен внутри VM по тому же пути.
+
+  Документация: https://github.com/openai/codex/tree/main/docs
