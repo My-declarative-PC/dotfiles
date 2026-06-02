@@ -16,16 +16,19 @@ gui:
   scrollOffBehavior: margin
   tabWidth: 4
   mouseEvents: true
+  skipAmendWarning: false
   skipDiscardChangeWarning: false
   skipStashWarning: false
   skipNoStagedFilesWarning: false
   skipRewordInEditorWarning: false
+  skipSwitchWorktreeOnCheckoutWarning: false
   sidePanelWidth: 0.25
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 2
   mainPanelSplitMode: flexible
   enlargedSideViewLocation: top
   wrapLinesInStagingView: true
+  useHunkModeInStagingView: true
   language: auto
   timeFormat: 02 Jan 06
   shortTimeFormat: 3:04PM
@@ -53,6 +56,9 @@ gui:
     show: true
   showListFooter: true
   showFileTree: true
+  showRootItemInFileTree: true
+  fileTreeSortOrder: mixed
+  fileTreeSortCaseSensitive: true
   showNumstatInFilesView: false
   showRandomTip: true
   showCommandLog: true
@@ -73,6 +79,8 @@ gui:
   border: single
   animateExplosion: false
   portraitMode: auto
+  portraitModeAutoMaxWidth: 84
+  portraitModeAutoMinHeight: 46
   filterMode: substring
   spinner:
     frames:
@@ -111,9 +119,10 @@ git:
   autoStageResolvedConflicts: true
   branchLogCmd: git log --graph --color=always --pretty="%Cgreen%aN %C(yellow)Hash %h %C(blue)Date %ad (%C(cyan)%cr%Cblue)%n%C(dim italic black reverse) {{ "{{branchName}}" }} %Creset%n%C(magenta)Message %Creset%s%n%b" --date=human --
   allBranchesLogCmds:
-    [
-      git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium,
-    ]
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
+  ignoreWhitespaceInDiffView: false
+  diffContextSize: 3
+  renameSimilarityThreshold: 50
   overrideGpg: false
   disableForcePushing: false
   commitPrefix: []
@@ -124,6 +133,8 @@ git:
     order: topo-order
     showGraph: always
     showWholeGraph: false
+  localBranchSortOrder: date
+  remoteBranchSortOrder: date
   truncateCopiedCommitHashesTo: 12
 update:
   method: prompt
@@ -141,7 +152,8 @@ promptToReturnFromSubprocess: true
 keybinding:
   universal:
     quit: q
-    quit-alt1: <c-c>
+    quit-alt1: <ctrl+c>
+    suspendApp: <disabled>
     return: <esc>
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
@@ -158,8 +170,8 @@ keybinding:
     gotoTop-alt: <home>
     gotoBottom-alt: <end>
     toggleRangeSelect: v
-    rangeSelectDown: <s-down>
-    rangeSelectUp: <s-up>
+    rangeSelectDown: <shift+down>
+    rangeSelectUp: <shift+up>
     prevBlock: <left>
     nextBlock: <right>
     prevBlock-alt: h
@@ -176,12 +188,18 @@ keybinding:
     nextMatch: "n"
     prevMatch: "N"
     startSearch: /
-    optionMenu: <disabled>
-    optionMenu-alt1: "?"
+    moveWordLeft: <ctrl+left>
+    moveWordRight: <ctrl+right>
+    backspaceWord: <ctrl+backspace>
+    forwardDeleteWord: <ctrl+delete>
+    optionMenu: "?"
     select: <space>
     goInto: <enter>
     confirm: <enter>
-    confirmInEditor: <a-enter>
+    confirmMenu: <enter>
+    confirmSuggestion: <enter>
+    confirmInEditor: <alt-enter>
+    confirmInEditor-alt: <ctrl+s>
     remove: d
     new: "n"
     edit: e
@@ -190,43 +208,45 @@ keybinding:
     scrollDownMain: <pgdown>
     scrollUpMain-alt1: K
     scrollDownMain-alt1: J
-    scrollUpMain-alt2: <c-u>
-    scrollDownMain-alt2: <c-d>
+    scrollUpMain-alt2: <ctrl+u>
+    scrollDownMain-alt2: <ctrl+d>
     executeShellCommand: ":"
     createRebaseOptionsMenu: m
     pushFiles: P
     pullFiles: p
     refresh: R
-    createPatchOptionsMenu: <c-p>
+    createPatchOptionsMenu: <ctrl+p>
     nextTab: "]"
     prevTab: "["
     nextScreenMode: +
     prevScreenMode: _
+    cyclePagers: "|"
     undo: z
-    redo: <c-z>
-    filteringMenu: <c-s>
+    redo: <ctrl+z>
+    filteringMenu: <ctrl+s>
     diffingMenu: W
-    diffingMenu-alt: <c-e>
-    copyToClipboard: <c-o>
-    openRecentRepos: <c-r>
+    diffingMenu-alt: <ctrl+e>
+    copyToClipboard: <ctrl+o>
+    openRecentRepos: <ctrl+r>
     submitEditorText: <enter>
     extrasMenu: "@"
-    toggleWhitespaceInDiffView: <c-w>
+    toggleWhitespaceInDiffView: <ctrl+w>
     increaseContextInDiffView: "}"
     decreaseContextInDiffView: "{"
     increaseRenameSimilarityThreshold: )
     decreaseRenameSimilarityThreshold: (
-    openDiffTool: <c-t>
+    openDiffTool: <ctrl+t>
   status:
     checkForUpdate: u
     recentRepos: <enter>
     allBranchesLogGraph: a
+    allBranchesLogGraphReverse: A
   files:
     commitChanges: c
     commitChangesWithoutHook: w
     amendLastCommit: A
     commitChangesWithEditor: C
-    findBaseCommitForFixup: <c-f>
+    findBaseCommitForFixup: <ctrl+f>
     confirmDiscard: x
     ignoreFile: i
     refreshFiles: r
@@ -237,16 +257,18 @@ keybinding:
     fetch: f
     toggleTreeView: "`"
     openMergeOptions: M
-    openStatusFilter: <c-b>
+    openStatusFilter: <ctrl+b>
     copyFileInfoToClipboard: "y"
     collapseAll: "-"
     expandAll: =
   branches:
     createPullRequest: o
     viewPullRequestOptions: O
-    copyPullRequestURL: <c-y>
+    openPullRequestInBrowser: G
+    copyPullRequestURL: <ctrl+y>
     checkoutBranchByName: c
     forceCheckoutBranch: F
+    checkoutPreviousBranch: "-"
     rebaseBranch: r
     renameBranch: R
     mergeIntoCurrentBranch: M
@@ -257,6 +279,7 @@ keybinding:
     pushTag: P
     setUpstream: u
     fetchRemote: f
+    addForkRemote: F
     sortOrder: s
   worktrees:
     viewWorktreeOptions: w
@@ -266,10 +289,11 @@ keybinding:
     renameCommitWithEditor: R
     viewResetOptions: g
     markCommitAsFixup: f
+    setFixupMessage: c
     createFixupCommit: F
     squashAboveCommits: S
-    moveDownCommit: <c-j>
-    moveUpCommit: <c-k>
+    moveDownCommit: [<ctrl+j>, <alt-down>]
+    moveUpCommit: [<ctrl+k>, <alt-up>]
     amendToCommit: A
     resetCommitAuthor: a
     pickCommit: p
@@ -279,10 +303,11 @@ keybinding:
     markCommitAsBaseForRebase: B
     tagCommit: T
     checkoutCommit: <space>
-    resetCherryPick: <c-R>
+    resetCherryPick: <ctrl+r>
     copyCommitAttributeToClipboard: "y"
-    openLogMenu: <c-l>
+    openLogMenu: <ctrl+l>
     openInBrowser: o
+    openPullRequestInBrowser: G
     viewBisectOptions: b
     startInteractiveRebase: i
     selectCommitsOfCurrentBranch: "*"
@@ -296,6 +321,8 @@ keybinding:
   commitFiles:
     checkoutCommitFile: c
   main:
+    prevHunk: [<left>, h]
+    nextHunk: [<right>, l]
     toggleSelectHunk: a
     pickBothHunks: b
     editSelectHunk: E
@@ -304,4 +331,4 @@ keybinding:
     update: u
     bulkMenu: b
   commitMessage:
-    commitMenu: <c-o>
+    commitMenu: <ctrl+o>
