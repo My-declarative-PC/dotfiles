@@ -1,0 +1,65 @@
+# lima.yaml — базовая VM для AI-агентов с Linuxbrew
+#
+# Этот шаблон наследуется от встроенного Lima template:linuxbrew
+# (он же template:homebrew-linux) и добавляет общий user-space toolchain.
+
+minimumLimaVersion: 2.0.0
+
+# Встроенный шаблон Lima: Homebrew on Linux (Ubuntu).
+base: template:linuxbrew
+
+# ---- Provision --------------------------------------------------------------
+provision:
+  # Базовые системные утилиты для работы агентов и Lima shell/sync.
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      apt-get update
+      apt-get install -y --no-install-recommends git rsync ripgrep ca-certificates curl build-essential
+
+  # Linuxbrew, Node.js и npm prefix настраиваются в user-space.
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+
+      BREW=/home/linuxbrew/.linuxbrew/bin/brew
+      if [ ! -x "$BREW" ]; then
+        echo >&2 "Linuxbrew is not installed by the base template"
+        exit 1
+      fi
+
+      eval "$("$BREW" shellenv)"
+
+      BREW_LINE='eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+      NPM_LINE='export PATH="$HOME/.npm-global/bin:$PATH"'
+      for rc in "$HOME/.profile" "$HOME/.bashrc"; do
+        touch "$rc"
+        grep -qxF "$BREW_LINE" "$rc" || echo "$BREW_LINE" >> "$rc"
+        grep -qxF "$NPM_LINE" "$rc" || echo "$NPM_LINE" >> "$rc"
+      done
+
+      if ! brew list --formula node >/dev/null 2>&1; then
+        brew install node
+      fi
+
+      NPM_GLOBAL="$HOME/.npm-global"
+      mkdir -p "$NPM_GLOBAL"
+      npm config set prefix "$NPM_GLOBAL"
+
+# ---- Готовность -------------------------------------------------------------
+probes:
+  - description: "Linuxbrew, Node.js, npm, and common tools installed"
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      export PATH="$HOME/.npm-global/bin:$PATH"
+
+      command -v brew
+      command -v node
+      command -v npm
+      command -v git
+      command -v rsync
+      command -v rg

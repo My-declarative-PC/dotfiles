@@ -14,9 +14,8 @@
 minimumLimaVersion: 2.0.0
 
 # ---- Базовый образ ----------------------------------------------------------
-# Ubuntu LTS — поддерживает snap, который нужен для установки Node.js
-# по инструкции из официальной документации Lima.
-base: template:default
+# Общая база для AI-агентов: Ubuntu + Linuxbrew + Node.js/npm + базовые утилиты.
+base: agent-brew.yaml
 
 firmware:
   images:
@@ -61,60 +60,13 @@ networks: []
 
 # ---- Provision --------------------------------------------------------------
 provision:
-  # 1) Node.js через snap (как в документации Lima).
-  #    Snap-версия Node ставится в /snap/node/..., а её /usr/local/lib/node_modules
-  #    принадлежит root, поэтому глобальная установка npm-пакетов от обычного
-  #    пользователя падает с EACCES. Чтобы этого избежать, ниже мы настраиваем
-  #    npm prefix в домашней папке пользователя.
-  - mode: system
-    script: |
-      #!/bin/bash
-      set -eux -o pipefail
-      if ! command -v node >/dev/null 2>&1; then
-        snap install node --classic
-      fi
-
-  # 2) Системные утилиты, которые нужны Claude Code и smoke-сценариям:
-  #    git — работа с репозиториями;
-  #    rsync — режим `limactl shell --sync` (Lima >= 2.1);
-  #    ripgrep — быстрый поиск по коду, используется Claude Code.
-  - mode: system
-    script: |
-      #!/bin/bash
-      set -eux -o pipefail
-      apt-get update
-      apt-get install -y --no-install-recommends git rsync ripgrep ca-certificates curl
-
-  # 3) Настройка npm prefix в домашней папке пользователя.
-  #    Выполняется ОТ ПОЛЬЗОВАТЕЛЯ (mode: user), потому что мы хотим править
-  #    именно его ~/.npmrc и его dotfiles, а не root'овы.
+  # Установка Claude Code БЕЗ sudo.
+  # npm prefix и PATH настроены в базовом шаблоне agent-brew.yaml.
   - mode: user
     script: |
       #!/bin/bash
       set -eux -o pipefail
-
-      # Куда складывать глобальные npm-пакеты пользователя
-      NPM_GLOBAL="$HOME/.npm-global"
-      mkdir -p "$NPM_GLOBAL"
-
-      # Прописываем prefix в ~/.npmrc, если его там ещё нет
-      npm config set prefix "$NPM_GLOBAL"
-
-      # PATH нужен и в интерактивной (.bashrc), и в неинтерактивной
-      # (.profile) сессиях, потому что `limactl shell <vm> <cmd>` стартует
-      # login-шелл и читает .profile, а интерактивный shell — .bashrc.
-      LINE='export PATH="$HOME/.npm-global/bin:$PATH"'
-      for rc in "$HOME/.profile" "$HOME/.bashrc"; do
-        touch "$rc"
-        grep -qxF "$LINE" "$rc" || echo "$LINE" >> "$rc"
-      done
-
-  # 4) Установка Claude Code БЕЗ sudo.
-  #    Благодаря шагу (3) `npm i -g` пишет в ~/.npm-global, а не в /usr/local.
-  - mode: user
-    script: |
-      #!/bin/bash
-      set -eux -o pipefail
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       export PATH="$HOME/.npm-global/bin:$PATH"
 
       if ! command -v claude >/dev/null 2>&1; then
@@ -132,6 +84,7 @@ probes:
     script: |
       #!/bin/bash
       set -eux -o pipefail
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       export PATH="$HOME/.npm-global/bin:$PATH"
       if ! timeout 120s bash -c '
         export PATH="$HOME/.npm-global/bin:$PATH"
@@ -159,8 +112,11 @@ message: |
       limactl shell {{.Name}}
       echo 'export ANTHROPIC_API_KEY=sk-ant-...' >> ~/.bash_profile
 
-  Глобальные npm-пакеты устанавливаются БЕЗ sudo в ~/.npm-global
-  (prefix настроен в ~/.npmrc, PATH прописан в ~/.profile и ~/.bashrc).
+  Linuxbrew доступен внутри VM:
+
+      brew install jq
+
+  Глобальные npm-пакеты устанавливаются БЕЗ sudo в ~/.npm-global.
 
   Проектный каталог хоста ({{.Dir}}) доступен внутри VM по тому же пути.
 
