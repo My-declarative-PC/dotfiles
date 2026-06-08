@@ -55,9 +55,32 @@ mounts:
     writable: true
 
 # ---- Сеть -------------------------------------------------------------------
-# Дефолтная user-mode сеть достаточна: Codex CLI обращается к api.openai.com
-# и в npm registry.
+# Дефолтная user-mode сеть достаточна. Для устойчивой работы через разные VPN
+# Codex ходит не напрямую, а через HTTP proxy на хосте.
+#
+# Важно:
+#   - proxy должен слушать на хосте не только 127.0.0.1, а адрес, доступный
+#     из Lima guest. Обычно подходит bind/listen на 0.0.0.0 или 192.168.5.2.
+#   - из guest loopback хоста доступен как host.lima.internal.
+#   - для HTTPS указывается URL HTTP-proxy: CONNECT оставляет TLS до OpenAI.
+#   - SOCKS5 у Codex CLI на практике менее надёжен; если сейчас есть только
+#     SOCKS5, лучше поднять рядом HTTP frontend на том же VPN/Amnezia выходе.
 networks: []
+
+hostResolver:
+  enabled: true
+
+# Не даём Lima переопределять эти значения из окружения `limactl start`.
+# Иначе при смене VPN можно случайно протащить в VM нерабочий proxy.
+propagateProxyEnv: false
+
+env:
+  http_proxy: "http://host.lima.internal:7890"
+  https_proxy: "http://host.lima.internal:7890"
+  HTTP_PROXY: "http://host.lima.internal:7890"
+  HTTPS_PROXY: "http://host.lima.internal:7890"
+  no_proxy: "localhost,127.0.0.1,::1,host.lima.internal,192.168.5.0/24,.local,.internal"
+  NO_PROXY: "localhost,127.0.0.1,::1,host.lima.internal,192.168.5.0/24,.local,.internal"
 
 # ---- Provision --------------------------------------------------------------
 provision:
@@ -105,6 +128,49 @@ provision:
         touch "$rc"
         grep -qxF "$LINE" "$rc" || echo "$LINE" >> "$rc"
       done
+
+      # Proxy для интерактивных и `limactl shell <vm> <cmd>` запусков.
+      # Дублируем lowercase/uppercase: разные клиенты проверяют разные имена.
+      PROXY_URL="http://host.lima.internal:7890"
+      NO_PROXY_VALUE="localhost,127.0.0.1,::1,host.lima.internal,192.168.5.0/24,.local,.internal"
+      PROXY_BLOCK=$(cat <<EOF
+      # BEGIN chezmoi codex proxy
+      export http_proxy="$PROXY_URL"
+      export https_proxy="$PROXY_URL"
+      export HTTP_PROXY="$PROXY_URL"
+      export HTTPS_PROXY="$PROXY_URL"
+      export no_proxy="$NO_PROXY_VALUE"
+      export NO_PROXY="$NO_PROXY_VALUE"
+      # END chezmoi codex proxy
+      EOF
+      )
+      for rc in "$HOME/.profile" "$HOME/.bashrc"; do
+        sed -i '/^# BEGIN chezmoi codex proxy$/,/^# END chezmoi codex proxy$/d' "$rc"
+        printf '\n%s\n' "$PROXY_BLOCK" >> "$rc"
+      done
+
+      # npm/git/curl используют стандартные proxy-переменные, но явные
+      # настройки помогают при неинтерактивном provision и диагностике.
+      npm config set proxy "$PROXY_URL"
+      npm config set https-proxy "$PROXY_URL"
+      git config --global http.proxy "$PROXY_URL"
+      git config --global https.proxy "$PROXY_URL"
+
+      # Codex CLI/desktop builds в новых версиях также читают ~/.codex/.env.
+      mkdir -p "$HOME/.codex"
+      CODEX_ENV="$HOME/.codex/.env"
+      touch "$CODEX_ENV"
+      sed -i '/^# BEGIN chezmoi codex proxy$/,/^# END chezmoi codex proxy$/d' "$CODEX_ENV"
+      cat >> "$CODEX_ENV" <<EOF
+      # BEGIN chezmoi codex proxy
+      http_proxy="$PROXY_URL"
+      https_proxy="$PROXY_URL"
+      HTTP_PROXY="$PROXY_URL"
+      HTTPS_PROXY="$PROXY_URL"
+      no_proxy="$NO_PROXY_VALUE"
+      NO_PROXY="$NO_PROXY_VALUE"
+      # END chezmoi codex proxy
+      EOF
 
   # 4) Установка Codex CLI БЕЗ sudo.
   #    Благодаря шагу (3) `npm i -g` пишет в ~/.npm-global, а не в /usr/local.
@@ -157,6 +223,16 @@ message: |
 
   Конфиг и сессии Codex сохраняются в ~/.codex/ (примонтирован с хоста,
   поэтому настройки переживают пересоздание VM).
+
+  Сеть Codex настроена через HTTP proxy на хосте:
+
+      http://host.lima.internal:7890
+
+  На хосте proxy должен слушать адрес, доступный из VM (например 0.0.0.0:7890
+  или 192.168.5.2:7890). Если у вас только SOCKS5, поднимите HTTP frontend
+  на этот порт и направьте его в SOCKS5/VPN. Проверка из VM:
+
+      limactl shell {{.Name}} curl -I https://api.openai.com/
 
   Глобальные npm-пакеты устанавливаются БЕЗ sudo в ~/.npm-global
   (prefix настроен в ~/.npmrc, PATH прописан в ~/.profile и ~/.bashrc).
