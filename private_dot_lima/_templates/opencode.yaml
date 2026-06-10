@@ -1,0 +1,124 @@
+# lima.yaml — VM для безопасного запуска OpenCode
+#
+# Идея: OpenCode работает внутри VM и не имеет прямого доступа
+# к файлам хоста, кроме явно смонтированных проектных каталогов.
+#
+# Запуск:
+#   limactl start --name=opencode ./opencode.yaml
+#   limactl shell opencode opencode
+#
+# Альтернатива с --mount-only (Lima >= 2.0), без правки yaml:
+#   limactl start --mount-only $(pwd):w --name=opencode ./opencode.yaml
+
+minimumLimaVersion: 2.0.0
+
+# ---- Базовый образ ----------------------------------------------------------
+# Общая база для AI-агентов: Ubuntu + Linuxbrew + Node.js/npm + базовые утилиты.
+base: agent-brew.yaml
+
+firmware:
+  images:
+    - location: "/home/linuxbrew/.linuxbrew/share/qemu/edk2-x86_64-code.fd"
+      arch: "x86_64"
+
+# ---- Ресурсы VM -------------------------------------------------------------
+# OpenCode комфортно работает с 4 GiB RAM; 6 GiB — запас для крупных репозиториев
+# и тяжёлых задач (компиляция, индексирование).
+cpus: 4
+memory: "6GiB"
+disk: "40GiB"
+
+# ---- Монтирование -----------------------------------------------------------
+# КЛЮЧЕВОЙ МОМЕНТ БЕЗОПАСНОСТИ.
+# В VM монтируется только то, что реально нужно агенту.
+# Проектные каталоги хоста доступны на запись; конфиги — только для чтения.
+#
+# Замените location на путь к вашему проекту, либо запускайте с флагом
+# --mount-only (см. шапку файла).
+mountTypesUnsupported: ["9p"]
+mounts:
+  - location: "~/.config/git"
+    mountPoint: "/home/{{.User}}.guest/.config/git"
+    writable: false
+  - location: "~/.ssh/keys/"
+    mountPoint: "/home/{{.User}}.guest/.ssh/keys"
+    writable: false
+  # OpenCode хранит глобальный конфиг в ~/.config/opencode.
+  # Монтируем на запись, чтобы настройки и auth-сессии сохранялись на хосте.
+  - location: "~/.config/opencode"
+    mountPoint: "/home/{{.User}}.guest/.config/opencode"
+    writable: true
+  - location: "~/gits"
+    writable: true
+  - location: "~/wgits"
+    writable: true
+
+# ---- Сеть -------------------------------------------------------------------
+# Дефолтная user-mode сеть достаточна: OpenCode обращается к LLM-провайдерам,
+# opencode.ai и в npm registry.
+networks: []
+
+# ---- Provision --------------------------------------------------------------
+provision:
+  # Установка OpenCode БЕЗ sudo.
+  # npm prefix и PATH настроены в базовом шаблоне agent-brew.yaml.
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      export PATH="$HOME/.npm-global/bin:$PATH"
+
+      if ! command -v opencode >/dev/null 2>&1; then
+        npm install -g opencode-ai
+      fi
+
+      command -v opencode
+
+# ---- Готовность -------------------------------------------------------------
+probes:
+  - description: "opencode CLI installed (user-local npm prefix)"
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      export PATH="$HOME/.npm-global/bin:$PATH"
+      if ! timeout 120s bash -c '
+        export PATH="$HOME/.npm-global/bin:$PATH"
+        until command -v opencode >/dev/null 2>&1; do sleep 3; done
+      '; then
+        echo >&2 "opencode is not installed yet"
+        exit 1
+      fi
+    hint: |
+      OpenCode не установился. Проверьте логи:
+        limactl shell opencode sudo journalctl -u cloud-final
+        limactl shell opencode cat /var/log/cloud-init-output.log
+      И убедитесь, что ~/.npm-global/bin в PATH:
+        limactl shell opencode bash -lc 'echo $PATH; which opencode'
+
+# ---- Подсказка после старта -------------------------------------------------
+message: |
+  ✅ VM готова. Запуск OpenCode:
+
+      limactl shell {{.Name}} opencode
+
+  Аутентификация — через интерактивную сессию и команду /connect
+  либо переменными окружения нужного провайдера:
+
+      limactl shell {{.Name}}
+      echo 'export ANTHROPIC_API_KEY=sk-ant-...' >> ~/.bash_profile
+      echo 'export OPENAI_API_KEY=sk-...' >> ~/.bash_profile
+
+  Глобальный конфиг OpenCode сохраняется в ~/.config/opencode/ (примонтирован
+  с хоста, поэтому настройки переживают пересоздание VM).
+
+  Linuxbrew доступен внутри VM:
+
+      brew install jq
+
+  Глобальные npm-пакеты устанавливаются БЕЗ sudo в ~/.npm-global.
+
+  Проектный каталог хоста ({{.Dir}}) доступен внутри VM по тому же пути.
+
+  Документация: https://opencode.ai/docs/
