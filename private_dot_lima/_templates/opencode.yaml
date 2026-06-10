@@ -70,7 +70,7 @@ provision:
       export PATH="$HOME/.npm-global/bin:$PATH"
 
       if ! command -v opencode >/dev/null 2>&1; then
-        npm install -g opencode-ai
+        timeout 10m npm install -g opencode-ai --verbose
       fi
 
       command -v opencode
