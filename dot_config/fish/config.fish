@@ -8,28 +8,39 @@ function fish_greeting
         import_bash_env
     end
 
-    if not atuin init fish | rg --quiet '\bbind\b.*\-k'
-        gum style \
-            --border double \
-            --border-foreground 212 \
-            --margin "1 2" \
-            --padding "1 3" \
-            --align center \
-            --bold \
-            "🎉 Интеграция с atuin теперь генерирует валидный код!" \
-            "Можно удалить временный костыль из конфигурации:" \
-            "`atuin init fish | sd '(\bbind\b.*)(\-k)' '\$1' | source`"
+    if command -sq atuin; and command -sq rg; and command -sq gum
+        if not atuin init fish | rg --quiet '\bbind\b.*\-k'
+            gum style \
+                --border double \
+                --border-foreground 212 \
+                --margin "1 2" \
+                --padding "1 3" \
+                --align center \
+                --bold \
+                "🎉 Интеграция с atuin теперь генерирует валидный код!" \
+                "Можно удалить временный костыль из конфигурации:" \
+                "`atuin init fish | sd '(\bbind\b.*)(\-k)' '\$1' | source`"
+        end
     end
 end
 
 function import_bash_env
+    if not command -sq bash
+        return
+    end
+
+    if not test -f ~/.profile.d/custom_profile.sh
+        return
+    end
+
     set -l skip_vars PWD SHLVL _ OLDPWD
 
     bash -c 'source ~/.profile.d/custom_profile.sh && env' | while read -l line
         if string match -q '*=*' -- $line
-            set -l kv (string split -m 1 '=' $line)
+            set -l kv (string split -m 1 '=' -- $line)
+
             if test (count $kv) -eq 2
-                if not contains $kv[1] $skip_vars
+                if not contains -- $kv[1] $skip_vars
                     set -gx $kv[1] $kv[2]
                 end
             end
@@ -44,17 +55,21 @@ end
 function lsusb
     if command -sq cyme
         cyme $argv
+    else if command -sq lsusb
+        command lsusb $argv
+    else if command -sq bash
+        bash -c 'command lsusb "$@"' bash $argv
     else
-        bash -c lsusb $argv
+        echo "lsusb: command not found" >&2
+        return 127
     end
 end
 
-### ls
 function ls
     if command -sq eza
         eza -1 --icons $argv
     else
-        bash -c ls $argv
+        command ls $argv
     end
 end
 
@@ -68,21 +83,33 @@ end
 
 function tree
     if command -sq eza
-        ls -T $argv
+        eza -T $argv
+    else if command -sq tree
+        command tree $argv
     else
-        bash -c tree $argv
+        echo "tree: command not found" >&2
+        return 127
     end
 end
 
 #
 # Initializations
 #
-if test -d (/home/linuxbrew/.linuxbrew/bin/brew --prefix)"/share/fish/completions"
-    set -p fish_complete_path (/home/linuxbrew/.linuxbrew/bin/brew --prefix)/share/fish/completions
-end
 
-if test -d (/home/linuxbrew/.linuxbrew/bin/brew --prefix)"/share/fish/vendor_completions.d"
-    set -p fish_complete_path (/home/linuxbrew/.linuxbrew/bin/brew --prefix)/share/fish/vendor_completions.d
+set -l brew_bin /home/linuxbrew/.linuxbrew/bin/brew
+
+if test -x $brew_bin
+    set -l brew_prefix ($brew_bin --prefix 2>/dev/null)
+
+    if test -n "$brew_prefix"
+        if test -d "$brew_prefix/share/fish/completions"
+            set -p fish_complete_path "$brew_prefix/share/fish/completions"
+        end
+
+        if test -d "$brew_prefix/share/fish/vendor_completions.d"
+            set -p fish_complete_path "$brew_prefix/share/fish/vendor_completions.d"
+        end
+    end
 end
 
 if command -sq starship
@@ -102,7 +129,11 @@ if command -sq direnv
 end
 
 if command -sq atuin
-    atuin init fish | sd '(\bbind\b.*)(\-k)' '${1}' | source
+    if command -sq sd
+        atuin init fish | sd '(\bbind\b.*)(\-k)' '${1}' | source
+    else
+        atuin init fish | source
+    end
 end
 
 if command -sq yq
