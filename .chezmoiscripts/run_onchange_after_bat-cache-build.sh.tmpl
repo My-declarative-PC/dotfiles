@@ -1,3 +1,8 @@
 #!{{ lookPath "bash" }}
 
+if ! command -v bat >/dev/null 2>&1; then
+  echo "'bat' is not installed; skipping building bat cache"
+  exit 0
+fi
+
 bat cache --build
