@@ -6,7 +6,8 @@ file://{{ .chezmoi.homeDir }}/Pictures Pictures
 file://{{ .chezmoi.homeDir }}/gits gits
 file://{{ .chezmoi.homeDir }}/Yandex.Disk Yandex.Disk
 {{- if .isHome }}
-smb://192.168.10.1/external Lil BackUps
+smb://192.168.10.132/timofey personal
+smb://192.168.10.132/public public
 {{- else }}
 file://{{ .chezmoi.homeDir }}/wgits wgits
 smb://storage/1c-builds/ 1C builds
