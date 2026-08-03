@@ -2,7 +2,7 @@
 full-update: sys-update full-usr-update
 
 # full user-space update
-full-usr-update: flat-update brew-update pnpm-update
+full-usr-update: flat-update brew-update pnpm-update chezmoi-update
 
 
 # update system
@@ -20,3 +20,14 @@ pnpm-update:
 # update brew
 brew-update:
     brew update && brew upgrade -y
+
+# update chezmoi
+chezmoi-update:
+    chezmoi update --apply --init
+
+
+# distrobox assemble
+d_box-init:
+    distrobox assemble create --file ~/.config/distroboxses.ini
+
+
