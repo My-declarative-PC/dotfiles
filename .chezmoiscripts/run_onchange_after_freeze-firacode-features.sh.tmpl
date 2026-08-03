@@ -24,15 +24,14 @@ echo ":: Features: ${FEATURES}"
 
 # Проверка наличия uv
 if ! command -v uv >/dev/null 2>&1; then
-    echo "ERROR: uv не установлен. Установите: https://docs.astral.sh/uv/" >&2
-    exit 1
+    echo "uv is not installed; skipping Fira Code feature freeze"
+    exit 0
 fi
 
 # Проверка что исходные шрифты на месте
 if [[ ! -d "${FONT_DIR}" ]] || [[ -z "$(find "${FONT_DIR}" -name '*.ttf' -print -quit)" ]]; then
-    echo "ERROR: Не найдены TTF-файлы в ${FONT_DIR}" >&2
-    echo "Сначала выполните chezmoi apply для скачивания шрифтов" >&2
-    exit 1
+    echo "No TTF files found in ${FONT_DIR}; skipping Fira Code feature freeze"
+    exit 0
 fi
 
 # Готовим выходную директорию
