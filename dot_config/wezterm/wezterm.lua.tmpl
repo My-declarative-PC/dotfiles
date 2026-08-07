@@ -61,44 +61,40 @@ config.font = wezterm.font_with_fallback({
   "Noto Sans Mono CJK JP",
   "Noto Sans Mono CJK KR",
 });
+config.font_size = {{ .font_size_notyfication }}
 -- -- -- -- --
 
 -- #
 -- ## Keys
 -- #
+config.disable_default_key_bindings = true
 config.keys = {
-  {
-    key = "w",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.CloseCurrentPane { confirm = false },
-  },
-  {
-    key = "]",
-    mods = "CTRL|ALT",
-    action = wezterm.action.ActivateTabRelative(1),
-  },
-  {
-    key = "[",
-    mods = "CTRL|ALT",
-    action = wezterm.action.ActivateTabRelative(-1),
-  },
   {
     key = "d",
     mods = "CTRL|ALT",
-    -- action = wezterm.action.ShowLauncher
-    -- action = wezterm.action.ShowLauncherArgs { flags = "DOMAINS" },
     action = wezterm.action.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS|FUZZY|TABS|DOMAINS" }
   },
+  {
+    key = "f",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.Search{CaseSensitiveString=""}
+  },
+  {
+    key = "Space",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.QuickSelect
+  },
+  {
+    key = "x",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.ActivateCopyMode
+  },
+  {
+    key = "l",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.ClearScrollback "ScrollbackOnly"
+  },
 }
-
-for i = 1, 8 do
-  -- CTRL+ALT + number to move to that position
-  table.insert(config.keys, {
-    key = tostring(i),
-    mods = "CTRL|ALT",
-    action = wezterm.action.MoveTab(i - 1),
-  })
-end
 -- -- -- -- --
 
 -- #
