@@ -102,10 +102,11 @@ gui:
   switchToFilesAfterStashApply: true
   switchTabsWithPanelJumpKeys: false
 git:
-  pagers:
-    - pager: delta --dark --paging=never
+  diffRenderers:
+    - command: delta --dark --paging=never
       colorArg: never
-    - externalDiffCommand: difft --color=always
+    - command: difft --color=always
+      type: extDiff
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -226,7 +227,7 @@ keybinding:
     prevTab: "["
     nextScreenMode: +
     prevScreenMode: _
-    cyclePagers: "|"
+    cycleDiffRenderers: "|"
     undo: z
     redo: <ctrl+z>
     filteringMenu: <ctrl+s>
