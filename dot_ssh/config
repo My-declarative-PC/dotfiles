@@ -245,4 +245,10 @@ Host sgu-inf
     Hostname sgu-infocom.ru
     IdentityFile ~/.ssh/keys/id_work
     PreferredAuthentications publickey
+
+Host ticket_reports
+    User sitnikov@infocom.local
+    Hostname ticket-reports.infocom.local
+    IdentityFile ~/.ssh/keys/id_work
+    PreferredAuthentications publickey
 ###################################################################################################
