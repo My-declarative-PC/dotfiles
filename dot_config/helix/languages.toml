@@ -38,6 +38,11 @@ args = ["server"]
 command = "biome"
 args = ["lsp-proxy"]
 
+### deno
+[language-server.deno-lsp]
+command = "deno"
+args = ["lsp"]
+config.deno.enable = true
 
 #
 ##
@@ -91,10 +96,18 @@ language-servers = ["sql-language-server", "typos"]
 ##### Language: JAVASCRIPT #####
 [[language]]
 name = "javascript"
-language-servers = ["typescript-language-server", "typos"]
-indent = { tab-width = 4, unit = "    " }
+roots = ["deno.json", "deno.jsonc", "package.json"]
+file-types = ["js", "jsx"]
 auto-format = true
-file-types = ["js"]
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "deno-lsp",
+  "typos"
+]
+indent = { tab-width = 4, unit = "    " }
 formatter = { command = 'prettier', args = [
   "--parser",
   "typescript",
@@ -103,30 +116,22 @@ formatter = { command = 'prettier', args = [
   "--print-width",
   "100",
 ] }
-[[language]]
-name = "jsx"
-auto-format = true
-language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
-  "biome",
-]
-indent = { tab-width = 4, unit = "    " }
 
 ##### Language: TYPESCRIPT #####
 [[language]]
 name = "typescript"
+roots = ["deno.json", "deno.jsonc", "package.json"]
+file-types = ["ts", "tsx"]
+auto-format = true
 language-servers = [
   { name = "typescript-language-server", except-features = [
     "format",
   ] },
   "biome",
-  "typos",
+  "deno-lsp",
+  "typos"
 ]
 indent = { tab-width = 4, unit = "    " }
-auto-format = true
-file-types = ["ts"]
 formatter = { command = 'prettier', args = [
   "--parser",
   "typescript",
@@ -135,16 +140,6 @@ formatter = { command = 'prettier', args = [
   "--print-width",
   "100",
 ] }
-[[language]]
-name = "tsx"
-auto-format = true
-language-servers = [
-  { name = "typescript-language-server", except-features = [
-    "format",
-  ] },
-  "biome",
-]
-indent = { tab-width = 4, unit = "    " }
 
 ##### Language: JSON #####
 [[language]]
