@@ -126,9 +126,9 @@
 [".local/bin/netwatch"]
     type = "archive-file"
     executable = true
-    url = '{{ gitHubLatestRelease "matthart1983/netwatch" | toJson | fromJson | jq ".assets[] | select(.name | ascii_downcase | contains(\"linux-x86_64-static\")) | .browser_download_url" | first}}'
+    url = '{{ gitHubLatestRelease "matthart1983/netwatch" | toJson | fromJson | jq ".assets[] | select(.name | ascii_downcase | contains(\"netwatch-linux-x86_64.tar.gz\")) | .browser_download_url" | first}}'
     refreshPeriod = "744h"
-    path = "netwatch-linux-x86_64-static"
+    path = "netwatch-linux-x86_64"
 
 [".local/bin/caligula"]
     type = "file"
