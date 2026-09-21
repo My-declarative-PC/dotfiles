@@ -7,21 +7,6 @@ function fish_greeting
     if status is-interactive
         import_bash_env
     end
-
-    if command -sq atuin; and command -sq rg; and command -sq gum
-        if not atuin init fish | rg --quiet '\bbind\b.*\-k'
-            gum style \
-                --border double \
-                --border-foreground 212 \
-                --margin "1 2" \
-                --padding "1 3" \
-                --align center \
-                --bold \
-                "🎉 Интеграция с atuin теперь генерирует валидный код!" \
-                "Можно удалить временный костыль из конфигурации:" \
-                "`atuin init fish | sd '(\bbind\b.*)(\-k)' '\$1' | source`"
-        end
-    end
 end
 
 function import_bash_env
@@ -67,7 +52,7 @@ end
 
 function ls
     if command -sq eza
-        eza -1 --icons $argv
+        eza -1 --icons auto $argv
     else
         command ls $argv
     end
@@ -129,11 +114,7 @@ if command -sq direnv
 end
 
 if command -sq atuin
-    if command -sq sd
-        atuin init fish | sd '(\bbind\b.*)(\-k)' '${1}' | source
-    else
-        atuin init fish | source
-    end
+    atuin init fish | source
 end
 
 if command -sq yq
@@ -154,4 +135,8 @@ end
 
 if command -sq sk
     sk --shell fish | source
+end
+
+if command -sq uv
+    uv generate-shell-completion fish
 end
