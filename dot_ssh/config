@@ -251,4 +251,10 @@ Host ticket_reports
     Hostname ticket-reports.infocom.local
     IdentityFile ~/.ssh/keys/id_work
     PreferredAuthentications publickey
+
+Host 1c_test
+    User USR1CV8
+    Hostname dev-1c-38
+    IdentityFile ~/.ssh/keys/id_USR1CV8
+    PreferredAuthentications publickey
 ###################################################################################################
