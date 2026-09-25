@@ -138,5 +138,8 @@ if command -sq sk
 end
 
 if command -sq uv
-    uv generate-shell-completion fish
+    uv generate-shell-completion fish | source
+end
+if command -sq uvx
+    uvx --generate-shell-completion fish | source
 end
