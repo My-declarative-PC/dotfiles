@@ -252,6 +252,12 @@ Host ticket_reports
     IdentityFile ~/.ssh/keys/id_work
     PreferredAuthentications publickey
 
+Host element
+    User sitnikov@infocom.local
+    Hostname dis-1c-enterprise-element-app.infocom.local
+    IdentityFile ~/.ssh/keys/id_work
+    PreferredAuthentications publickey
+
 Host 1c_test
     User USR1CV8
     Hostname dev-1c-38
