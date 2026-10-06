@@ -7,7 +7,7 @@ dir="$HOME/gits"
 [ -d "$dir" ] || exit 0
 
 gio set -t string "$dir" \
-    metadata::custom-icon-name: folder-green-git
+    metadata::custom-icon-name folder-green-git
 
 ############
 
@@ -15,7 +15,7 @@ dir="$HOME/wgits"
 [ -d "$dir" ] || exit 0
 
 gio set -t string "$dir" \
-    metadata::custom-icon-name: folder-magenta-git
+    metadata::custom-icon-name folder-magenta-git
 
 ############
 
@@ -23,6 +23,14 @@ dir="$HOME/Yandex.Disk"
 [ -d "$dir" ] || exit 0
 
 gio set -t string "$dir" \
-    metadata::custom-icon-name: folder-yellow-yandex-disk
+    metadata::custom-icon-name folder-yellow-yandex-disk
+
+############
+
+dir="$HOME/Downloads"
+[ -d "$dir" ] || exit 0
+
+gio set -t string "$dir" \
+    metadata::custom-icon-name folder-breeze-download
 
 {{ end }}
