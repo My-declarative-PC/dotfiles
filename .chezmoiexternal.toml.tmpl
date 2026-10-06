@@ -35,6 +35,14 @@
     url = "https://github.com/catppuccin/cursors/releases/latest/download/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-cursors.zip"
     refreshPeriod = "744h"
 
+[".local/share/icons/hicolor/scalable/actions"]
+    type = "archive"
+    url = "https://github.com/xapp-project/xapp-symbolic-icons/archive/refs/heads/master.tar.gz"
+    stripComponents = 3
+    include = ["*/icons/symbolic/*.svg"]
+    exact = false
+    refreshPeriod = "744h"
+
 [".local/share/themes"]
     type = "archive"
     url = "https://github.com/catppuccin/gtk/releases/latest/download/catppuccin-{{ .catppuccin_flavor }}-{{ .catppuccin_accent }}-standard+default.zip"
