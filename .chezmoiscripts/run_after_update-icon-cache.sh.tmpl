@@ -1,0 +1,14 @@
+#!{{ lookPath "bash" }}
+
+{{ if .hasGUI }}
+if ! command -v gtk-update-icon-cache >/dev/null 2>&1; then
+  echo "'gtk-update-icon-cache' is not installed; skipping icon cache update"
+  exit 0
+fi
+
+icon_dir="$HOME/.local/share/icons/hicolor"
+
+if [ -d "$icon_dir" ]; then
+  gtk-update-icon-cache --ignore-theme-index "$icon_dir"
+fi
+{{ end }}
