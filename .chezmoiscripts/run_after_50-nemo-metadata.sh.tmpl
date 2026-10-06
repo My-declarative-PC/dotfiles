@@ -1,0 +1,28 @@
+#!{{ lookPath "bash" }}
+
+{{ if .hasGUI }}
+set -eu
+
+dir="$HOME/gits"
+[ -d "$dir" ] || exit 0
+
+gio set -t string "$dir" \
+    metadata::custom-icon-name: folder-green-git
+
+############
+
+dir="$HOME/wgits"
+[ -d "$dir" ] || exit 0
+
+gio set -t string "$dir" \
+    metadata::custom-icon-name: folder-magenta-git
+
+############
+
+dir="$HOME/Yandex.Disk"
+[ -d "$dir" ] || exit 0
+
+gio set -t string "$dir" \
+    metadata::custom-icon-name: folder-yellow-yandex-disk
+
+{{ end }}
