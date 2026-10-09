@@ -1,0 +1,33 @@
+{
+	"compatible_printers": [
+		"Creality Ender-3 V3 KE 0.4 nozzle"
+	],
+	"default_filament_colour": [
+		"#77767B"
+	],
+	"enable_pressure_advance": [
+		"1"
+	],
+	"filament_cost": [
+		"1122"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_settings_id": [
+		"NIT PLA 0.4 -- gray"
+	],
+	"from": "User",
+	"hot_plate_temp_initial_layer": [
+		"60"
+	],
+	"inherits": "NIT PLA @System",
+	"name": "NIT PLA 0.4 -- gray",
+	"nozzle_temperature": [
+		"215"
+	],
+	"nozzle_temperature_initial_layer": [
+		"220"
+	],
+	"version": "2.4.0.3"
+}

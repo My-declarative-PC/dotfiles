@@ -1,0 +1,13 @@
+{
+	"from": "User",
+	"inherits": "Creality Ender-3 V3 KE 0.4 nozzle",
+	"name": "Creality Ender-3 V3 KE 0.4 nozzle - main",
+	"printer_extruder_id": [
+		"1"
+	],
+	"printer_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"printer_settings_id": "Creality Ender-3 V3 KE 0.4 nozzle - main",
+	"version": "2.3.2.75"
+}
