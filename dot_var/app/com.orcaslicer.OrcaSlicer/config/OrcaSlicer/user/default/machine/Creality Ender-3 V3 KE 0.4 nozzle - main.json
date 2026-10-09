@@ -1,7 +1,10 @@
 {
 	"from": "User",
+	"host_type": "crealityprint",
 	"inherits": "Creality Ender-3 V3 KE 0.4 nozzle",
 	"name": "Creality Ender-3 V3 KE 0.4 nozzle - main",
+	"print_host": "192.168.10.100",
+	"printer_agent": "crealityprint",
 	"printer_extruder_id": [
 		"1"
 	],
@@ -9,5 +12,11 @@
 		"Direct Drive Standard"
 	],
 	"printer_settings_id": "Creality Ender-3 V3 KE 0.4 nozzle - main",
-	"version": "2.3.2.75"
+	"retract_when_changing_layer": [
+		"0"
+	],
+	"version": "2.3.2.75",
+	"wipe": [
+		"0"
+	]
 }

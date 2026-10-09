@@ -29,5 +29,8 @@
 	"nozzle_temperature_initial_layer": [
 		"220"
 	],
+	"pressure_advance": [
+		"0.06"
+	],
 	"version": "2.4.0.3"
 }
