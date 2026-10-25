@@ -2,6 +2,30 @@
 	"from": "User",
 	"host_type": "crealityprint",
 	"inherits": "Creality Ender-3 V3 KE 0.4 nozzle",
+	"machine_max_acceleration_e": [
+		"4000",
+		"5000"
+	],
+	"machine_max_acceleration_extruding": [
+		"7000",
+		"8000"
+	],
+	"machine_max_acceleration_retracting": [
+		"4000",
+		"5000"
+	],
+	"machine_max_acceleration_x": [
+		"7000",
+		"8000"
+	],
+	"machine_max_acceleration_y": [
+		"7000",
+		"8000"
+	],
+	"machine_max_acceleration_z": [
+		"250",
+		"300"
+	],
 	"name": "Creality Ender-3 V3 KE 0.4 nozzle - main",
 	"print_host": "192.168.10.100",
 	"printer_agent": "crealityprint",
@@ -18,5 +42,8 @@
 	"version": "2.3.2.75",
 	"wipe": [
 		"0"
+	],
+	"z_hop": [
+		"0.5"
 	]
 }
