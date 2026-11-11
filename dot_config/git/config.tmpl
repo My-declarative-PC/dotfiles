@@ -50,6 +50,17 @@
 [merge]
     conflictstyle = zdiff3
 
+# ===== Colors =====
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
+[diff]
+    colorMoved = zebra
+
 # ===== Credentials =====
 [credential]
     helper = store
@@ -78,6 +89,8 @@
     dark = true
     light = false
     side-by-side = true
+    line-numbers = true
+    true-color = auto
 
 [include]
     path = {{ .chezmoi.homeDir }}/.config/git/catppuccin.gitconfig
@@ -86,12 +99,15 @@
 [diff "json-pretty"]
     textconv = json-pretty
     prompt = false
+    cachetextconv = true
 
 [diff "age-decrypt"]
     textconv = age-decrypt
+    cachetextconv = true
 
 [diff "age-decrypt-json"]
     textconv = age-decrypt-json
+    cachetextconv = true
 
 # ===== Aliases =====
 [alias]

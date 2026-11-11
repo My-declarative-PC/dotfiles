@@ -1,5 +1,9 @@
 #!{{ lookPath "bash" }}
 # Format JSON to pretty-printed output
-# Usage: json-pretty [file]  OR  cat file | json-pretty
+# Usage: json-pretty [file] OR cat file | json-pretty
 
-prettier --parser jsonc --tab-width 4 "${1:--}"
+if [[ $# -eq 0 || "${1:-}" == "-" ]]; then
+    prettier --parser jsonc --tab-width 4
+else
+    prettier --parser jsonc --tab-width 4 "$@"
+fi

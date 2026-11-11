@@ -1,0 +1,9 @@
+#!{{ lookPath "bash" }}
+# Decrypt and pretty-print JSON or JSONL
+# Usage: age-decrypt-json [file] OR cat file | age-decrypt-json
+
+set -o pipefail
+
+age-decrypt "${@:--}" |
+    jq -s 'if length == 1 then .[0] else . end' |
+    json-pretty
