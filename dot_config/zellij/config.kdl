@@ -1,6 +1,14 @@
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -24,6 +32,14 @@ keybinds clear-defaults=true {
         bind "x" { CloseFocus; SwitchToMode "locked"; }
         bind "z" { TogglePaneFrames; SwitchToMode "locked"; }
         bind "tab" { SwitchFocus; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     tab {
         bind "left" { GoToPreviousTab; }
@@ -52,6 +68,14 @@ keybinds clear-defaults=true {
         bind "t" { SwitchToMode "normal"; }
         bind "x" { CloseTab; SwitchToMode "locked"; }
         bind "tab" { ToggleTab; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     resize {
         bind "left" { Resize "Increase left"; }
@@ -70,6 +94,14 @@ keybinds clear-defaults=true {
         bind "k" { Resize "Increase up"; }
         bind "l" { Resize "Increase right"; }
         bind "r" { SwitchToMode "normal"; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     move {
         bind "left" { MovePane "left"; }
@@ -84,6 +116,14 @@ keybinds clear-defaults=true {
         bind "n" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "tab" { MovePane; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     scroll {
         bind "Alt left" { MoveFocusOrTab "left"; SwitchToMode "locked"; }
@@ -97,6 +137,14 @@ keybinds clear-defaults=true {
         bind "Alt k" { MoveFocus "up"; SwitchToMode "locked"; }
         bind "Alt l" { MoveFocusOrTab "right"; SwitchToMode "locked"; }
         bind "s" { SwitchToMode "normal"; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     search {
         bind "c" { SearchToggleOption "CaseSensitivity"; }
@@ -104,6 +152,14 @@ keybinds clear-defaults=true {
         bind "o" { SearchToggleOption "WholeWord"; }
         bind "p" { Search "up"; }
         bind "w" { SearchToggleOption "Wrap"; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     session {
         bind "a" {
@@ -142,6 +198,14 @@ keybinds clear-defaults=true {
                 move_to_focused_tab true
             }
             SwitchToMode "locked"
+        }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
         }
     }
     shared_among "normal" "locked" {
@@ -215,15 +279,79 @@ keybinds clear-defaults=true {
         bind "Ctrl c" { SwitchToMode "scroll"; }
         bind "esc" { SwitchToMode "scroll"; }
         bind "enter" { SwitchToMode "search"; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     renametab {
         bind "esc" { UndoRenameTab; SwitchToMode "tab"; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
     shared_among "renametab" "renamepane" {
         bind "Ctrl c" { SwitchToMode "locked"; }
     }
     renamepane {
         bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
+    }
+    normal {
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
+    }
+    prompt {
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
+    }
+    tmux {
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
+    }
+    renamesession {
+        bind "F1" {
+            MessagePlugin "compact-bar" {
+                name "toggle_tooltip"
+                payload "3"
+                floating false
+                tooltip "F1"
+            }
+        }
     }
 }
 
@@ -515,3 +643,9 @@ copy_clipboard "system"
 // can be useful for removing wrappers around commands
 // Note: be sure to escape backslashes and similar characters properly
 // post_command_discovery_hook "echo $RESURRECT_COMMAND | sed <your_regex_here>"
+theme_dark "catppuccin-mocha"
+theme_light "catppuccin-latte"
+terminal {
+    font "FiraCode Nerd Font Mono Custom"
+    font_size 13
+}
