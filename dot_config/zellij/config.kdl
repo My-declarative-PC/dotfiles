@@ -658,3 +658,4 @@ attach_to_session true
 scrollback_lines_to_serialize 3000
 serialization_interval 360
 nested_session_handling "fullscreen"
+show_startup_tips false
