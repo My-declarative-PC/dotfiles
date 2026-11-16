@@ -1,11 +1,18 @@
-keybinds preset="unlock-first"
+keybinds preset="unlock-first" {
+    unbind "Alt f"
+
+    shared_among "normal" "locked" {
+        bind "Alt t" { NewTab; }
+        bind "Alt F" { ToggleFloatingPanes; }
+    }
+}
 
 // Plugin aliases - can be used to change the implementation of Zellij
 // changing these requires a restart to take effect
 plugins {
     about location="zellij:about"
-    compact-bar location="zellij:bars" {
-        role "compact-bar"
+    compact-bar location="zellij:compact-bar" { // replace it with these lines
+        tooltip "F1" // choose a keybinding to toggle the hints
     }
     configuration location="zellij:configuration"
     context-menu location="zellij:context-menu"
