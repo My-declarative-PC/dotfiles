@@ -289,7 +289,7 @@ bindsym $mod+r   mode "resize"
 bindsym $mod+р   mode "resize"
 
 # Applications
-bindsym $mod+Return        exec --no-startup-id zellij terminal
+bindsym $mod+Return        exec --no-startup-id org.wezfurlong.wezterm || wezterm
 bindsym $mod+Shift+w       exec --no-startup-id flatpak run app.zen_browser.zen || dunstify --urgency critical --app-name "i3" Пролеблема "Браузер 'Zen' не установлен"
 bindsym $mod+Shift+в       exec --no-startup-id flatpak run app.zen_browser.zen || dunstify --urgency critical --app-name "i3" Пролеблема "Браузер 'Zen' не установлен"
 bindsym $mod+Shift+e       exec --no-startup-id nemo
@@ -349,7 +349,7 @@ bindsym Ctrl+Shift+Print    exec --no-startup-id maim --select | xclip -selectio
 #################
 
 # Assign apps to workspaces
-assign [class="dev.zellij.Zellij"]      $ws1
+assign [class="org.wezfurlong.wezterm"] $ws1
 assign [class="zen"]                    $ws2
 assign [class="Nemo"]                   $ws3
 assign [class="thunderbird"]            $ws4
@@ -367,7 +367,7 @@ for_window [class=dbgate]               focus
 for_window [class=obs]                  focus
 for_window [class=org.remmina.Remmina]  focus
 for_window [class=org.remmina.Remmina]  layout stacking
-for_window [class=dev.zellij.Zellij]    focus
+for_window [class=org.wezfurlong.wezterm] focus
 for_window [class=Nemo]                 focus
 for_window [class=Thunderbird]          focus
 for_window [class=vkteams]              focus
