@@ -1,0 +1,19 @@
+{
+	"bottom_solid_infill_flow_ratio": "1.02",
+	"brim_flow_ratio": "1.05",
+	"brim_object_gap": "0.05",
+	"from": "User",
+	"inherits": "0.20mm Standard @Creality Ender3V3KE",
+	"name": "0.20mm Standard @Creality Ender3V3KE - main",
+	"print_extruder_id": [
+		"1"
+	],
+	"print_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"print_settings_id": "0.20mm Standard @Creality Ender3V3KE - main",
+	"seam_gap": "5%",
+	"skirt_loops": "3",
+	"sparse_infill_pattern": "gyroid",
+	"version": "2.3.2.75"
+}

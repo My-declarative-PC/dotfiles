@@ -1,0 +1,21 @@
+{
+	"compatible_printers": [
+		"Creality Ender-3 V3 KE 0.4 nozzle"
+	],
+	"default_filament_colour": [
+		"#073415"
+	],
+	"filament_cost": [
+		"642"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_settings_id": [
+		"NIT PETG 0.4 -- haki"
+	],
+	"from": "User",
+	"inherits": "NIT PETG @System",
+	"name": "NIT PETG 0.4 -- haki",
+	"version": "2.4.0.3"
+}
